@@ -17,36 +17,41 @@ $app->get('/', function ($req, $res, $args) {
 
 $app->get("/cart", function($req, $res, $args) {
     // get cart and show on frontend
-    return $res->write("Your cart:");
+    return $this->renderer->render($res, "cart.phtml", $args);
 });
 $app->get("/config", function($req, $res, $args) {
     // show current configuration
-    return $res->write("Configuration");
-});
-$app->post("/config", function($req, $res, $args) {
-    // update configuration
+    return $this->renderer->render($res, "config.phtml", $args);
 });
 
 // REST API
 $app->group("/api", function() use ($app) {
     // products
     $app->get("/products", function($req, $res, $args) {
-        $products = $this->db->table("Products")->get();
-        return $res->withJson($products);    
+        // $products = $this->db->table("Products")->get();
+        return $res->withJson(\Product::all());    
     });
     $app->get("/products/{id}", function($req, $res, $args){
-        $product = $this->db->table("Products")->find($args["id"]);
-        if($product == NULL) {            
-            return $res->withJson(CreateErrorMessage($args["id"]));
+        $product = \Product::find($args["id"]);
+        if(sizeof($product) == 0) {            
+            return $res->withJson(CreateErrorMessage($args["id"]), 404);
         }     
         return $res->withJson($product);
     });  
     // Content-Type: application/json must be set to succesfully read body content!
     $app->post("/products", function($req, $res, $args) {
         // validate
-        $product = $req->getParsedBody();
-        return $res->withJson($product);
-        // ValidateProduct($product);
+        $request = $req->getParsedBody();
+        try {
+            $product = new Product;
+            $product->name = $request["name"];
+            $product->price = $request["price"];
+            $product->save();
+            return $res->withJson($product);        
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
 
         // add new product
     });

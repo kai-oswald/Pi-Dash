@@ -20,6 +20,21 @@ $app = new \Slim\App($settings);
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
 
+// set up ORM
+$dbsettings = $settings["settings"]["db"];
+$container = new Illuminate\Container\Container;
+$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
+$conn = $connFactory->make($dbsettings);
+$resolver = new \Illuminate\Database\ConnectionResolver();
+$resolver->addConnection('default', $conn);
+$resolver->setDefaultConnection('default');
+\Illuminate\Database\Eloquent\Model::setConnectionResolver($resolver);
+
+// Register models
+require __DIR__ . '/../models/order.php';
+require __DIR__ . '/../models/cart.php';
+require __DIR__ . '/../models/product.php';
+
 // Register middleware
 require __DIR__ . '/../src/middleware.php';
 
