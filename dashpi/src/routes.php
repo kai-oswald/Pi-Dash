@@ -25,11 +25,10 @@ $app->get("/config", function($req, $res, $args) {
 });
 $app->post("/config", function($req, $res, $args) {
     // update configuration
-    return $res->write("Configuration");
 });
+
 // REST API
 $app->group("/api", function() use ($app) {
-
     // products
     $app->get("/products", function($req, $res, $args) {
         $products = $this->db->table("Products")->get();
@@ -42,10 +41,12 @@ $app->group("/api", function() use ($app) {
         }     
         return $res->withJson($product);
     });  
+    // Content-Type: application/json must be set to succesfully read body content!
     $app->post("/products", function($req, $res, $args) {
         // validate
-        $product = $args["product"];
-        ValidateProduct($product);
+        $product = $req->getParsedBody();
+        return $res->withJson($product);
+        // ValidateProduct($product);
 
         // add new product
     });
