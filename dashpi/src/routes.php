@@ -52,23 +52,52 @@ $app->group("/api", function() use ($app) {
         catch(Exception $e) {
             return $res->withJson($e, 400);
         }
-
-        // add new product
     });
     $app->put("/products/{id}", function($req, $res, $args) {
-        // validate
-
-        // update exisiting product with this id
+        try {
+            $product = \Product::find($args["id"]);
+            $product->name = $args["name"];
+            $product->price = $args["price"];
+            $product->save();
+            return $res->withJson($product);
+        }
+         catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
     }); 
     $app->delete("/products/{id}", function($req, $res, $args) {
-        // validate
-
-        // delete exisiting product with this id
+        try {
+            $product = \Product::find($args["id"]);
+            $product->delete();
+            return $res->withJson($args[id]);
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
     });  
     // cart
     $app->get("/cart", function($req, $res, $args) {
         // construct the cart (all open orders)
-        $cart = $this->db->table("Cart")->get();
+        $cart = \Cart::all();
+        return $res->withJson($cart); 
+    });
+
+     $app->post("/sender", function($req, $res, $args) {
+        // construct the cart (all open orders)
+        $sender = \Sender::find($args["id"]);
+        if($sender == NULL) {
+            try {
+                $sender = new Sender;
+                $sender->id = $args["ID"];
+                $sender->productid = $args["ProductID"];
+                $sender->save();
+                return $res->withJson($sender);
+            }
+            catch(Exception $e) {
+                return $res->withJson($e, 400);
+            }
+        }
+        }
         return $res->withJson($cart); 
     });
 
