@@ -96,9 +96,8 @@ $app->group("/api", function() use ($app) {
             catch(Exception $e) {
                 return $res->withJson($e, 400);
             }
-        }
-        }
-        return $res->withJson($cart); 
+        }        
+        return $res->withJson($sender); 
     });
 
     // orders (product + count + open/closed)
