@@ -14,8 +14,7 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage{graphicx}
 \usepackage{amsthm}
 \usepackage{graphicx}
-\bibliographystyle{unsrt}
-
+\usepackage{url} 
 
  \begin{document}
 \tableofcontents
@@ -23,8 +22,8 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
  
 \section{Einleitung}        
 \label{sec:Einleitung-1}       
-Aufgrund der technologischen Entwicklung in den letzten Jahren sind immer kleinere Geräte möglich, die immer mehr Funktionen übernehmen können. Diese Geräte werden in immer mehr Bereichen des täglichen Lebens eingesetzt und ermöglichen so neue Anwendungsgebiete, die sich nicht mehr nur auf den heimischen Computer beschränken. Eine dieser Entwicklungen ist der sogenannte ``Amazon Dash Button'', der von Amazon im Jahr 2015 veröffentlicht und auf den Markt gebracht wurde. (vgl. \cite{Amazon.})
-Dieser kleine Button wurde entwickelt, um den Bestellprozess beim Internethändler zu vereinfachen. Über eine WLAN Verbindung und eine einmalige kurze Konfiguration wird der Kaufprozess für ein zuvor definiertes Produkt angestoßen. Dazu muss nur der Button betätigt werden und die Bestellung wird aufgegeben. 
+Aufgrund der technologischen Entwicklung in den letzten Jahren sind immer kleinere Geräte möglich, die immer mehr Funktionen übernehmen können. Diese Geräte werden in immer mehr Bereichen des täglichen Lebens eingesetzt und ermöglichen so neue Anwendungsgebiete, die sich nicht mehr nur auf den heimischen Computer beschränken. Eine dieser Entwicklungen ist der sogenannte ``Amazon Dash Button'', der von Amazon im Jahr 2015 veröffentlicht und auf den Markt gebracht wurde. 
+Dieser kleine Button wurde entwickelt, um den Bestellprozess beim Internethändler zu vereinfachen. Über eine WLAN Verbindung und eine einmalige kurze Konfiguration wird der Kaufprozess für ein zuvor definiertes Produkt angestoßen. Dazu muss nur der Button betätigt werden und die Bestellung wird aufgegeben. (vgl. \cite{Amazon.})
 
 Im Rahmen dieser Studienarbeit werden diese Prozesse untersucht und eine offenere Lösung entwickelt. Bei der ersten Betrachtung des Produkts fällt nämlich auf, dass es für den Kunden einige Nachteile gibt. Zum einen ist er an den Internethändler Amazon gebunden, da dieser nur die Bestellung über sein Angebot ermöglicht. Weiterhin ist es nicht möglich bei der Betätigung des Buttons den aktuellen Preis des Produkts zu sehen. Das bedeutet, dass der Kunde das übliche Produkt bestellt und den genauen Preis nicht weiß. Diese zwei Nachteile sollen durch eine offene und durch den Nutzer konfigurierbare Lösung behoben werden. Auf den folgenden Seiten wird auf die Theorie und die Entwicklung der Lösung detailliert eingegangen und zudem der Amazon Dash Button genauer untersucht.
 
@@ -32,6 +31,8 @@ Im Rahmen dieser Studienarbeit werden diese Prozesse untersucht und eine offener
 \section{Überblick der vorgestellten Lösung}
 \label{sec:Überblick der vorgestellten Lösung-1}
 Die vorgestellte Lösung soll auf freie Technologien zurückgreifen und somit für den Nutzer nachvollziehbar sein. Das erklärte Ziel ist es, über Buttons einen Einkaufszettel zusammenzustellen, der dem Nutzer dann zur Verfügung gestellt wird. Dazu wird mit sogenannten Mikrocontrollern und Einplatinencomputern die benötigte Infrastruktur realisiert und aufgebaut. Damit die Daten nicht außerhalb der Kontrolle des Nutzers liegen, wird ein zentraler Server im Netzwerk benötigt. Dieser zentrale Server empfängt zudem die entsprechenden Signale der Clients, die in diesem Falle die Buttons sind. 
+
+\newpage
 
 \section{Theorie}        
 \label{sec:Theorie-1}  
@@ -54,7 +55,7 @@ Der einfache Header des UDP Protokolls besteht nur aus vier Attributen. Diese je
 \subsection{REST}        
 \label{sec:REST-1}  
 
- \cite{Tilkov.2015}
+\cite{Tilkov.2015}
  
  
 \newpage
@@ -71,7 +72,7 @@ In den folgenden Kapiteln wird die ausgewählte Hardware des Projektes vorgestel
 \label{sec:Vorstellung des Raspberry PI-1} 
 
 Das Raspberry PI ist ein Einplatinencomputer, den es in verschiedenen Ausführungen gibt. Je nach Ausführung variieren die Ausstattungsmerkmale. Zu den Grundsätzlichen Ausstattungsmerkmalen gehören eine CPU, unterschiedlich viel RAM und eine iGPU Einheit. Er wurde von der Raspberry PI Foundation entwickelt und hatte das ursprüngliche Ziel einen günstigen Computer für den Schulunterricht bereitzustellen. Daher ist es auch möglich eine vollständige Linux Distribution als Betriebssystem zu nutzen und es wurde sogar eine speziell angepasste Distribution veröffentlicht, die Raspbian bezeichnet wird. 
-Aufgrund der verschiedenen Möglichkeiten wird er aber mittlerweile auch in vielen anderen Anwendungsgebieten genutzt. Insbesondere die neueren Modelle, die mit mehreren USB Ports, GPIO Pins, einem Ethernet Port und weiteren Anschlüssen ausgestattet sind, werden auch in verschiedensten Projekten privater Personen genutzt. Ein weiteres Merkmal ist die Größe des Raspberry PI's, die mit maximal 93mmx63.5mmx20mm sehr klein ausfällt. Zusätzlich gibt es diverses, bereits für den Raspberry PI ausgelegtes, Zubehör, welches weitere Erweiterungsmöglichkeiten bietet. So gibt es Kameras, Gehäuse, kleine Displays und WLAN Sticks, die den Funktionsumfang erweitern. So wurden bereits diverse Projekte vorgestellt, die zeigen, dass die Einsatzmöglichkeiten des Raspberry Pis wesentlich größer sind. 
+Aufgrund der verschiedenen Möglichkeiten wird er aber mittlerweile auch in vielen anderen Anwendungsgebieten genutzt. Insbesondere die neueren Modelle, die mit mehreren USB Ports, GPIO Pins, einem Ethernet Port und weiteren Anschlüssen ausgestattet sind, werden auch in verschiedensten Projekten privater Personen genutzt. Ein weiteres Merkmal ist die Größe des Raspberry PI's, die mit maximal 93mmx63.5mmx20mm sehr klein ausfällt. Zusätzlich gibt es diverses, bereits für den Raspberry PI ausgelegtes, Zubehör, welches weitere Erweiterungsmöglichkeiten bietet. So gibt es Kameras, Gehäuse, kleine Displays und WLAN Sticks, die den Funktionsumfang erweitern. So wurden bereits diverse Projekte vorgestellt, die zeigen, dass die Einsatzmöglichkeiten des Raspberry Pis wesentlich größer sind. (vgl. \cite{.28.12.2016} \cite{.28.01.2017})
 \\
 \begin{figure}[!htb]
 	\centering
@@ -92,7 +93,7 @@ Der Datenbankserver im Hintergrund wird die benötigte Datenbank entsprechend ve
 \subsubsection{Vorstellung des ``Pretzelboard''}        
 \label{sec:Vorstellung des ``Pretzelboard''} 
 Das ``Pretzelboard'' ist ein sogenanntes Elektronikmodul, dass unter verschiedenen Namen bekannt ist. Neben ``Pretzelboard'' ist der Name ``NanoESP-Board'' ebenfalls bekannt. Die Besonderheit des Boards ist ein bereits angeschlossenes WLAN Modul, welches sowohl als Sender als auch Empfänger arbeiten kann. Da es zudem den gleichen Microcontroller wie das bekanntere Microcontrollerboard ``Arduino Uno'' nutzt, kann die Entwicklungsumgebung von Arduino zur Entwicklung von Software genutzt werden. 
-Der Vorteil der bereits erfolgten Kombination und Verdrahtung von WLAN Modul und Microcontroller liegt darin, dass der Nutzer dies nicht mehr machen muss und somit wesentlich weniger Kenntnisse vorausgesetzt werden müssen. 
+Der Vorteil der bereits erfolgten Kombination und Verdrahtung von WLAN Modul und Microcontroller liegt darin, dass der Nutzer dies nicht mehr machen muss und somit wesentlich weniger Kenntnisse vorausgesetzt werden müssen. (vgl. \cite{.b}\cite{.kafka}\cite{FranzisVerlagGmbH.27.11.2015})
 
 
 \subsubsection{Verwendung im Projekt}        
@@ -116,17 +117,48 @@ Einbindung von \nameref{sec:Auswahl der Hardware-1}
 \subsubsection{Einrichtung des Raspberrys}  
 \label{sec:Einrichtung des Raspberrys-1}
 
+\paragraph{Einrichtung des WLAN Access Points}  
+\label{sec:Einrichtung des WLAN Access Points-1} 
+
+\paragraph{Einrichtung des UDP Empfängers}  
+\label{sec:Einrichtung des UDP Empfängers-1} 
+
 \subsubsection{Einrichtung des ``Pretzelboards''}  
 \label{sec:Einrichtung des ``Pretzelboards''-1}
 
-\subsection{Einrichtung der Hardware}  
-\label{sec:Einrichtung der Hardware-1} 
+\subsection{Entwicklung der Webanwendung}  
+\label{sec:Entwicklung der Webanwendung-1} 
+
+\subsubsection{Aufbau und Entwicklung der REST API}  
+\label{sec:Aufbau und Entwicklung der REST API-1}
+
+\subsubsection{Aufbau und Entwicklung des Frontends}  
+\label{sec:Aufbau und Entwicklung des Frontends-1}
+
+\subsection{Entwicklung und Einrichtung der Datenbank}  
+\label{sec:Entwicklung und Einrichtung der Datenbank-1} 
+
+\newpage
+
+\section{Ergebnis des Projektes}        
+\label{sec:Ergebnis des Projektes-1}  
+
+\newpage
+
+\section{Fazit und Ausblick}        
+\label{sec:Fazit und Ausblick-1}  
+
+\newpage
 
 
-
-
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\bibliographystyle{unsrt}  
 \bibliography{Literatur}
+
+\newpage
+
 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
+
 \listoffigures
 
  \end{document}
