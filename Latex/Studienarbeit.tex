@@ -1,0 +1,47 @@
+ \documentclass[ngerman]{scrartcl} %lädt die Dokumentklasse
+                                %Artikel von Koma-Skript, als Option
+                                %übergebe ich, dass ich die Trennung
+                                %nach neuer deutscher Rechtschreibung
+                                %wünsche
+\usepackage[utf8]{inputenc}
+ \usepackage[ngerman]{babel}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,lmargin={4cm},rmargin={2cm},
+tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\usepackage{graphicx}
+\bibliographystyle{unsrt}
+
+
+ \begin{document}
+\tableofcontents
+\newpage
+ 
+\section{Einleitung}        
+\label{sec:Einleitung-1}       
+
+\section{Theorie}        
+\label{sec:Theorie-1}  
+ 
+\subsection{REST}        
+\label{sec:REST-1}  
+
+ \cite{Tilkov.2015}
+ 
+\section{Auswahl der Hardware}        
+\label{sec:Auswahl der Hardware-1}  
+
+\subsection{Raspberry PI}        
+\label{sec:Raspberry PI-1} 
+
+\subsection{``Bretzelboard''}        
+\label{sec:''Bretzelboard''-1} 
+
+\newpage
+
+\bibliography{Literatur}
+
+ \end{document}
