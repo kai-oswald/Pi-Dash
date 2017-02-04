@@ -34,6 +34,8 @@ $resolver->setDefaultConnection('default');
 require __DIR__ . '/../models/order.php';
 require __DIR__ . '/../models/cart.php';
 require __DIR__ . '/../models/product.php';
+require __DIR__ . '/../models/productbutton.php';
+require __DIR__ . '/../models/sender.php';
 
 // Register middleware
 require __DIR__ . '/../src/middleware.php';

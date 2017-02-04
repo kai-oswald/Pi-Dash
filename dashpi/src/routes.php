@@ -1,4 +1,5 @@
 <?php
+$APP_ROOT="/slim/Pi-Dash/dashpi/public";
 
 // Custom functions
 function CreateErrorMessage($id) {
@@ -7,6 +8,9 @@ function CreateErrorMessage($id) {
 function ValidateProduct($product) {    
     return $product != NULL;
 }
+
+
+
 // Routes
 $app->get('/', function ($req, $res, $args) {
     // Sample log message
@@ -21,16 +25,26 @@ $app->get("/cart", function($req, $res, $args) {
 });
 $app->get("/config", function($req, $res, $args) {
     // show current configuration
-    return $this->renderer->render($res, "config.phtml", $args);
+    $sender = \Sender::all();
+    return $this->renderer->render($res, "config.phtml", array("sender"=>$sender->toArray()));
+});
+$app->get("/home", function($req, $res, $args) {
+    // show current configuration
+    return $this->renderer->render($res, "home.phtml", $args);
 });
 
 // REST API
 $app->group("/api", function() use ($app) {
+    
+    
     // products
+    // get all products    
     $app->get("/products", function($req, $res, $args) {
         // $products = $this->db->table("Products")->get();
         return $res->withJson(\Product::all());    
     });
+    
+    //get product by id
     $app->get("/products/{id}", function($req, $res, $args){
         $product = \Product::find($args["id"]);
         if(sizeof($product) == 0) {            
@@ -38,7 +52,9 @@ $app->group("/api", function() use ($app) {
         }     
         return $res->withJson($product);
     });  
+    
     // Content-Type: application/json must be set to succesfully read body content!
+    // add product
     $app->post("/products", function($req, $res, $args) {
         // validate
         $request = $req->getParsedBody();
@@ -53,6 +69,7 @@ $app->group("/api", function() use ($app) {
             return $res->withJson($e, 400);
         }
     });
+    // update product id
     $app->put("/products/{id}", function($req, $res, $args) {
         try {
             $product = \Product::find($args["id"]);
@@ -65,6 +82,7 @@ $app->group("/api", function() use ($app) {
             return $res->withJson($e, 400);
         }
     }); 
+    // delete product by id
     $app->delete("/products/{id}", function($req, $res, $args) {
         try {
             $product = \Product::find($args["id"]);
@@ -75,28 +93,71 @@ $app->group("/api", function() use ($app) {
             return $res->withJson($e, 400);
         }
     });  
-    // cart
+    
+    // cart: current orders
     $app->get("/cart", function($req, $res, $args) {
         // construct the cart (all open orders)
         $cart = \Cart::all();
         return $res->withJson($cart); 
     });
+    
+    $app->post("/cart/{senderid}", function($req, $res, $args) {
+        try {
+            // first load product of sender
+            $column = 'senderid';
+            $productsender = \Productbutton::where($column, '=', $args["senderid"])->first();
+            if($productsender == "null" || $productsender == null)
+            {
+               // TODO: error message 
+            }
+            else
+            {
+                $productid = $productsender->productid;
+                // update cart
+                $currentcart = \Cart::where('productid', '=',$productid)->first();
+                if($currentcart == "null" || $currentcart == null)
+                {
+                    $cart = new Cart;
+                    $cart->productid= $productid;  
+                    $cart->counter=1;
+                    $cart->save();
+                    return $res->withJson($cart);
+                }
+                else 
+                {
+                    $currentcart->counter=$currentcart->counter + 1;
+                    $currentcart->productid= $productid;  
+                    $currentcart->save();
+                    return $res->withJson($currentcart);
+                }
+                
+            }
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+    });  
 
-     $app->post("/sender", function($req, $res, $args) {
+    $app->get("/sender", function($req, $res, $args) {
         // construct the cart (all open orders)
-        $sender = \Sender::find($args["id"]);
-        if($sender == NULL) {
-            try {
-                $sender = new Sender;
-                $sender->id = $args["ID"];
-                $sender->productid = $args["ProductID"];
-                $sender->save();
-                return $res->withJson($sender);
-            }
-            catch(Exception $e) {
-                return $res->withJson($e, 400);
-            }
-        }        
+        $sender = \Sender::all();
+        return $res->withJson($sender); 
+    });
+    
+    $app->post("/sender", function($req, $res, $args) {
+        // construct the cart (all open orders)
+        try {
+            $request2 = $req->getParsedBody();
+            $sender = new Sender;
+            $sender->macaddress = $request2["macaddress"];
+            $sender->comment = $request2["comment"];
+            $sender->save();
+            // TODO createSkript: rigth Skript for Arduino and give it back
+            return $res->withJson($sender);
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
         return $res->withJson($sender); 
     });
 
@@ -129,3 +190,8 @@ $app->group("/api", function() use ($app) {
         // update config
     });
 });
+
+
+function createSkript($id){
+    return "example".$id."text";
+}

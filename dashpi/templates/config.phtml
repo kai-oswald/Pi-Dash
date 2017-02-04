@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Config | Pi-Dash</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>       
-    </head>
-    <body>
-        <h1>Config</h1>
-        <div>here you can configure the Pi-Dash-Button</div>
-    </body>
-</html>
+<?php
+    include('header.phtml');
+?>
+<body>
+    <div class='col-md-2'></div>
+    <h1>Verwaltung der Buttons</h1>
+    <?php
+        //print_r((json_decode($sender)));
+        //$sender =  json_decode($sender);
+        $sendercounter = count($sender);
+        $i = 0;
+        echo "  <div class='col-md-2'></div>
+          <div class='col-md-8'>
+        <table class='table'>
+        <caption>Alle Buttons </caption>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Kommentar </th>
+            </tr>
+        </thead>";
+        while($i < $sendercounter){
+            echo 
+                "<tr>
+                    <th>" . $sender[$i]['id'] . " </th>
+                    <th> " . $sender[$i]['comment'] .  " </th>
+                    <th> <button type='button' class='btn btn-info'>Bearbeiten</button> </th>
+                    <th> <button type='button' class='btn btn-warning'>Löschen</button> </th>
+                </tr>"; 
+            $i++;
+        }
+        echo "</table></div>";
+    
+    ?>
+</body>
+<?php
+    include('footer.phtml');
+?>
+
