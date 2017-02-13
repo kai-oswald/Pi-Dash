@@ -1,9 +1,27 @@
 <?php
     include('header.phtml');
+    $json = file_get_contents("https://pidash-kaos1910.c9users.io/api/cart");
+    $json = json_decode($json);
+    // TODO get product from product id...
 ?>
 <div class="container">
     <h1>Cart</h1>
-    <div>here's your cart</div>
+    <table class="table">
+        <tr>
+            <th>ProductId</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        <?php 
+        foreach($json as $product) {
+            echo "<tr>";
+            echo "<td>" . $product->productid . "</td>";
+            echo "<td>" . $product->counter . "</td>";
+            echo "<td>" . "placeholder" . "</td>";
+            echo "</tr>";
+         }
+   ?>
+    </table>
 </div>
 <?php
     include('footer.phtml');

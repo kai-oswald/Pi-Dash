@@ -46,3 +46,20 @@
 [13-Feb-2017 12:44:23 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
 [13-Feb-2017 12:44:23 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
 [13-Feb-2017 12:44:23 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 13:37:05 UTC] PHP Warning:  file_get_contents(/api/cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:39:00 UTC] PHP Warning:  file_get_contents(/cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:39:04 UTC] PHP Warning:  file_get_contents(/cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:41:05 UTC] PHP Warning:  file_get_contents(/home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:41:24 UTC] PHP Warning:  file_get_contents(/home/ubuntu/workspace/Pi-Dash/dashpi/templates/../cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:44:25 UTC] PHP Warning:  file_get_contents(/home/ubuntu/workspace/Pi-Dash/dashpi/templates/../cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:45:55 UTC] PHP Warning:  file_get_contents(/home/ubuntu/workspace/Pi-Dash/dashpi/templates/../cart): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 3
+[13-Feb-2017 13:49:05 UTC] PHP Notice:  Undefined variable: json_decode in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 4
+[13-Feb-2017 13:49:40 UTC] PHP Notice:  Array to string conversion in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 4
+[13-Feb-2017 13:57:38 UTC] PHP Warning:  Illegal string offset 'productid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 6
+[13-Feb-2017 13:57:51 UTC] PHP Warning:  Illegal string offset 'productid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 5
+[13-Feb-2017 13:59:54 UTC] PHP Notice:  Use of undefined constant producid - assumed 'producid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 6
+[13-Feb-2017 13:59:54 UTC] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 6
+[13-Feb-2017 14:00:14 UTC] PHP Notice:  Use of undefined constant producid - assumed 'producid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:00:14 UTC] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:00:26 UTC] PHP Notice:  Use of undefined constant productid - assumed 'productid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:00:26 UTC] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
