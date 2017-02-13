@@ -119,13 +119,13 @@ $app->group("/api", function() use ($app) {
                 {
                     $cart = new Cart;
                     $cart->productid= $productid;  
-                    $cart->counter=1;
+                    $cart->quantity=1;
                     $cart->save();
                     return $res->withJson($cart);
                 }
                 else 
                 {
-                    $currentcart->counter=$currentcart->counter + 1;
+                    $currentcart->quantity++;
                     $currentcart->productid= $productid;  
                     $currentcart->save();
                     return $res->withJson($currentcart);
