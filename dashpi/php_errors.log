@@ -63,3 +63,39 @@
 [13-Feb-2017 14:00:14 UTC] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
 [13-Feb-2017 14:00:26 UTC] PHP Notice:  Use of undefined constant productid - assumed 'productid' in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
 [13-Feb-2017 14:00:26 UTC] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:36:45 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:36:46 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/product/1): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 22
+[13-Feb-2017 14:37:09 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:37:10 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/product/1): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 22
+[13-Feb-2017 14:37:55 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:37:56 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/product/1): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 22
+[13-Feb-2017 14:38:13 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:38:14 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/1): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 22
+[13-Feb-2017 14:41:14 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:41:15 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 26
+[13-Feb-2017 14:41:15 UTC] PHP Notice:  Trying to get property of non-object in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 28
+[13-Feb-2017 14:41:48 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:41:48 UTC] PHP Notice:  Undefined variable: decode in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 23
+[13-Feb-2017 14:42:06 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:43:42 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:43:43 UTC] PHP Notice:  Undefined property: stdClass::$quantity in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 29
+[13-Feb-2017 14:44:05 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:44:06 UTC] PHP Notice:  Undefined property: stdClass::$quantity in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 29
+[13-Feb-2017 14:45:01 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[13-Feb-2017 14:45:02 UTC] PHP Notice:  Undefined property: stdClass::$quantity in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 30
+[13-Feb-2017 14:45:33 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7

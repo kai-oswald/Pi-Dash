@@ -4,7 +4,8 @@
     $cart = file_get_contents($url . "/api/cart");
     $cart = json_decode($cart);
     // TODO get product from product id...
-    $products = file_get_contents($url . "/api/products");
+    $products = file_get_contents($url . "/api/products/");
+    $products = json_decode($products);
     
 ?>
 <div class="container">
@@ -13,15 +14,21 @@
         <tr>
             <th>ProductId</th>
             <th>Quantity</th>
+            <th>Price</th>
             <th>Total</th>
         </tr>
         <?php 
-        foreach($cart as $product) {
+        foreach($cart as $item) {
+            $product = file_get_contents($url . "/api/products/" . $item->productid);
+            $product = json_decode($product);
+            if($product != NULL) {
             echo "<tr>";
-            echo "<td>" . $product->productid . "</td>";
-            echo "<td>" . $product->quantity . "</td>";
-            echo "<td>" . "placeholder" . "</td>";
+            echo "<td>" . $product->id . "</td>";
+            echo "<td>" . $item->quantity . "</td>";
+            echo "<td>" . $product->price . "</td>";
+            echo "<td>" . ($product->price * $item->quantity) . "</td>";
             echo "</tr>";
+            }
          }
    ?>
     </table>
