@@ -1,8 +1,11 @@
 <?php
     include('header.phtml');
-    $json = file_get_contents("https://pidash-kaos1910.c9users.io/api/cart");
-    $json = json_decode($json);
+    $url= "https://pidash-kaos1910.c9users.io";
+    $cart = file_get_contents($url . "/api/cart");
+    $cart = json_decode($cart);
     // TODO get product from product id...
+    $products = file_get_contents($url . "/api/products");
+    
 ?>
 <div class="container">
     <h1>Cart</h1>
@@ -13,10 +16,10 @@
             <th>Total</th>
         </tr>
         <?php 
-        foreach($json as $product) {
+        foreach($cart as $product) {
             echo "<tr>";
             echo "<td>" . $product->productid . "</td>";
-            echo "<td>" . $product->counter . "</td>";
+            echo "<td>" . $product->quantity . "</td>";
             echo "<td>" . "placeholder" . "</td>";
             echo "</tr>";
          }
