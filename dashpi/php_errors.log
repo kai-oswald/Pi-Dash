@@ -1,0 +1,48 @@
+[13-Feb-2017 12:11:14 UTC] PHP Warning:  require(/home/ubuntu/workspace/Pi-Dash/dashpi/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php on line 12
+[13-Feb-2017 12:11:14 UTC] PHP Stack trace:
+[13-Feb-2017 12:11:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:11:14 UTC] PHP Fatal error:  require(): Failed opening required '/home/ubuntu/workspace/Pi-Dash/dashpi/public/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php on line 12
+[13-Feb-2017 12:11:14 UTC] PHP Stack trace:
+[13-Feb-2017 12:11:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:25:12 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:25:12 UTC] PHP Stack trace:
+[13-Feb-2017 12:25:12 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:25:12 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:25:12 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:25:12 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:32:16 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:32:16 UTC] PHP Stack trace:
+[13-Feb-2017 12:32:16 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:32:16 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:32:16 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:32:16 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:35:14 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:35:14 UTC] PHP Stack trace:
+[13-Feb-2017 12:35:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:35:14 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:35:14 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:35:14 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:36:12 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:36:12 UTC] PHP Stack trace:
+[13-Feb-2017 12:36:12 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:36:12 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:36:12 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:36:12 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:40:38 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:40:38 UTC] PHP Stack trace:
+[13-Feb-2017 12:40:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:40:38 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:40:38 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:40:38 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:40:44 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:40:44 UTC] PHP Stack trace:
+[13-Feb-2017 12:40:44 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:40:44 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:40:44 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:32
+[13-Feb-2017 12:40:44 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322
+[13-Feb-2017 12:44:23 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/illuminate/database/Eloquent/Model.php on line 1313
+[13-Feb-2017 12:44:23 UTC] PHP Stack trace:
+[13-Feb-2017 12:44:23 UTC] PHP   1. {main}() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:0
+[13-Feb-2017 12:44:23 UTC] PHP   2. spl_autoload_call() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:44:23 UTC] PHP   3. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php:31
+[13-Feb-2017 12:44:23 UTC] PHP   4. Composer\Autoload\includeFile() /home/ubuntu/workspace/Pi-Dash/dashpi/vendor/composer/ClassLoader.php:322

@@ -149,7 +149,6 @@ $app->group("/api", function() use ($app) {
         try {
             $request2 = $req->getParsedBody();
             $sender = new Sender;
-            $sender->macaddress = $request2["macaddress"];
             $sender->comment = $request2["comment"];
             $sender->save();
             // TODO createSkript: rigth Skript for Arduino and give it back
