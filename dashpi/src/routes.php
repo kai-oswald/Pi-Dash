@@ -100,8 +100,10 @@ $app->group("/api", function() use ($app) {
         $cart = \Cart::all();
         $currentcart = array();
         //$product = \Product::find($cart->productid);
+        $counter = 0;
         foreach($cart as $item) {
             $product = \Product::find($item->productid);
+            $current = null;
             $current->name = $product->name;
             $current->price = $product->price;
             $current->quantity = $item->quantity;

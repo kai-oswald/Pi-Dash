@@ -16,7 +16,26 @@
     // error callback
     });
       }
+  },
+  computed: {
+    total: function() {
+      // TODO: update on propchanged
+      var total = 0;
+      if(this.cart !== undefined) {
+      for(var i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].quantity * this.cart[i].price;
+      }
+      }
+      return total;
+    }
   }
+});
+
+Vue.filter("currency", function(value) {
+  if(value!== null) {
+    return value.toFixed(2) + " €";
+  }
+  return 0;
 });
 
 new Vue({
