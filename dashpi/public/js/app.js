@@ -1,26 +1,85 @@
+/* global Vue */
+/* global notie */
+/* global $ */
+var product = Vue.component("product", {
+  template: "#product",
+  data: function() {
+    return {
+      product: new Product()
+    };
+  },
+  methods: {
+    saveProduct: function() {
+      var url = "/api/products";
+      this.$http.post(url, this.product).then(response => {
+      notie.alert("success", response.body, 1.5);
+      $('#productModal').modal('hide');
+      this.product = new Product();
+      // TODO: add event and automatically update parent
+    }, response => {
+    // error callback
+    console.log(response);
+    notie.alert('error', response.statusText, 1.5);
+    });
+    },
+  }
+});
 
-    var cart = Vue.component("cart", {
+var products = Vue.component("products", {
+  template: "#products",
+  data: function() {
+    return {
+      products: [],
+    };
+  },
+  methods: {
+    newProduct: function() {
+      $('#productModal').modal();
+    }
+  },
+  created: function() {
+      var url = "/api/products";
+      this.$http.get(url).then(response => {
+      this.products = response.body;
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+  },
+});
+
+// ---------------------------
+//            CART
+// ---------------------------
+var cart = Vue.component("cart", {
  template: "#cart",
   data: function()  {
       return {
-    cart: this.getCart(),
-      }
+    cart: []
+      };
   },
   methods: {
-      getCart: function() {
-        var url = "https://pidash-kaos1910.c9users.io/api/cart";
-        this.$http.get(url).then(response => {
-        this.cart = response.body;
-        console.log(this.cart);
-    }, response => {
-    // error callback
-    });
-      },
-      saveCart: function() {
+    saveCart: function() {
         // TODO
         // POST to api/cart/
         // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
+        var url = "/api/cart";
+        this.$http.post(url, this.cart).then(response => {
+          console.log(response.body);
+        }, response => {
+          // error callback
+          notie.alert("error", response.statusText, 1.5);
+        });
       }
+  },
+  created: function() {
+      var url = "/api/cart";
+      this.$http.get(url).then(response => {
+      this.cart = response.body;
+  }, response => {
+  // error callback
+  notie.alert("error", response.statusText, 1.5);
+  });
   },
   computed: {
     total: function() {
@@ -45,4 +104,11 @@ Vue.filter("currency", function(value) {
 
 new Vue({
   el: '#main'
-})
+});
+
+
+// MODELS
+function Product() {
+  this.name = "",
+  this.price = 0
+}

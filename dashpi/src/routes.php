@@ -32,6 +32,10 @@ $app->get("/home", function($req, $res, $args) {
     // show current configuration
     return $this->renderer->render($res, "home.phtml", $args);
 });
+$app->get("/products", function($req, $res, $args) {
+    // show current configuration
+    return $this->renderer->render($res, "products.phtml", $args);
+});
 
 // REST API
 $app->group("/api", function() use ($app) {
@@ -113,7 +117,14 @@ $app->group("/api", function() use ($app) {
         }
         return $res->withJson($currentcart); 
     });
-    
+    $app->post("/cart/", function($req, $res, $args) {
+      try {
+            // this will send the whole cart back, so delete current cart and override
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+    });
     $app->post("/cart/{senderid}", function($req, $res, $args) {
         try {
             // first load product of sender

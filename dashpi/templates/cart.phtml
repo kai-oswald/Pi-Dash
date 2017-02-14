@@ -1,20 +1,14 @@
 <?php
     include('header.phtml');
-    $url= "https://pidash-kaos1910.c9users.io";
-    $cart = file_get_contents($url . "/api/cart");
-    $cart = json_decode($cart);
-    // TODO get product from product id...
-    $products = file_get_contents($url . "/api/products/");
-    $products = json_decode($products);
-    
 ?>
+
 <div class="container" id="main">
     <h1>Cart</h1>
     <cart></cart>
-    <div class="btn btn-primary pull-right" v-on:click="saveCart">Save</div>
 </div>
 
 <template id="cart">
+    <div>
     <table class="table">
         <tr>
             <th>Product</th>
@@ -35,8 +29,10 @@
             <td>{{ total | currency }}</td>
         </tr>
     </table>
+       <div class="btn btn-primary pull-right" v-on:click="saveCart">Save</div>
+       </div>
 </template>
-<script src="js/app.js"></script>
+
 <?php
     include('footer.phtml');
 ?>
