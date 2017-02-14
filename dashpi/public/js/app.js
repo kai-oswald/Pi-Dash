@@ -15,6 +15,11 @@
     }, response => {
     // error callback
     });
+      },
+      saveCart: function() {
+        // TODO
+        // POST to api/cart/
+        // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
       }
   },
   computed: {
@@ -39,5 +44,5 @@ Vue.filter("currency", function(value) {
 });
 
 new Vue({
-  el: '#main',
+  el: '#main'
 })

@@ -97,6 +97,7 @@ $app->group("/api", function() use ($app) {
     // cart: current orders
     $app->get("/cart", function($req, $res, $args) {
         // construct the cart (all open orders)
+        // TODO: this funcitonalit with SQL join?
         $cart = \Cart::all();
         $currentcart = array();
         //$product = \Product::find($cart->productid);
@@ -104,15 +105,12 @@ $app->group("/api", function() use ($app) {
         foreach($cart as $item) {
             $product = \Product::find($item->productid);
             $current = null;
+            $current->productid = $item->productid;
             $current->name = $product->name;
             $current->price = $product->price;
             $current->quantity = $item->quantity;
             array_push($currentcart, $current);
         }
-        // TODO: get products and return full cart:
-        // item.name -> get name from cart.productid
-        // item.price -> get price form cart.productid
-        // cart.quantity
         return $res->withJson($currentcart); 
     });
     

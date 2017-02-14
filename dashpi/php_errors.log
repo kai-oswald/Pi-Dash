@@ -270,3 +270,15 @@
  in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
 [14-Feb-2017 12:53:42 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 107
 [14-Feb-2017 12:53:42 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 107
+[14-Feb-2017 12:57:33 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:33 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:34 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[14-Feb-2017 12:57:35 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:35 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:54 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:54 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:56 UTC] PHP Warning:  file_get_contents(https://pidash-kaos1910.c9users.io/api/products/): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/ubuntu/workspace/Pi-Dash/dashpi/templates/cart.phtml on line 7
+[14-Feb-2017 12:57:56 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[14-Feb-2017 12:57:56 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
