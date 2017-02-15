@@ -16,11 +16,13 @@
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th></th>
       </tr>
       <tr v-for="product in products">
         <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price | currency }}</td>
+        <td><input type="text" v-model="product.name" v-on:focus="getProduct(product)" v-on:blur="updateProduct(product)"/></td>
+        <td><input min="0" type="number" step="0.01" v-model="product.price" v-on:focus="getProduct(product)" v-on:blur="updateProduct(product)" /></td>
+        <td><div class="btn btn-danger btn-xs pull-right" v-on:click="deleteProduct(product)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></div></td>
       </tr>
     </table>
     </div>
@@ -49,7 +51,7 @@
               <div class="form-group">
                 <label for="inputPrice" class="col-sm-2 control-label">Price</label>
                 <div class="col-sm-10">
-                  <input type="number" step="0.01" class="form-control" id="inputPrice" placeholder="Price" v-model="product.price">
+                  <input type="number" min="0" step="0.01" class="form-control" id="inputPrice" placeholder="Price" v-model="product.price">
                 </div>
               </div>
           </form>

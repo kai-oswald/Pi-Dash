@@ -23,7 +23,7 @@ var product = Vue.component("product", {
     console.log(response);
     notie.alert('error', response.statusText, 1.5);
     });
-    },
+    }
   }
 });
 
@@ -32,6 +32,7 @@ var products = Vue.component("products", {
   data: function() {
     return {
       products: [],
+      currentProduct: {}
     };
   },
   methods: {
@@ -40,6 +41,44 @@ var products = Vue.component("products", {
     },
     updateProducts: function(prod) {
       this.products.push(prod);
+    },
+    editProduct: function(product) {
+      console.log("edit.");
+      console.log(product);
+    },
+    deleteProduct: function(product) {
+       var url = "/api/products/" + product.id;
+        this.$http.delete(url).then(response => {
+        // user feedback?
+        // delete product from array
+        var indexToRemove;
+        this.products.forEach(function(currProd, index) {
+          if(currProd.id === product.id) {
+            indexToRemove = index;
+          }
+        });
+        this.products.splice(indexToRemove, 1);
+        notie.alert("success", "successfully deleted product '" + product.name +"'", 2);
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+    },
+    updateProduct: function(product) {
+      if(this.currentProduct.name !== product.name || this.currentProduct.price !== product.price) {
+        // PUT
+        var url = "/api/products/" + product.id;
+        this.$http.put(url, product).then(response => {
+        // user feedback?
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+      }
+    },
+    getProduct: function(product) {
+      this.currentProduct.name = product.name;
+      this.currentProduct.price = product.price;
     }
   },
   created: function() {

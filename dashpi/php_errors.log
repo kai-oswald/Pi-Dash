@@ -322,3 +322,17 @@
 [14-Feb-2017 15:51:13 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
 [14-Feb-2017 15:51:24 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
 [14-Feb-2017 15:51:24 UTC] PHP Warning:  Creating default object from empty value in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 108
+[15-Feb-2017 12:12:57 UTC] PHP Notice:  Undefined index: name in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 80
+[15-Feb-2017 12:12:57 UTC] PHP Notice:  Undefined index: price in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 81
+[15-Feb-2017 12:13:10 UTC] PHP Notice:  Undefined index: name in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 80
+[15-Feb-2017 12:13:10 UTC] PHP Notice:  Undefined index: price in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 81
+[15-Feb-2017 12:13:50 UTC] PHP Notice:  Undefined index: name in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 80
+[15-Feb-2017 12:13:50 UTC] PHP Notice:  Undefined index: price in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 81
+[15-Feb-2017 12:18:09 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:20:23 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:21:54 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:25:13 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:26:28 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:28:10 UTC] PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php/sessions) failed: Permission denied (13) in /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php on line 14
+[15-Feb-2017 12:41:46 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[15-Feb-2017 12:42:15 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95

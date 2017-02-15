@@ -1,0 +1,7 @@
+td > input {
+    border: none;
+}
+
+td > input[type="text"] {
+    width: 100%;
+}

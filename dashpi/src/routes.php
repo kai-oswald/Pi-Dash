@@ -75,10 +75,11 @@ $app->group("/api", function() use ($app) {
     });
     // update product id
     $app->put("/products/{id}", function($req, $res, $args) {
+          $request = $req->getParsedBody();
         try {
             $product = \Product::find($args["id"]);
-            $product->name = $args["name"];
-            $product->price = $args["price"];
+            $product->name = $request["name"];
+            $product->price = $request["price"];
             $product->save();
             return $res->withJson($product);
         }
