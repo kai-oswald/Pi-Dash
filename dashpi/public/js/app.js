@@ -12,10 +12,12 @@ var product = Vue.component("product", {
     saveProduct: function() {
       var url = "/api/products";
       this.$http.post(url, this.product).then(response => {
-      notie.alert("success", response.body, 1.5);
-      $('#productModal').modal('hide');
       this.product = new Product();
+      $('#productModal').modal('hide');
+      notie.alert("success", "Success.", 1.5);
       // TODO: add event and automatically update parent
+      this.$emit("save-product", response.body);
+      
     }, response => {
     // error callback
     console.log(response);
@@ -35,6 +37,9 @@ var products = Vue.component("products", {
   methods: {
     newProduct: function() {
       $('#productModal').modal();
+    },
+    updateProducts: function(prod) {
+      this.products.push(prod);
     }
   },
   created: function() {
@@ -97,7 +102,7 @@ var cart = Vue.component("cart", {
 
 Vue.filter("currency", function(value) {
   if(value!== null) {
-    return value.toFixed(2) + " €";
+    return "€ " + value.toFixed(2);
   }
   return 0;
 });
