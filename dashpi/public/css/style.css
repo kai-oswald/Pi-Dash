@@ -5,3 +5,7 @@ td > input {
 td > input[type="text"] {
     width: 100%;
 }
+
+body {
+    padding-top: 70px;
+}

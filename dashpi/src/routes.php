@@ -28,10 +28,7 @@ $app->get("/config", function($req, $res, $args) {
     $sender = \Sender::all();
     return $this->renderer->render($res, "config.phtml", array("sender"=>$sender->toArray()));
 });
-$app->get("/home", function($req, $res, $args) {
-    // show current configuration
-    return $this->renderer->render($res, "home.phtml", $args);
-});
+
 $app->get("/products", function($req, $res, $args) {
     // show current configuration
     return $this->renderer->render($res, "products.phtml", $args);

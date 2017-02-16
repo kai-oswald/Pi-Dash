@@ -336,3 +336,4 @@
 [15-Feb-2017 12:28:10 UTC] PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/var/lib/php/sessions) failed: Permission denied (13) in /home/ubuntu/workspace/Pi-Dash/dashpi/public/index.php on line 14
 [15-Feb-2017 12:41:46 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
 [15-Feb-2017 12:42:15 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
+[16-Feb-2017 10:36:17 UTC] PHP Notice:  Use of undefined constant id - assumed 'id' in /home/ubuntu/workspace/Pi-Dash/dashpi/src/routes.php on line 95
