@@ -1,11 +1,38 @@
 <?php
     include('header.phtml');
 ?>
-<body>
-    test
+
+<div class="container" id="main">
     <h1>Cart</h1>
-    <div>here's your cart</div>
-</body>
+    <cart></cart>
+</div>
+
+<template id="cart">
+    <div>
+    <table class="table">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        <tr v-for="item in cart">
+            <td>{{ item.name }}</td>
+            <td>{{ item.price | currency}}</td>
+            <td><input type="number" v-model="item.quantity"/></td>
+            <td>{{ item.quantity * item.price | currency }}</td>
+        </tr>
+        <tr style="border-top: 2px solid;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ total | currency }}</td>
+        </tr>
+    </table>
+       <div class="btn btn-primary pull-right" v-on:click="saveCart">Save</div>
+       </div>
+</template>
+
 <?php
     include('footer.phtml');
 ?>

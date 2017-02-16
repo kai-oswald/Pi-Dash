@@ -28,9 +28,10 @@ $app->get("/config", function($req, $res, $args) {
     $sender = \Sender::all();
     return $this->renderer->render($res, "config.phtml", array("sender"=>$sender->toArray()));
 });
-$app->get("/home", function($req, $res, $args) {
+
+$app->get("/products", function($req, $res, $args) {
     // show current configuration
-    return $this->renderer->render($res, "home.phtml", $args);
+    return $this->renderer->render($res, "products.phtml", $args);
 });
 
 // REST API
@@ -71,10 +72,11 @@ $app->group("/api", function() use ($app) {
     });
     // update product id
     $app->put("/products/{id}", function($req, $res, $args) {
+          $request = $req->getParsedBody();
         try {
             $product = \Product::find($args["id"]);
-            $product->name = $args["name"];
-            $product->price = $args["price"];
+            $product->name = $request["name"];
+            $product->price = $request["price"];
             $product->save();
             return $res->withJson($product);
         }
@@ -97,10 +99,30 @@ $app->group("/api", function() use ($app) {
     // cart: current orders
     $app->get("/cart", function($req, $res, $args) {
         // construct the cart (all open orders)
+        // TODO: this funcitonalit with SQL join?
         $cart = \Cart::all();
-        return $res->withJson($cart); 
+        $currentcart = array();
+        //$product = \Product::find($cart->productid);
+        $counter = 0;
+        foreach($cart as $item) {
+            $product = \Product::find($item->productid);
+            $current = null;
+            $current->productid = $item->productid;
+            $current->name = $product->name;
+            $current->price = $product->price;
+            $current->quantity = $item->quantity;
+            array_push($currentcart, $current);
+        }
+        return $res->withJson($currentcart); 
     });
-    
+    $app->post("/cart/", function($req, $res, $args) {
+      try {
+            // this will send the whole cart back, so delete current cart and override
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+    });
     $app->post("/cart/{senderid}", function($req, $res, $args) {
         try {
             // first load product of sender
@@ -119,13 +141,13 @@ $app->group("/api", function() use ($app) {
                 {
                     $cart = new Cart;
                     $cart->productid= $productid;  
-                    $cart->counter=1;
+                    $cart->quantity=1;
                     $cart->save();
                     return $res->withJson($cart);
                 }
                 else 
                 {
-                    $currentcart->counter=$currentcart->counter + 1;
+                    $currentcart->quantity++;
                     $currentcart->productid= $productid;  
                     $currentcart->save();
                     return $res->withJson($currentcart);
@@ -149,7 +171,6 @@ $app->group("/api", function() use ($app) {
         try {
             $request2 = $req->getParsedBody();
             $sender = new Sender;
-            $sender->macaddress = $request2["macaddress"];
             $sender->comment = $request2["comment"];
             $sender->save();
             // TODO createSkript: rigth Skript for Arduino and give it back
