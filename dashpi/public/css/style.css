@@ -9,3 +9,7 @@ td > input[type="text"] {
 body {
     padding-top: 70px;
 }
+
+#notie-alert-outer, #notie-force-outer, #notie-force-background {
+    z-index: 1031;
+}
