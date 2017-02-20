@@ -24,8 +24,6 @@ var productDrop = Vue.component("productdrop", {
   methods: {
     updateSender: function(product) {
       this.currentDescription = product.name;
-      console.log("sender" + this.currentSender);
-      console.log("product" + product.id);
       // TODO: POST/PUT changes to productbuttons
       var url = "/api/productbuttons";
       var data = {
@@ -57,13 +55,13 @@ var senders = Vue.component("senders", {
     // error callback
     notie.alert('error', response.statusText, 1.5);
     });
-     var url = "/api/productbuttons";
+     /*var url = "/api/productbuttons";
       this.$http.get(url).then(response => {
       this.productbuttons = response.body;
     }, response => {
     // error callback
     notie.alert('error', response.statusText, 1.5);
-    });
+    });*/
 }
 });
 
@@ -86,7 +84,6 @@ var product = Vue.component("product", {
       
     }, response => {
     // error callback
-    console.log(response);
     notie.alert('error', response.statusText, 1.5);
     });
     }
@@ -109,8 +106,7 @@ var products = Vue.component("products", {
       this.products.push(prod);
     },
     editProduct: function(product) {
-      console.log("edit.");
-      console.log(product);
+    
     },
     deleteProduct: function(product) {
        var url = "/api/products/" + product.id;
@@ -175,7 +171,7 @@ var cart = Vue.component("cart", {
         // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
         var url = "/api/cart";
         this.$http.post(url, this.cart).then(response => {
-          console.log(response.body);
+          notie.alert("success", "success", 1.5);
         }, response => {
           // error callback
           notie.alert("error", response.statusText, 1.5);
