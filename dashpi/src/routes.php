@@ -221,7 +221,7 @@ $app->group("/api", function() use ($app) {
             $productbutton->save();
         }
         else {
-            // new 
+            // Sender doesn't have any Product -> create new
             $productbutton = new Productbutton;
             $productbutton->senderid = $senderid;
             $productbutton->productid = $productid;
