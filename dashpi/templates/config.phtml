@@ -1,38 +1,39 @@
 <?php
     include('header.phtml');
 ?>
-<div class="container">
-    <div class='col-md-2'></div>
-    <h1>Verwaltung der Buttons</h1>
-    <?php
-        //print_r((json_decode($sender)));
-        //$sender =  json_decode($sender);
-        $sendercounter = count($sender);
-        $i = 0;
-        echo "  <div class='col-md-2'></div>
-          <div class='col-md-8'>
-        <table class='table'>
-        <caption>Alle Buttons </caption>
-        <thead>
-            <tr>
-                <th> ID </th>
-                <th> Kommentar </th>
-            </tr>
-        </thead>";
-        while($i < $sendercounter){
-            echo 
-                "<tr>
-                    <th>" . $sender[$i]['id'] . " </th>
-                    <th> " . $sender[$i]['comment'] .  " </th>
-                    <th> <button type='button' class='btn btn-info'>Bearbeiten</button> </th>
-                    <th> <button type='button' class='btn btn-warning'>Löschen</button> </th>
-                </tr>"; 
-            $i++;
-        }
-        echo "</table></div>";
-    
-    ?>
+<div class="container" id="main">
+    <h1 class="text-center">Verwaltung der Buttons</h1>
+    <senders></senders>
+
 </div>
+
+<template id="senders">
+    <table class="table">
+        <tr>
+        <th>ID</th>
+        <th>Comment</th>
+        <th>Product</th>
+        </tr>
+        <tr v-for="sender in senders">
+            <td>{{ sender.id }}</td>
+            <td>{{ sender.comment }}</td>
+            <td><productdrop :senderid="sender.id"></productdrop></td>
+        </tr>
+        
+    </table>
+</template>
+
+<template id="productDrop">
+   <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{ currentDescription }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li v-for="product in products"><a v-on:click="updateSender(product)">{{ product.name }}</a></li>
+  </ul>
+</div>
+</template>
 <?php
     include('footer.phtml');
 ?>
