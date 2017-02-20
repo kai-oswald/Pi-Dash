@@ -1,6 +1,72 @@
 /* global Vue */
 /* global notie */
 /* global $ */
+
+var productDrop = Vue.component("productdrop", {
+  template: "#productDrop",
+  props: ["senderid"],
+  data: function() {
+    return {
+      products: [],
+      currentDescription: "select...",
+      currentSender: this.senderid,
+    }
+  },
+  created: function() {
+     var url = "/api/products";
+      this.$http.get(url).then(response => {
+      this.products = response.body;
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+  },
+  methods: {
+    updateSender: function(product) {
+      this.currentDescription = product.name;
+      console.log("sender" + this.currentSender);
+      console.log("product" + product.id);
+      // TODO: POST/PUT changes to productbuttons
+      var url = "/api/productbuttons";
+      var data = {
+        productid: product.id,
+        senderid: this.currentSender
+      }
+      this.$http.post(url, data).then(response => {
+        notie.alert("success", "succesfully updated sender " + this.currentSender, 1.5);
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+    }
+  }
+})
+var senders = Vue.component("senders", {
+  template: "#senders",
+  data: function() {
+    return {
+      senders: [],
+      productbuttons: []
+    }
+  },
+   created: function() {
+      var url = "/api/sender";
+      this.$http.get(url).then(response => {
+      this.senders = response.body;
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+     var url = "/api/productbuttons";
+      this.$http.get(url).then(response => {
+      this.productbuttons = response.body;
+    }, response => {
+    // error callback
+    notie.alert('error', response.statusText, 1.5);
+    });
+}
+});
+
 var product = Vue.component("product", {
   template: "#product",
   data: function() {

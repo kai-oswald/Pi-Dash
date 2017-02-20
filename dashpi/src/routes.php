@@ -210,6 +210,24 @@ $app->group("/api", function() use ($app) {
     $app->post("/config", function($req, $res, $args) {
         // update config
     });
+    
+    $app->post("/productbuttons", function($req, $res, $args) {
+        $request = $req->getParsedBody();
+        $senderid = $request["senderid"];
+        $productid = $request["productid"];
+        $productbutton = Productbutton::where("senderid", $senderid)->first();
+        if($productbutton != NULL) {
+            $productbutton->productid = $productid;
+            $productbutton->save();
+        }
+        else {
+            // new 
+            $productbutton = new Productbutton;
+            $productbutton->senderid = $senderid;
+            $productbutton->productid = $productid;
+            $productbutton->save();
+        }
+    });
 });
 
 
