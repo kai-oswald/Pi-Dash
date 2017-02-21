@@ -1,6 +1,12 @@
 /* global Vue */
 /* global notie */
 /* global $ */
+var api = {
+  products: "/api/products/",
+  productbuttons: "/api/productbuttons/",
+  sender: "/api/sender/",
+  cart: "/api/cart/"
+}
 
 var productDrop = Vue.component("productdrop", {
   template: "#productDrop",
@@ -13,7 +19,7 @@ var productDrop = Vue.component("productdrop", {
     }
   },
   created: function() {
-     var url = "/api/products";
+     var url = api.products;
       this.$http.get(url).then(response => {
       this.products = response.body;
     }, response => {
@@ -25,7 +31,7 @@ var productDrop = Vue.component("productdrop", {
     updateSender: function(product) {
       this.currentDescription = product.name;
       // TODO: POST/PUT changes to productbuttons
-      var url = "/api/productbuttons";
+      var url = api.productbuttons;
       var data = {
         productid: product.id,
         senderid: this.currentSender
@@ -48,7 +54,7 @@ var senders = Vue.component("senders", {
     }
   },
    created: function() {
-      var url = "/api/sender";
+      var url = api.sender;
       this.$http.get(url).then(response => {
       this.senders = response.body;
     }, response => {
@@ -74,7 +80,7 @@ var product = Vue.component("product", {
   },
   methods: {
     saveProduct: function() {
-      var url = "/api/products";
+      var url = api.products;
       this.$http.post(url, this.product).then(response => {
       this.product = new Product();
       $('#productModal').modal('hide');
@@ -109,7 +115,7 @@ var products = Vue.component("products", {
     
     },
     deleteProduct: function(product) {
-       var url = "/api/products/" + product.id;
+       var url = api.products + product.id;
         this.$http.delete(url).then(response => {
         // user feedback?
         // delete product from array
@@ -129,7 +135,7 @@ var products = Vue.component("products", {
     updateProduct: function(product) {
       if(this.currentProduct.name !== product.name || this.currentProduct.price !== product.price) {
         // PUT
-        var url = "/api/products/" + product.id;
+        var url = api.products + product.id;
         this.$http.put(url, product).then(response => {
         // user feedback?
     }, response => {
@@ -144,7 +150,7 @@ var products = Vue.component("products", {
     }
   },
   created: function() {
-      var url = "/api/products";
+      var url = api.products;
       this.$http.get(url).then(response => {
       this.products = response.body;
     }, response => {
@@ -169,7 +175,7 @@ var cart = Vue.component("cart", {
         // TODO
         // POST to api/cart/
         // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
-        var url = "/api/cart";
+        var url = api.cart;
         this.$http.post(url, this.cart).then(response => {
           notie.alert("success", "success", 1.5);
         }, response => {
@@ -179,7 +185,7 @@ var cart = Vue.component("cart", {
       }
   },
   created: function() {
-      var url = "/api/cart";
+      var url = api.cart;
       this.$http.get(url).then(response => {
       this.cart = response.body;
   }, response => {
