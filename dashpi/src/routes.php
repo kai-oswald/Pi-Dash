@@ -116,12 +116,24 @@ $app->group("/api", function() use ($app) {
         return $res->withJson($currentcart); 
     });
     $app->post("/cart/", function($req, $res, $args) {
-      try {
-            // this will send the whole cart back, so delete current cart and override
-        }
-        catch(Exception $e) {
-            return $res->withJson($e, 400);
-        }
+            $request = $req->getParsedBody();
+            $fullCart = array();
+            foreach($request as $cartItem) {
+                try {
+                    $cart = \Cart::where("productid", "=", $cartItem["productid"])->first();
+                    if(sizeof($cart) == 0) {
+                        $cart = new Cart;
+                    }
+                    $cart->productid = $cartItem["productid"];
+                    $cart->quantity = $cartItem["quantity"];
+                    $cart->save();
+                    array_push($fullCart, $cart);
+                }
+                catch(Exception $e) {
+                    return $res->withJson($e, 400);
+                }
+            }
+            return $res->withJson($fullCart); 
     });
     $app->post("/cart/{senderid}", function($req, $res, $args) {
         try {

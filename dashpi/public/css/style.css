@@ -13,3 +13,12 @@ body {
 #notie-alert-outer, #notie-force-outer, #notie-force-background, .notie-alert {
     z-index: 1031;
 }
+
+.img-responsive {
+    width: 1000px;
+    margin: auto;
+}
+
+.home {
+    margin-top: -40px;
+}
