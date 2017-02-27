@@ -218,11 +218,58 @@ $app->group("/api", function() use ($app) {
     // TODO: allow only one config?
     $app->get("/config/", function($req, $res, $args) {
         // get current config
+        $senders = Sender::all();
+        $vm = array();
+        foreach($senders as $sender) {
+            $productbutton = Productbutton::where("senderid", "=", $sender->id)->first();
+            if(sizeof($productbutton) != 0) {
+                $product = Product::find($productbutton->productid);
+                if(sizeof($product) != 0) {
+                    $viewmodel->id = $sender->id;
+                    $viewmodel->comment = $sender->comment;
+                    $viewmodel->productid = $product->id;
+                    $viewmodel->productname = $product->name;
+                    array_push($vm, $viewmodel);
+                }
+            }
+        }
+        return $res->withJson($vm);
+        
     });
     $app->post("/config/", function($req, $res, $args) {
         // update config
+        $request = $req->getParsedBody();
+        $senderid = $request["id"];
+        $comment = $request["comment"];
+        $productid = $request["productid"];
+        $productname = $request["name"];
+        try {
+            $sender = Sender::find($senderid);
+            if(sizeof($sender) == 0) {
+                $sender = new Sender;
+            }
+            $sender->comment = $comment;
+            $sender->save();
+            
+            $productbutton = Productbutton::where("senderid", "=", $senderid)->first();
+            if(sizeof($productbutton) == 0) {
+                $productbutton = new Productbutton;
+            }
+            $productbutton->senderid = $senderid;
+            $productbutton->productid = $productid;
+            $productbutton->save();
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+        
+        
+        
     });
-    
+    $app->get("/productbuttons/", function($req, $res, $args) {
+        $productbuttons = Productbutton::all();
+        return $res->withJson($productbuttons); 
+    });
     $app->post("/productbuttons/", function($req, $res, $args) {
         $request = $req->getParsedBody();
         $senderid = $request["senderid"];

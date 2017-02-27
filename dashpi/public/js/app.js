@@ -5,16 +5,17 @@ var api = {
   products: "/api/products/",
   productbuttons: "/api/productbuttons/",
   sender: "/api/sender/",
-  cart: "/api/cart/"
+  cart: "/api/cart/",
+  config: "/api/config/"
 }
 
 var productDrop = Vue.component("productdrop", {
   template: "#productDrop",
-  props: ["senderid"],
+  props: ["senderid", "productname"],
   data: function() {
     return {
       products: [],
-      currentDescription: "select...",
+      currentDescription: this.productname,
       currentSender: this.senderid,
     }
   },
@@ -34,10 +35,11 @@ var productDrop = Vue.component("productdrop", {
       var url = api.productbuttons;
       var data = {
         productid: product.id,
-        senderid: this.currentSender
+        senderid: this.currentSender,
       }
       this.$http.post(url, data).then(response => {
         notie.alert({type: "success", text: "succesfully updated sender " + this.currentSender, time: 1.5});
+        this.$emit("update-sender", response.body);
     }, response => {
     // error callback
     notie.alert({ type: "error", text: response.statusText, time: 1.5});
@@ -49,25 +51,28 @@ var senders = Vue.component("senders", {
   template: "#senders",
   data: function() {
     return {
-      senders: [],
-      productbuttons: []
+      config: []
     }
   },
    created: function() {
-      var url = api.sender;
+      var url = api.config;
       this.$http.get(url).then(response => {
-      this.senders = response.body;
+      this.config = response.body;
     }, response => {
     // error callback
     notie.alert({ type: "error", text: response.statusText, time: 1.5})
     });
-     /*var url = "/api/productbuttons";
+},
+methods: {
+  updateSenders: function() {
+     var url = api.config;
       this.$http.get(url).then(response => {
-      this.productbuttons = response.body;
+      this.config = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
-    });*/
+    notie.alert({ type: "error", text: response.statusText, time: 1.5})
+    });
+  }
 }
 });
 
