@@ -10,6 +10,6 @@ body {
     padding-top: 70px;
 }
 
-#notie-alert-outer, #notie-force-outer, #notie-force-background {
+#notie-alert-outer, #notie-force-outer, #notie-force-background, .notie-alert {
     z-index: 1031;
 }

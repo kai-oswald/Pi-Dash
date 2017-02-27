@@ -40,7 +40,7 @@ $app->group("/api", function() use ($app) {
     
     // products
     // get all products    
-    $app->get("/products", function($req, $res, $args) {
+    $app->get("/products/", function($req, $res, $args) {
         // $products = $this->db->table("Products")->get();
         return $res->withJson(\Product::all());    
     });
@@ -56,7 +56,7 @@ $app->group("/api", function() use ($app) {
     
     // Content-Type: application/json must be set to succesfully read body content!
     // add product
-    $app->post("/products", function($req, $res, $args) {
+    $app->post("/products/", function($req, $res, $args) {
         // validate
         $request = $req->getParsedBody();
         try {
@@ -97,7 +97,7 @@ $app->group("/api", function() use ($app) {
     });  
     
     // cart: current orders
-    $app->get("/cart", function($req, $res, $args) {
+    $app->get("/cart/", function($req, $res, $args) {
         // construct the cart (all open orders)
         // TODO: this funcitonalit with SQL join?
         $cart = \Cart::all();
@@ -160,13 +160,13 @@ $app->group("/api", function() use ($app) {
         }
     });  
 
-    $app->get("/sender", function($req, $res, $args) {
+    $app->get("/sender/", function($req, $res, $args) {
         // construct the cart (all open orders)
         $sender = \Sender::all();
         return $res->withJson($sender); 
     });
     
-    $app->post("/sender", function($req, $res, $args) {
+    $app->post("/sender/", function($req, $res, $args) {
         // construct the cart (all open orders)
         try {
             $request2 = $req->getParsedBody();
@@ -183,7 +183,7 @@ $app->group("/api", function() use ($app) {
     });
 
     // orders (product + count + open/closed)
-    $app->get("/orders", function($req, $res, $args) {
+    $app->get("/orders/", function($req, $res, $args) {
         // get all orders
         $orders = $this->db->table("Orders")->get();
         return $res->withJson($orders); 
@@ -191,7 +191,7 @@ $app->group("/api", function() use ($app) {
     $app->get("/orders/{id}", function($req, $res, $args) {
         // get order with this id
     });
-    $app->post("/orders", function($req, $res, $args) {
+    $app->post("/orders/", function($req, $res, $args) {
         // add new order
     });
     $app->put("/orders/{id}", function($req, $res, $args) {
@@ -204,14 +204,14 @@ $app->group("/api", function() use ($app) {
 
     // config
     // TODO: allow only one config?
-    $app->get("/config", function($req, $res, $args) {
+    $app->get("/config/", function($req, $res, $args) {
         // get current config
     });
-    $app->post("/config", function($req, $res, $args) {
+    $app->post("/config/", function($req, $res, $args) {
         // update config
     });
     
-    $app->post("/productbuttons", function($req, $res, $args) {
+    $app->post("/productbuttons/", function($req, $res, $args) {
         $request = $req->getParsedBody();
         $senderid = $request["senderid"];
         $productid = $request["productid"];
@@ -227,6 +227,7 @@ $app->group("/api", function() use ($app) {
             $productbutton->productid = $productid;
             $productbutton->save();
         }
+        return $res->withJson($productbutton);
     });
 });
 

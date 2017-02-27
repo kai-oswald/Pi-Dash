@@ -24,7 +24,7 @@ var productDrop = Vue.component("productdrop", {
       this.products = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
   },
   methods: {
@@ -37,10 +37,10 @@ var productDrop = Vue.component("productdrop", {
         senderid: this.currentSender
       }
       this.$http.post(url, data).then(response => {
-        notie.alert("success", "succesfully updated sender " + this.currentSender, 1.5);
+        notie.alert({type: "success", text: "succesfully updated sender " + this.currentSender, time: 1.5});
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     }
   }
@@ -59,7 +59,7 @@ var senders = Vue.component("senders", {
       this.senders = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5})
     });
      /*var url = "/api/productbuttons";
       this.$http.get(url).then(response => {
@@ -84,13 +84,13 @@ var product = Vue.component("product", {
       this.$http.post(url, this.product).then(response => {
       this.product = new Product();
       $('#productModal').modal('hide');
-      notie.alert("success", "Success.", 1.5);
+      notie.alert({ type: "success", text: "success", time: 1.5});
       // TODO: add event and automatically update parent
       this.$emit("save-product", response.body);
       
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     }
   }
@@ -126,10 +126,10 @@ var products = Vue.component("products", {
           }
         });
         this.products.splice(indexToRemove, 1);
-        notie.alert("success", "successfully deleted product '" + product.name +"'", 2);
+        notie.alert({ type: "success", text: "successfully deleted product '" + product.name +"'", time: 2});
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     },
     updateProduct: function(product) {
@@ -140,7 +140,7 @@ var products = Vue.component("products", {
         // user feedback?
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
       }
     },
@@ -151,11 +151,14 @@ var products = Vue.component("products", {
   },
   created: function() {
       var url = api.products;
+      console.log("getting products...");
       this.$http.get(url).then(response => {
       this.products = response.body;
+      console.log(response.body);
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    console.log("error");
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
   },
 });
@@ -177,10 +180,10 @@ var cart = Vue.component("cart", {
         // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
         var url = api.cart;
         this.$http.post(url, this.cart).then(response => {
-          notie.alert("success", "success", 1.5);
+          notie.alert({ type: "success", text: "success", time: 1.5});
         }, response => {
           // error callback
-          notie.alert("error", response.statusText, 1.5);
+          notie.alert({ type: "error", text: response.statusText, time: 1.5});
         });
       }
   },
@@ -190,7 +193,7 @@ var cart = Vue.component("cart", {
       this.cart = response.body;
   }, response => {
   // error callback
-  notie.alert("error", response.statusText, 1.5);
+  notie.alert({ type: "error", text: response.statusText, time: 1.5});
   });
   },
   computed: {
