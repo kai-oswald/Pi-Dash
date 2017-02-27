@@ -1,0 +1,19 @@
+Die Einrichtung des Raspberry PIs besteht aus mehreren Schritten an dessen Ende die Verwendung des Raspberrys als zentraler Server steht. Die verschiedenen Schritte werden im folgenden erklärt: 
+\paragraph{Einrichtung des Nginx}  
+\label{sec:Einrichtung des Nginx-1} 
+
+\paragraph{Einrichtung des SQL Datenbankservers}  
+\label{sec:Einrichtung des SQL Datenbankservers-1} 
+
+\paragraph{Einrichtung des WLAN Access Points}  
+\label{sec:Einrichtung des WLAN Access Points-1} 
+
+\paragraph{Einrichtung des UDP Empfängers}  
+\label{sec:Einrichtung des UDP Empfängers-1} 
+Da die Übertragung der Datenpakete über das UDP Protrokoll ermöglicht werden soll, muss ein entsprechender Empfänger auf dem Raspberry PI vorhanden sein. Dieser Empfänger wird mithilfe eines Skriptes in Python realisiert. Dieses Skript nutzt die Library Socket (vgl. \cite{.20.02.2017}), welches es ermöglicht ein Socket zu erstellen. Dieses Socket wird an eine IP Adresse und einen Port gebunden und wird anschließend für alle eingehenden UDP Pakete genutzt. In einer Endlosschleife, welche manuell unterbrochen werden kann, wird auf eingehende Pakete gewartet. Die Endlosschleife wird benötigt, da ein Button zu jedem Zeitpunkt betätigt werden kann und somit dauerhaft auf ankommende Pakete geachtet werden muss. 
+Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die REST API geschickt. Da als Übertragungsart allerdings das UDP Protrokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die REST API erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
+Nach dem erfolgreichen Absenden der Anfrage an die REST API befindet sich das Skript für den UDP Empfänger weiterhin in der Endlosschleife und wartet auf das nächste Datenpaket. 
+
+\paragraph{Einrichtung des TCP Empfängers}  
+\label{sec:Einrichtung des TCP Empfängers-1} 
+Für alle Datenpakete, die über das Protokoll TCP empfangen werden, muss ebenfalls ein Skript geschrieben werden, welches diese Datenpakete verarbeitet. Dabei wird genauso vorgegangen, wie beim Skript für UDP. Der einzige Unterschied ist nach dem Absenden der Anfrage an die REST API. Das Skript für TCP Datenpakete wartet nach dem Absenden der Anfrage auf die Bestätigung und schickt eine entsprechende Antwort zurück an den Button. Dieser verarbeitet ebenfalls die Antwort und kann mithilfe einer Lampe dem Nutzer ein visuelles Feedback geben. 
