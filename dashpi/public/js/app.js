@@ -86,6 +86,9 @@ methods: {
     // error callback
     notie.alert({ type: "error", text: response.statusText, time: 1.5})
     });
+  },
+  newSender: function() {
+     $('#senderModal').modal();
   }
 }
 });
@@ -245,4 +248,10 @@ new Vue({
 function Product() {
   this.name = "",
   this.price = 0
+}
+
+function Sender() {
+  this.comment = "";
+  this.productid = -1;
+  this.productname = "";
 }
