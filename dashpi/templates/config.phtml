@@ -1,10 +1,10 @@
 <?php
     include('header.phtml');
 ?>
+
 <div class="container" id="main">
     <h1 class="text-center">Verwaltung der Buttons</h1>
     <senders></senders>
-
 </div>
 
 <template id="senders">
@@ -16,7 +16,7 @@
         </tr>
         <tr v-for="sender in config">
             <td>{{ sender.id }}</td>
-            <td>{{ sender.comment }}</td>
+            <td><input type="text" v-on:blur="update(sender)" v-model="sender.comment"/></td>
             <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
         </tr>
     </table>
@@ -24,14 +24,14 @@
 
 <template id="productDrop">
    <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    {{ currentDescription }}
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li v-for="product in products"><a v-on:click="updateSender(product)">{{ product.name }}</a></li>
-  </ul>
-</div>
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{ currentDescription }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li v-for="product in products"><a v-on:click="updateSender(product)">{{ product.name }}</a></li>
+        </ul>
+    </div>
 </template>
 <?php
     include('footer.phtml');
