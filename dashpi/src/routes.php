@@ -40,7 +40,7 @@ $app->group("/api", function() use ($app) {
     
     // products
     // get all products    
-    $app->get("/products", function($req, $res, $args) {
+    $app->get("/products/", function($req, $res, $args) {
         // $products = $this->db->table("Products")->get();
         return $res->withJson(\Product::all());    
     });
@@ -56,7 +56,7 @@ $app->group("/api", function() use ($app) {
     
     // Content-Type: application/json must be set to succesfully read body content!
     // add product
-    $app->post("/products", function($req, $res, $args) {
+    $app->post("/products/", function($req, $res, $args) {
         // validate
         $request = $req->getParsedBody();
         try {
@@ -97,7 +97,7 @@ $app->group("/api", function() use ($app) {
     });  
     
     // cart: current orders
-    $app->get("/cart", function($req, $res, $args) {
+    $app->get("/cart/", function($req, $res, $args) {
         // construct the cart (all open orders)
         // TODO: this funcitonalit with SQL join?
         $cart = \Cart::all();
@@ -116,12 +116,24 @@ $app->group("/api", function() use ($app) {
         return $res->withJson($currentcart); 
     });
     $app->post("/cart/", function($req, $res, $args) {
-      try {
-            // this will send the whole cart back, so delete current cart and override
-        }
-        catch(Exception $e) {
-            return $res->withJson($e, 400);
-        }
+            $request = $req->getParsedBody();
+            $fullCart = array();
+            foreach($request as $cartItem) {
+                try {
+                    $cart = \Cart::where("productid", "=", $cartItem["productid"])->first();
+                    if(sizeof($cart) == 0) {
+                        $cart = new Cart;
+                    }
+                    $cart->productid = $cartItem["productid"];
+                    $cart->quantity = $cartItem["quantity"];
+                    $cart->save();
+                    array_push($fullCart, $cart);
+                }
+                catch(Exception $e) {
+                    return $res->withJson($e, 400);
+                }
+            }
+            return $res->withJson($fullCart); 
     });
     $app->post("/cart/{senderid}", function($req, $res, $args) {
         try {
@@ -160,13 +172,13 @@ $app->group("/api", function() use ($app) {
         }
     });  
 
-    $app->get("/sender", function($req, $res, $args) {
+    $app->get("/sender/", function($req, $res, $args) {
         // construct the cart (all open orders)
         $sender = \Sender::all();
         return $res->withJson($sender); 
     });
     
-    $app->post("/sender", function($req, $res, $args) {
+    $app->post("/sender/", function($req, $res, $args) {
         // construct the cart (all open orders)
         try {
             $request2 = $req->getParsedBody();
@@ -183,7 +195,7 @@ $app->group("/api", function() use ($app) {
     });
 
     // orders (product + count + open/closed)
-    $app->get("/orders", function($req, $res, $args) {
+    $app->get("/orders/", function($req, $res, $args) {
         // get all orders
         $orders = $this->db->table("Orders")->get();
         return $res->withJson($orders); 
@@ -191,7 +203,7 @@ $app->group("/api", function() use ($app) {
     $app->get("/orders/{id}", function($req, $res, $args) {
         // get order with this id
     });
-    $app->post("/orders", function($req, $res, $args) {
+    $app->post("/orders/", function($req, $res, $args) {
         // add new order
     });
     $app->put("/orders/{id}", function($req, $res, $args) {
@@ -204,14 +216,61 @@ $app->group("/api", function() use ($app) {
 
     // config
     // TODO: allow only one config?
-    $app->get("/config", function($req, $res, $args) {
+    $app->get("/config/", function($req, $res, $args) {
         // get current config
+        $senders = Sender::all();
+        $vm = array();
+        foreach($senders as $sender) {
+            $productbutton = Productbutton::where("senderid", "=", $sender->id)->first();
+            if(sizeof($productbutton) != 0) {
+                $product = Product::find($productbutton->productid);
+                if(sizeof($product) != 0) {
+                    $viewmodel->id = $sender->id;
+                    $viewmodel->comment = $sender->comment;
+                    $viewmodel->productid = $product->id;
+                    $viewmodel->productname = $product->name;
+                    array_push($vm, $viewmodel);
+                }
+            }
+        }
+        return $res->withJson($vm);
+        
     });
-    $app->post("/config", function($req, $res, $args) {
+    $app->post("/config/", function($req, $res, $args) {
         // update config
+        $request = $req->getParsedBody();
+        $senderid = $request["id"];
+        $comment = $request["comment"];
+        $productid = $request["productid"];
+        $productname = $request["name"];
+        try {
+            $sender = Sender::find($senderid);
+            if(sizeof($sender) == 0) {
+                $sender = new Sender;
+            }
+            $sender->comment = $comment;
+            $sender->save();
+            
+            $productbutton = Productbutton::where("senderid", "=", $senderid)->first();
+            if(sizeof($productbutton) == 0) {
+                $productbutton = new Productbutton;
+            }
+            $productbutton->senderid = $senderid;
+            $productbutton->productid = $productid;
+            $productbutton->save();
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+        
+        
+        
     });
-    
-    $app->post("/productbuttons", function($req, $res, $args) {
+    $app->get("/productbuttons/", function($req, $res, $args) {
+        $productbuttons = Productbutton::all();
+        return $res->withJson($productbuttons); 
+    });
+    $app->post("/productbuttons/", function($req, $res, $args) {
         $request = $req->getParsedBody();
         $senderid = $request["senderid"];
         $productid = $request["productid"];
@@ -227,6 +286,7 @@ $app->group("/api", function() use ($app) {
             $productbutton->productid = $productid;
             $productbutton->save();
         }
+        return $res->withJson($productbutton);
     });
 });
 

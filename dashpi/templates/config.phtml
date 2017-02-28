@@ -14,12 +14,11 @@
         <th>Comment</th>
         <th>Product</th>
         </tr>
-        <tr v-for="sender in senders">
+        <tr v-for="sender in config">
             <td>{{ sender.id }}</td>
             <td>{{ sender.comment }}</td>
-            <td><productdrop :senderid="sender.id"></productdrop></td>
+            <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
         </tr>
-        
     </table>
 </template>
 

@@ -1,40 +1,48 @@
 /* global Vue */
 /* global notie */
 /* global $ */
+var api = {
+  products: "/api/products/",
+  productbuttons: "/api/productbuttons/",
+  sender: "/api/sender/",
+  cart: "/api/cart/",
+  config: "/api/config/"
+}
 
 var productDrop = Vue.component("productdrop", {
   template: "#productDrop",
-  props: ["senderid"],
+  props: ["senderid", "productname"],
   data: function() {
     return {
       products: [],
-      currentDescription: "select...",
+      currentDescription: this.productname,
       currentSender: this.senderid,
     }
   },
   created: function() {
-     var url = "/api/products";
+     var url = api.products;
       this.$http.get(url).then(response => {
       this.products = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
   },
   methods: {
     updateSender: function(product) {
       this.currentDescription = product.name;
       // TODO: POST/PUT changes to productbuttons
-      var url = "/api/productbuttons";
+      var url = api.productbuttons;
       var data = {
         productid: product.id,
-        senderid: this.currentSender
+        senderid: this.currentSender,
       }
       this.$http.post(url, data).then(response => {
-        notie.alert("success", "succesfully updated sender " + this.currentSender, 1.5);
+        notie.alert({type: "success", text: "succesfully updated sender " + this.currentSender, time: 1.5});
+        this.$emit("update-sender", response.body);
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     }
   }
@@ -43,25 +51,28 @@ var senders = Vue.component("senders", {
   template: "#senders",
   data: function() {
     return {
-      senders: [],
-      productbuttons: []
+      config: []
     }
   },
    created: function() {
-      var url = "/api/sender";
+      var url = api.config;
       this.$http.get(url).then(response => {
-      this.senders = response.body;
+      this.config = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5})
     });
-     /*var url = "/api/productbuttons";
+},
+methods: {
+  updateSenders: function() {
+     var url = api.config;
       this.$http.get(url).then(response => {
-      this.productbuttons = response.body;
+      this.config = response.body;
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
-    });*/
+    notie.alert({ type: "error", text: response.statusText, time: 1.5})
+    });
+  }
 }
 });
 
@@ -74,17 +85,17 @@ var product = Vue.component("product", {
   },
   methods: {
     saveProduct: function() {
-      var url = "/api/products";
+      var url = api.products;
       this.$http.post(url, this.product).then(response => {
       this.product = new Product();
       $('#productModal').modal('hide');
-      notie.alert("success", "Success.", 1.5);
+      notie.alert({ type: "success", text: "success", time: 1.5});
       // TODO: add event and automatically update parent
       this.$emit("save-product", response.body);
       
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     }
   }
@@ -109,7 +120,7 @@ var products = Vue.component("products", {
     
     },
     deleteProduct: function(product) {
-       var url = "/api/products/" + product.id;
+       var url = api.products + product.id;
         this.$http.delete(url).then(response => {
         // user feedback?
         // delete product from array
@@ -120,21 +131,21 @@ var products = Vue.component("products", {
           }
         });
         this.products.splice(indexToRemove, 1);
-        notie.alert("success", "successfully deleted product '" + product.name +"'", 2);
+        notie.alert({ type: "success", text: "successfully deleted product '" + product.name +"'", time: 2});
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
     },
     updateProduct: function(product) {
       if(this.currentProduct.name !== product.name || this.currentProduct.price !== product.price) {
         // PUT
-        var url = "/api/products/" + product.id;
+        var url = api.products + product.id;
         this.$http.put(url, product).then(response => {
         // user feedback?
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
       }
     },
@@ -144,12 +155,15 @@ var products = Vue.component("products", {
     }
   },
   created: function() {
-      var url = "/api/products";
+      var url = api.products;
+      console.log("getting products...");
       this.$http.get(url).then(response => {
       this.products = response.body;
+      console.log(response.body);
     }, response => {
     // error callback
-    notie.alert('error', response.statusText, 1.5);
+    console.log("error");
+    notie.alert({ type: "error", text: response.statusText, time: 1.5});
     });
   },
 });
@@ -169,22 +183,22 @@ var cart = Vue.component("cart", {
         // TODO
         // POST to api/cart/
         // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
-        var url = "/api/cart";
+        var url = api.cart;
         this.$http.post(url, this.cart).then(response => {
-          notie.alert("success", "success", 1.5);
+          notie.alert({ type: "success", text: "success", time: 1.5});
         }, response => {
           // error callback
-          notie.alert("error", response.statusText, 1.5);
+          notie.alert({ type: "error", text: response.statusText, time: 1.5});
         });
       }
   },
   created: function() {
-      var url = "/api/cart";
+      var url = api.cart;
       this.$http.get(url).then(response => {
       this.cart = response.body;
   }, response => {
   // error callback
-  notie.alert("error", response.statusText, 1.5);
+  notie.alert({ type: "error", text: response.statusText, time: 1.5});
   });
   },
   computed: {
