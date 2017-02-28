@@ -115,6 +115,22 @@ $app->group("/api", function() use ($app) {
         }
         return $res->withJson($currentcart); 
     });
+    $app->delete("/cart/{productid}", function($req, $res, $args) {
+        $request = $req->getParsedBody();
+        try {
+            $cart = Cart::where("productid", "=", $args["productid"])->first();
+            if(sizeof($cart) != 0) {
+                $cart->delete($args["productid"]);
+            }
+            else {
+                $msg = "no product with id " . $args["productid"] ." in cart.";
+                return $res->withJson($msg, 404);
+            }
+        }
+        catch(Exception $e) {
+            return $res->withJson($e, 400);
+        }
+    });
     $app->post("/cart/", function($req, $res, $args) {
             $request = $req->getParsedBody();
             $fullCart = array();

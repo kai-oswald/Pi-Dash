@@ -197,10 +197,18 @@ var cart = Vue.component("cart", {
   },
   methods: {
     saveCart: function() {
-        // TODO
-        // POST to api/cart/
-        // this.cart ist nicht ganz in der Form in der wir es an die API schicken wollen.
-        var url = api.cart;
+      var url = api.cart;
+        // TODO wenn quantity = 0, dann delete
+        for(var i = 0; i < this.cart.length; i++) {
+          var cartItem = this.cart[i];
+          if(cartItem.quantity === 0) {
+            this.$http.delete(url + cartItem.productid).then(response => {
+        }, response => {
+          // error callback
+          notie.alert({ type: "error", text: response.statusText, time: 1.5});
+        });
+          }
+        }
         this.$http.post(url, this.cart).then(response => {
           notie.alert({ type: "success", text: "success", time: 1.5});
         }, response => {
