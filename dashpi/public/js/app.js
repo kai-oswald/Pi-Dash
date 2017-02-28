@@ -64,6 +64,20 @@ var senders = Vue.component("senders", {
     });
 },
 methods: {
+  update: function(sender) {
+    var url = api.sender;
+    var data = {
+      id: sender.id,
+      comment: sender.comment
+    }
+     this.$http.put(url, data).then(response => {
+      var msg = "updated comment for sender " + response.body.id + " to " + response.body.comment
+      notie.alert({ type: "success", text: msg , time: 1.5})
+    }, response => {
+    // error callback
+    notie.alert({ type: "error", text: response.statusText, time: 1.5})
+    });
+  },
   updateSenders: function() {
      var url = api.config;
       this.$http.get(url).then(response => {

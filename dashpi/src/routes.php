@@ -177,7 +177,23 @@ $app->group("/api", function() use ($app) {
         $sender = \Sender::all();
         return $res->withJson($sender); 
     });
-    
+    $app->put("/sender/", function($req, $res, $args) {
+        $request = $req->getParsedBody();
+        try {
+            $sender = Sender::find($request["id"]);
+            if(sizeof($sender) != 0) {
+                $sender->comment = $request["comment"];
+                $sender->save();
+                return $res->withJson($sender);
+            } else {
+                $msg = "Sender with id " . $request["id"]. " not found.";
+                return $res->withJson($msg, 404);
+            }
+            } 
+            catch(Exception $e) {
+                return $res->withJson($e, 400);
+        }
+    });
     $app->post("/sender/", function($req, $res, $args) {
         // construct the cart (all open orders)
         try {

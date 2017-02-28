@@ -16,7 +16,7 @@
         </tr>
         <tr v-for="sender in config">
             <td>{{ sender.id }}</td>
-            <td>{{ sender.comment }}</td>
+            <td><input type="text" v-on:blur="update(sender)" v-model="sender.comment"/></td>
             <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
         </tr>
     </table>
