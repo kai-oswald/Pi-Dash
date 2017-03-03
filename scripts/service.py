@@ -55,7 +55,7 @@ def udpstartrest():
     if cudp.is_alive() == False:
         cudp = udpClass()
         print("test %r" %cudp.is_alive())
-    server_status = '{"udp":%r,"tcp":%r}' %(cudp.is_alive(), ctcp.is_alive())
+    server_status = '{"status":%r}' %(cudp.is_alive())
     res = app.response_class(server_status)
     res.headers["Content-Type"] = "application/json"
     return res
@@ -75,7 +75,7 @@ def tcpstartrest():
     global ctcp
     if ctcp.is_alive()==False:
         ctcp = tcpClass()
-    server_status = '{"udp":%r,"tcp":%r}' % (cudp.is_alive(), ctcp.is_alive())
+    server_status = '{"status":%r}' %(ctcp.is_alive())
     res = app.response_class(server_status)
     res.headers["Content-Type"] = "application/json"
     return res
