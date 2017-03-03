@@ -23,9 +23,10 @@ def startServer(udp_ip, udp_port, buffer_size):
         print("Received data via UDP: %s" %recvdata)
   
         url = "http://localhost/api/cart"
-        data = {'senderid': recvdata[:1]}  
+        #data = {'senderid': recvdata[:1]}  
+        recvdata = recvdata[:1]
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-        r = requests.post(url, data=json.dumps(data), headers=headers)
+        r = requests.post(url, data={}, headers=headers)
         if r.status_code == 200:
             print("Enter data via REST: Sucess: %i" %r.status_code)
         else:
