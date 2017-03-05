@@ -4,7 +4,7 @@
                                 %nach neuer deutscher Rechtschreibung
                                 %wünsche
 \usepackage[utf8]{inputenc}
- \usepackage[ngerman]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{color}
 \usepackage[T1]{fontenc}
 \usepackage[pdfborder={0 0 0}]{hyperref}
@@ -15,6 +15,8 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{url} 
+\usepackage{listings}
+\usepackage{acronym} 
 
 \begin{document}
 \tableofcontents
@@ -27,21 +29,24 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 
 \newpage
 
-\section{Überblick der vorgestellten Lösung}
-\label{sec:Überblick der vorgestellten Lösung-1}
-Die vorgestellte Lösung soll auf freie Technologien zurückgreifen und somit für den Nutzer nachvollziehbar sein. Das erklärte Ziel ist es, über Buttons einen Einkaufszettel zusammenzustellen, der dem Nutzer dann zur Verfügung gestellt wird. Dazu wird mit sogenannten Mikrocontrollern und Einplatinencomputern die benötigte Infrastruktur realisiert und aufgebaut. Damit die Daten nicht außerhalb der Kontrolle des Nutzers liegen, wird ein zentraler Server im Netzwerk benötigt. Dieser zentrale Server empfängt zudem die entsprechenden Signale der Clients, die in diesem Falle die Buttons sind. 
+\section{Aufgabenstellung}
+\label{sec:Aufgabenstellung-1}
+
+\input{Textteile/aufgabenstellung.tex}
 
 \newpage
 
 \section{Theorie}        
 \label{sec:Theorie-1}  
 
-\subsection{UDP}
+Im Rahmen dieser Arbeit wurden verschiedene Technologien und Prinzipien eingesetzt. Auf diese soll in den folgenden Unterkapiteln eingegangen werden, damit eine theoretische Grundlage vorhanden ist. 
+
+\subsection{\ac{UDP}}
 \label{sec:UDP-1}
 
 \input{Textteile/udp.tex}
 
-\subsection{TCP}
+\subsection{\ac{TCP}}
 \label{sec:TCP-1}
 
 \input{Textteile/tcp.tex}
@@ -52,21 +57,26 @@ Die vorgestellte Lösung soll auf freie Technologien zurückgreifen und somit f�
 \subsection{Arduino}
 \label{sec:Arduino-1} 
 
+\input{Textteile/arduino.tex}
+
+\subsection{Python}
+\label{src:Python-1}
+
 \subsection{WLAN-Chipsatz}
 \label{sec:WLAN-CHipsatz-1} 
 
 \subsection{Frontendtechnologien}
 \label{sec:Frontendtechnologien-1}
  
-\subsection{REST}        
+\subsection{\ac{REST}}        
 \label{sec:REST-1}  
 
 \cite{Tilkov.2015}
   
 \newpage
  
-\section{Auswahl der Hardware}        
-\label{sec:Auswahl der Hardware-1}  
+\section{Beschreibung der Hardware}        
+\label{sec:Beschreibung der Hardware-1}  
 
 In den folgenden Kapiteln wird die ausgewählte Hardware des Projektes vorgestellt. Dabei wird zuerst auf die technischen Merkmale eingegangen und dann auf den genauen Verwendungszweck im Projekt. 
 
@@ -74,46 +84,80 @@ In den folgenden Kapiteln wird die ausgewählte Hardware des Projektes vorgestel
 \label{sec:Raspberry PI-1} 
 
 \input{Textteile/raspberry.tex}
+\newpage
 
 \subsection{``Pretzelboard''}        
-\label{sec:''Pretzelboard''-1} 
+\label{sec:Pretzelboard-1} 
 
 \input{Textteile/pretzelboard}
+%Bild vom fertigen Button
+\newpage
+
+\subsection{ESP8266 Lua}
+\label{sec:ESP8266}
+
+\input{Textteile/esp8266.tex}
+%Bild vom fertigen Button 
+
+\subsection{Amazon Dash Button}
+\label{sec:Amazon Dash Button}
+
+\input{Textteile/theorieamazondashbutton.tex}
+%Bild vom Button 
+\newpage
 
 \section{Umsetzung des Projektes}        
 \label{sec:Umsetzung des Projektes-1}  
 
-\subsection{Architektur und Zusammenspiel der Komponenten}        
-\label{sec:Architektur und Zusammenspiel der Komponenten-1} 
+\subsection{Architektur und Zusammenarbeit der Komponenten}        
+\label{sec:Architektur und Zusammenarbeit der Komponenten-1} 
 
-Einbindung von \nameref{sec:Auswahl der Hardware-1}
+\input{Textteile/architekturkomponenten.tex}
 
-\subsection{Einrichtung der Hardware}  
-\label{sec:Einrichtung der Hardware-1} 
+\newpage
 
-\subsubsection{Einrichtung des Raspberrys}  
-\label{sec:Einrichtung des Raspberrys-1}
+\subsection{Entwicklung der Buttons}  
+\label{sec:Entwicklung der Buttons-1} 
 
-\paragraph{Einrichtung des WLAN Access Points}  
-\label{sec:Einrichtung des WLAN Access Points-1} 
+Im folgenden soll auf die Entwicklung der Button Komponente im Projekt eingegangen werden. Dabei wird insbesondere auf die Programmierung und Umsetzung eingegangen werden. 
+Bei der Entwicklung der verschiedenen Buttons wurde insbesondere darauf geachtet, dass verschiedene Technologien getestet werden, um möglichst viele technische Möglichkeiten zu untersuchen. Das ist damit zu begründen, dass das Untersuchen von möglichst vielen Möglichkeiten zum Projektziel gehörte. 
 
-\paragraph{Einrichtung des UDP Empfängers}  
-\label{sec:Einrichtung des UDP Empfängers-1} 
+\subsubsection{Entwicklung mit dem ``Pretzelboards''}  
+\label{sec:Entwicklung mit dem ``Pretzelboards''-1}
 
-\subsubsection{Einrichtung des ``Pretzelboards''}  
-\label{sec:Einrichtung des ``Pretzelboards''-1}
+\subsubsection{Entwicklung mit dem ESP8266 Lua}  
+\label{sec:Entwicklung mit dem ESP8266-1}
 
-\subsection{Entwicklung der Webanwendung}  
-\label{sec:Entwicklung der Webanwendung-1} 
+\subsubsection{Einbindung des Amazon Dash Buttons}  
+\label{sec:Einbindung des Amazon Dash Buttons-1}
 
-\subsubsection{Aufbau und Entwicklung der REST API}  
-\label{sec:Aufbau und Entwicklung der REST API-1}
+\newpage
+
+\subsection{Entwicklung des Frontends}  
+\label{sec:Entwicklung der Frontends-1} 
 
 \subsubsection{Aufbau und Entwicklung des Frontends}  
 \label{sec:Aufbau und Entwicklung des Frontends-1}
 
-\subsection{Entwicklung und Einrichtung der Datenbank}  
-\label{sec:Entwicklung und Einrichtung der Datenbank-1} 
+\newpage
+
+\subsection{Entwicklung und Einrichtung des Backends}  
+\label{sec:Entwicklung und Einrichtung des Backends-1} 
+
+In den folgenden Kapiteln wird auf die Einrichtung des Backends eingegangen. Dies umfasst sowohl die Einrichtung des Raspberry Pis, den Aufbau und die Entwicklung der REST API und die Entwicklung der Python Skripte. Die Einrichtung des Raspberry PIs wird an dieser Stelle geführt, da er das zentrale Hardwareelemente im Backend ist, da er genutzt wird, um die entsprechende Softwaredienste zur Verfügung zu stellen. Er stellt den zentralen Kommunikationspunkt im Projekt dar, da die Buttons nur ihn kennen, sich aber nicht gegenseitig. 
+
+\subsubsection{Einrichtung des Raspberrys}  
+\label{sec:Einrichtung des Raspberrys-1}
+
+\input{Textteile/EinrichtungRaspberry.tex}
+
+\subsubsection{Aufbau und Entwicklung der REST API}  
+\label{sec:Aufbau und Entwicklung der REST API-1}
+
+\subsubsection{Aufbau und Entwicklung der Python Skripte}  
+\label{sec:Aufbau und Entwicklung der Python Skripte-1}
+
+\input{Textteile/EntwicklungPythonSkripte.tex}
 
 \newpage
 
@@ -127,6 +171,20 @@ Einbindung von \nameref{sec:Auswahl der Hardware-1}
 
 \newpage
 
+\section{Anhang}        
+\label{sec:Anhang-1}  
+
+\input{Textteile/anhang.tex}
+
+\newpage
+
+\section{Abkürzungsverzeichnis}
+\label{sec:Abkürzungsverzeichnis}
+
+\input{Textteile/abkuerzungsverzeichnis}
+
+\newpage
+
 
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 \bibliographystyle{unsrt}  
@@ -137,5 +195,8 @@ Einbindung von \nameref{sec:Auswahl der Hardware-1}
 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
 
 \listoffigures
+
+\newpage
+
 
 \end{document}
