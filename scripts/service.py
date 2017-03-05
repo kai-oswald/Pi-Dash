@@ -1,7 +1,9 @@
 #!/usr/bin/python
 import udp
 import tcp
+import amazon
 import time
+import struct
 from threading import Thread
 import subprocess
 from flask import Flask
@@ -23,6 +25,14 @@ class tcpClass(Thread):
     def run(self):
         tcp.startServer('192.168.1.1',5005,1024)  
 
+class amazonClass(Thread):
+   def __init__(self):
+        Thread.__init__(self)
+        self.daemon = True
+        self.start()
+   def run(self):
+        amazon.startServer()
+
 class myApp(Thread):
     def __init__(self):
         Thread.__init__(self)
@@ -33,6 +43,8 @@ class myApp(Thread):
 
 global cudp
 global ctcp
+global camazon
+camazon = amazonClass()
 cudp = udpClass()
 ctcp = tcpClass()
 
