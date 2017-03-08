@@ -31,7 +31,7 @@ var statusBtn = Vue.component("statusBtn", {
   },
   methods: {
     startServer: function() {
-      var url = api.server + this.type + "/start";
+      var url = api.status + this.type + "/start";
       this.$http.get(url).then(response => {
         this.currentStatus = response.body.status;
     }, response => {
@@ -53,7 +53,7 @@ var status = Vue.component("status", {
     }
   },
   created: function() {
-    var url = api.server + "status";
+    var url = api.status + "status";
     this.$http.get(url).then(response => {
       this.status = response.body;
     }, response => {
