@@ -1,0 +1,17 @@
+<?php include_once("header.phtml") ?>
+<div class="container" id="main">
+        <status></status>
+</div>
+
+<template id="status">
+    <div class="row">
+        <status-btn :status="status.tcp" type="tcp"></status-btn>
+        <status-btn :status="status.udp" type="udp"></status-btn>
+    </div>
+</template>
+
+<template id="statusBtn">
+        <div v-if="currentStatus" class="btn btn-default disabled">{{ type | uppercase}}-Server is running.</div>
+        <div v-else class="btn btn-default" v-on:click="startServer">Start {{ type | uppercase}}-Server</div>
+</template>
+<?php include_once("footer.phtml") ?>

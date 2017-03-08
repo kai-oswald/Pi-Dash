@@ -27,6 +27,10 @@ $app->get("/products", function($req, $res, $args) {
     return $this->renderer->render($res, "products.phtml", $args);
 });
 
+$app->get("/status", function($req, $res, $args) {
+    return $this->renderer->render($res, "status.phtml", $args);
+});
+
 // REST API
 $app->group("/api", function() use ($app) {  
 

@@ -18,6 +18,59 @@ var api = {
 // ---------------------------
 
 // ---------------------------
+//        StatusButton
+// ---------------------------
+var statusBtn = Vue.component("statusBtn", {
+  template: "#statusBtn",
+  props: ["status", "type"],
+  data: function() {
+    return {
+      currentStatus: this.status
+    }
+  },
+  methods: {
+    startServer: function() {
+      var url = "localhost:8080/api/server/" + this.type + "/start";
+      this.$http.get(url).then(response => {
+        this.currentStatus = response.body.status;
+    }, response => {
+      notie.alert({
+        type: "error",
+        text: response.statusText,
+        time: 1.5
+      });
+    });
+    }
+  }
+});
+
+var status = Vue.component("status", {
+  template: "#status",
+  data: function() {
+    return {
+      status: {}
+    }
+  },
+  created: function() {
+    var url = "http://localhost:8080/api/server/status";
+    this.$http.get(url).then(response => {
+      this.status = response.body;
+    }, response => {
+      notie.alert({
+        type: "error",
+        text: response.statusText,
+        time: 1.5
+      });
+    });
+    // TEST
+    /*this.status = {
+      "udp": true,
+      "tcp": false
+    }*/
+  }
+});
+
+// ---------------------------
 //      Product Dropdown
 // ---------------------------
 var productDrop = Vue.component("productdrop", {
@@ -321,6 +374,10 @@ Vue.filter("currency", function (value) {
     return "€ " + value.toFixed(2);
   }
   return 0;
+});
+
+Vue.filter("uppercase", function(text) {
+  return text.toUpperCase();
 });
 
 // ---------------------------
