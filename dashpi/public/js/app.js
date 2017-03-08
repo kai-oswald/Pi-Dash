@@ -10,7 +10,8 @@ var api = {
   productbuttons: "/api/productbuttons/",
   sender: "/api/sender/",
   cart: "/api/cart/",
-  config: "/api/config/"
+  config: "/api/config/",
+  status: "/api/server/"
 }
 
 // ---------------------------
@@ -30,7 +31,7 @@ var statusBtn = Vue.component("statusBtn", {
   },
   methods: {
     startServer: function() {
-      var url = "localhost:8080/api/server/" + this.type + "/start";
+      var url = api.server + this.type + "/start";
       this.$http.get(url).then(response => {
         this.currentStatus = response.body.status;
     }, response => {
@@ -52,7 +53,7 @@ var status = Vue.component("status", {
     }
   },
   created: function() {
-    var url = "http://localhost:8080/api/server/status";
+    var url = api.server + "status";
     this.$http.get(url).then(response => {
       this.status = response.body;
     }, response => {
