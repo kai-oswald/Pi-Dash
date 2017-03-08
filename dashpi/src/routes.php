@@ -283,24 +283,21 @@ $app->group("/api", function() use ($app) {
         }
         return $res->withJson($productbutton);
     });
-    
-    $config = new stdClass();
-    $config->ip = "127.0.0.1:8080/";
-    
-     $app->get("/api/server/status", function($req, $res, $args) {
-        $url = "server/status";
-        $status = file_get_contents($config->ip . $url);
+        
+     $app->get("/server/status", function($req, $res, $args) {
+        $url = "/server/status";
+        $status = file_get_contents("http://127.0.0.1:8080/api" . $url);
         return $res->withJson($status);
     });
     
-     $app->get("/api/server/tcp/start", function($req, $res, $args) {
-        $url = "server/tcp/start";
-        $status = file_get_contents($config->ip . $url);
+     $app->get("/server/tcp/start", function($req, $res, $args) {
+        $url = "/server/tcp/start";
+        $status = file_get_contents("http://127.0.0.1:8080/api"  . $url);
         return $res->withJson($status);
     });
-     $app->get("/api/server/udp/start", function($req, $res, $args) {
-        $url = "server/udp/start";
-        $status = file_get_contents($config->ip . $url);
+     $app->get("/server/udp/start", function($req, $res, $args) {
+        $url = "/server/udp/start";
+        $status = file_get_contents("http://127.0.0.1:8080/api"  . $url);
         return $res->withJson($status);
     });
 });
