@@ -25,10 +25,12 @@ def startServer(tcp_ip, tcp_port, buffer_size):
                     conn.send("400")
             else:
                     print("Received data via TCP: %s" % recvdata)
-                    data = {'senderid':recvdata[:1]} #enter correct body
-                    url = "http://localhost/api/cart" #enter correct URL!
+                    #data = {'senderid':recvdata[:1]} #enter correct body
+                    data = {" "}
+                    recvdata = recvdata[:1]  
+                    url = "http://localhost/api/cart/%s" % recvdata #enter correct URL!
                     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-                    r = requests.post(url, data=json.dumps(data), headers=headers, timeout=10)
+                    r = requests.post(url, data={}, headers=headers, timeout=10)
                     if r.status_code == 200:
                             conn.send("200")
                             print("Enter data via REST: Success %i" %r.status_code)

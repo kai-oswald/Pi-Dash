@@ -1,7 +1,9 @@
 #!/usr/bin/python
 import udp
 import tcp
+import amazon
 import time
+import struct
 from threading import Thread
 import subprocess
 from flask import Flask
@@ -23,6 +25,14 @@ class tcpClass(Thread):
     def run(self):
         tcp.startServer('192.168.1.1',5005,1024)  
 
+class amazonClass(Thread):
+   def __init__(self):
+        Thread.__init__(self)
+        self.daemon = True
+        self.start()
+   def run(self):
+        amazon.startServer()
+
 class myApp(Thread):
     def __init__(self):
         Thread.__init__(self)
@@ -33,6 +43,8 @@ class myApp(Thread):
 
 global cudp
 global ctcp
+global camazon
+camazon = amazonClass()
 cudp = udpClass()
 ctcp = tcpClass()
 
@@ -43,7 +55,7 @@ def udpstartrest():
     if cudp.is_alive() == False:
         cudp = udpClass()
         print("test %r" %cudp.is_alive())
-    server_status = '{"udp":%r,"tcp":%r}' %(cudp.is_alive(), ctcp.is_alive())
+    server_status = '{"status":%r}' %(cudp.is_alive())
     res = app.response_class(server_status)
     res.headers["Content-Type"] = "application/json"
     return res
@@ -63,7 +75,7 @@ def tcpstartrest():
     global ctcp
     if ctcp.is_alive()==False:
         ctcp = tcpClass()
-    server_status = '{"udp":%r,"tcp":%r}' % (cudp.is_alive(), ctcp.is_alive())
+    server_status = '{"status":%r}' %(ctcp.is_alive())
     res = app.response_class(server_status)
     res.headers["Content-Type"] = "application/json"
     return res
