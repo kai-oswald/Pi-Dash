@@ -216,12 +216,15 @@ $app->group("/api", function() use ($app) {
     
     $app->get("/config/", function($req, $res, $args) {
         $senders = Sender::all();
+        // TODO irgendwas faul mit speichern von Sendern
+        // senders passt
         $vm = array();
         foreach($senders as $sender) {
             $productbutton = Productbutton::where("senderid", "=", $sender->id)->first();
             if(sizeof($productbutton) != 0) {
                 $product = Product::find($productbutton->productid);
                 if(sizeof($product) != 0) {
+                    $viewmodel = new stdClass();
                     $viewmodel->id = $sender->id;
                     $viewmodel->comment = $sender->comment;
                     $viewmodel->productid = $product->id;
