@@ -216,8 +216,6 @@ $app->group("/api", function() use ($app) {
     
     $app->get("/config/", function($req, $res, $args) {
         $senders = Sender::all();
-        // TODO irgendwas faul mit speichern von Sendern
-        // senders passt
         $vm = array();
         foreach($senders as $sender) {
             $productbutton = Productbutton::where("senderid", "=", $sender->id)->first();
