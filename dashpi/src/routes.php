@@ -222,6 +222,7 @@ $app->group("/api", function() use ($app) {
             if(sizeof($productbutton) != 0) {
                 $product = Product::find($productbutton->productid);
                 if(sizeof($product) != 0) {
+                    $viewmodel = new stdClass();
                     $viewmodel->id = $sender->id;
                     $viewmodel->comment = $sender->comment;
                     $viewmodel->productid = $product->id;
