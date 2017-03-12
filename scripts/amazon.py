@@ -30,13 +30,16 @@ def startServer():
                 print "Enter to DB"
                 url = "http://localhost/api/cart/5" #5 is example senderid
                 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-                r = requests.post(url, data={}, headers=headers, timeout=10)
-                if r.status_code == 200:
-                    conn.send("200")
-                    print("Enter data via REST: Success %i" %r.status_code)
-                else:
-                    conn.send(str(r.status_code))
-                    print("Enter data via REST: Error: %i" %r.status_code)
+                try:    
+                    r = requests.post(url, data={}, headers=headers, timeout=10)
+                    if r.status_code == 200:
+                        conn.send("200")
+                        print("Enter data via REST: Success %i" %r.status_code)
+                    else:
+                        conn.send(str(r.status_code))
+                        print("Enter data via REST: Error: %i" %r.status_code)
+                except requests.exceptions.RequestException as e:
+                    print("Error %s" %e)
 
 if __name__ == '__main__':
     startServer()

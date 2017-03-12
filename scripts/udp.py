@@ -26,11 +26,14 @@ def startServer(udp_ip, udp_port, buffer_size):
         #data = {'senderid': recvdata[:1]}  
         recvdata = recvdata[:1]
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-        r = requests.post(url, data={}, headers=headers)
-        if r.status_code == 200:
-            print("Enter data via REST: Sucess: %i" %r.status_code)
-        else:
-            print("Enter data via REST, Error: %i" %r.status_code)
+        try:
+            r = requests.post(url, data={}, headers=headers)
+            if r.status_code == 200:
+                print("Enter data via REST: Sucess: %i" %r.status_code)
+            else:
+                print("Enter data via REST, Error: %i" %r.status_code)
+        except requests.exceptions.RequestException as e:
+            print("Error %s" %e)
 
 def stopServer():
     status = False

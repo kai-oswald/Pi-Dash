@@ -30,13 +30,16 @@ def startServer(tcp_ip, tcp_port, buffer_size):
                     recvdata = recvdata[:1]  
                     url = "http://localhost/api/cart/%s" % recvdata #enter correct URL!
                     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-                    r = requests.post(url, data={}, headers=headers, timeout=10)
-                    if r.status_code == 200:
+                    try:
+                        r = requests.post(url, data={}, headers=headers, timeout=10)
+                        if r.status_code == 200:
                             conn.send("200")
                             print("Enter data via REST: Success %i" %r.status_code)
-                    else:
+                        else:
                             conn.send(str(r.status_code))
                             print("Enter data via REST: Error: %i" %r.status_code)
+                    except requests.exceptions.RequestException as e:
+                        print("Error %s" %e)
 
 def stopServer():
     status = False
