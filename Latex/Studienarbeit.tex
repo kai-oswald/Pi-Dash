@@ -17,6 +17,8 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage{url} 
 \usepackage{listings}
 \usepackage{acronym} 
+\usepackage{tabularx}
+\usepackage{float}
 
 \begin{document}
 \tableofcontents
@@ -53,6 +55,8 @@ Im Rahmen dieser Arbeit wurden verschiedene Technologien und Prinzipien eingeset
 
 \subsection{Webserver: Nginx}
 \label{sec:Webserver: Nginx-1} 
+
+\input{Textteile/nginx.tex}
  
 \subsection{Arduino}
 \label{sec:Arduino-1} 
@@ -68,9 +72,11 @@ Im Rahmen dieser Arbeit wurden verschiedene Technologien und Prinzipien eingeset
 \subsection{Frontendtechnologien}
 \label{sec:Frontendtechnologien-1}
  
+ \newpage
+ 
 \subsection{\ac{REST}}        
 \label{sec:REST-1}  
-
+\input{Textteile/rest.tex}
 \cite{Tilkov.2015}
   
 \newpage
@@ -197,6 +203,8 @@ In den folgenden Kapiteln wird auf die Einrichtung des Backends eingegangen. Die
 \listoffigures
 
 \newpage
+
+\listoftables 
 
 
 \end{document}
