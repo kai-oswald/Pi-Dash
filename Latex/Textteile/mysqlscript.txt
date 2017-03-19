@@ -1,0 +1,109 @@
+--
+-- Tabellenstruktur fuer Tabelle `carts`
+--
+
+CREATE TABLE IF NOT EXISTS `carts` (
+  `id` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `updated_at` date NOT NULL,
+  `created_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur fuer Tabelle `productbuttons`
+--
+
+CREATE TABLE IF NOT EXISTS `productbuttons` (
+  `id` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `senderid` int(11) NOT NULL,
+  `updated_at` date NOT NULL,
+  `created_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur fuer Tabelle `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `price` float DEFAULT NULL,
+  `updated_at` date NOT NULL,
+  `created_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur fuer Tabelle `senders`
+--
+
+CREATE TABLE IF NOT EXISTS `senders` (
+  `id` int(11) NOT NULL,
+  `created_at` date DEFAULT NULL,
+  `updated_at` date NOT NULL,
+  `comment` varchar(600) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes fuer die Tabelle `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indizes fuer die Tabelle `productbuttons`
+--
+ALTER TABLE `productbuttons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indizes fuer die Tabelle `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indizes fuer die Tabelle `senders`
+--
+ALTER TABLE `senders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT fuer exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT fuer Tabelle `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT fuer Tabelle `productbuttons`
+--
+ALTER TABLE `productbuttons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT fuer Tabelle `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT fuer Tabelle `senders`
+--
+ALTER TABLE `senders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
