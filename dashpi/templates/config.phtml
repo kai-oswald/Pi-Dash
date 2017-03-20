@@ -17,16 +17,15 @@
         <h4 class="modal-title">Add new Button</h4>
       </div>
       <div class="modal-body">
-          <div class="input-group">
-              <label>Comment</label>
-  <textarea rows="4" cols="50" placeholder="Add your comment here.."></textarea>
-</div>
-
-<div class="input-group">
-    <label>Product</label>
-  <productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop>
-</div>
-      </div>
+          <div class="input-group col-xs-12">
+              <label for="comment">Comment</label>
+              <textarea class="form-control" id="comment" rows="3" placeholder="Add your comment here.."></textarea>
+          </div>
+          <div class="input-group col-xs-12">
+              <label for="product">Product</label>
+              <productdrop id="product" v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop>
+          </div>
+          </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
