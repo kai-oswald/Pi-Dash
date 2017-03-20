@@ -127,6 +127,23 @@ var productDrop = Vue.component("productdrop", {
 // ---------------------------
 //            Senders
 // ---------------------------
+var sender = Vue.component("sender", {
+  template: "#sender",
+  data: function() {
+    return {
+      sender: new Sender()
+    }
+  },
+  methods: {
+   saveSender: function() {
+     
+   },
+   updateSenders: function() {
+     
+   }
+  }
+});
+
 var senders = Vue.component("senders", {
   template: "#senders",
   data: function () {
@@ -182,7 +199,7 @@ var senders = Vue.component("senders", {
       });
     },
     newSender: function () {
-      $('#senderModal').modal();
+      // $('#modal-sender').modal();
     }
   }
 });
