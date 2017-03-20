@@ -1,15 +1,36 @@
-Die Einrichtung des Raspberry PIs besteht aus mehreren Schritten an dessen Ende die Verwendung des Raspberrys als zentraler Server steht. Die verschiedenen Schritte werden im folgenden erklärt: 
-\paragraph{Einrichtung des Nginx}  
+Die Einrichtung des Raspberry PIs besteht aus mehreren Schritten an dessen Ende die Verwendung des Raspberrys als zentraler Server steht. Die Installation geht von der bereits installierten und aktuellen Raspbian Distribution aus. Die verschiedenen Schritte werden im folgenden erklärt: 
+\paragraph{Einrichtung des Nginx} $\;$ \\ 
 \label{sec:Einrichtung des Nginx-1} 
+Der Webserver Nginx, welcher bereits in Kapitel \ref{sec:WebserverNginx-1} vorgestellt wurde, dient als Webserver für das Frontend und einen Teil des Backends. Um ihn entsprechend einzurichten, müssen zuerst die entsprechend Pakete mithilfe des Befehles ``sudo apt-get install nginx'' installiert werden. Nach der erfolgreichen Installation muss die Konfigurationsdatei noch entsprechend angepasst werden. 
+
+Bevor der Server gestartet werden kann, sollten die entsprechenden Dateien für die Website heruntergeladen werden und in das Rootverzeichnis des Webservers gelegt werden. Danach kann der Nginx gestartet werden. Die genaue Konfigurationsdatei des Nginx findet sich im Anhang. 
+
+\paragraph{Einrichtung der Webseite} $\;$ \\ 
+\label{sec:EinrichtungderWebseite} 
+Da für das Frontend der Webseite das Slim Framework in der Version 3 genutzt wird, muss noch ein Befehl ausgeführt werden, bevor die Webseite genutzt werden kann. Dieser dient zur Einrichtung. Um das Frontend entsprechend darstellen und entwickeln zu können muss in das Rootverzeichnis des Frontends gewechselt werden. In diesem ist die Datei composer.phar vorhanden. Mithilfe des Befehls ``php composer.phar start'' werden alle bisherigen Abhängigkeiten für das Projekt installiert und die entsprechenden Konfigurationen vorgenommen.
 
 \paragraph{Einrichtung des SQL Datenbankservers}$\;$ \\
 \label{sec:Einrichtung des SQL Datenbankservers-1} 
+Für die Datenbank des Projektes wird MySQL genutzt. Dieses muss zuerst über den Befehl ``sudo apt-get install mysql'' installiert werden. Nach dem Herunterladen wird ein entsprechender Setup gestartet, der den Datenbankserver erfolgreich auf dem Raspberry Pi installiert. Nach der Einrichtung eines Adminstrators (root User) muss ein weiterer Nutzer mit Password angelegt werden, der für dieses Projekt genutzt wird. Außerdem muss mit diesem Nutzer eine Datenbank für dieses Projekt angelegt werden.
+
+Danach muss in der Datenbank ein Skript ausgeführt werden, welches die benötigten Tabellen anlegt (siehe Anhang). Abschließend müssen die Nutzerdaten und der Datenbankname noch in die entsprechende Konfigurationsdatei des Frontends eingetragen werden, welche unter ``src/settings.php'' zu finden ist. 
 
 \paragraph{Einrichtung des WLAN Access Points}$\;$ \\ 
 \label{sec:Einrichtung des WLAN Access Points-1} 
+Neben dem Frontend und dem Backend stellt der Raspberry Pi auch noch das WLAN zur Verfügung. Dazu wird ein entsprechender WLAN Stick benötigt, der für den Modus als Accesspoint Sender geeignet ist. Außerdem muss eventuell noch der entsprechende Treiber installiert werden. Nach dieser Einrichtung wird der Raspberry Pi so konfiguriert, dass er als WLAN Sender genutzt werden kann. Dazu wird das Programm hostapd benötigt, welches über den Befehl ``sudo apt-get install hostapd'' installiert wird. 
+
+Nach der erfolgreichen Installation müssen zwei Konfigurationsdateien verändert werden. Die erste Konfigurationsdatei ist unter ``/etc/hostapd/hostapd.conf'' zu finden und wird für die Konfiguration des Programms hostapd benötigt. Dieses Programm wird im Hintergrund dazu genutzt, um die WLAN Verbindung im Allgemein zu gewährleisten und zu kontrollieren (vgl. \cite{.o}\cite{.n}). In dieser Konfigurationsdatei werden die entsprechenden Einstellungen für das WLAN getroffen, beispielsweise Name oder Sicherheitsstufe. Die verwendete Konfigurationsdatei ist im Anhang zu finden.
+
+Die zweite Konfigurationsdatei ist unter ``/etc/network/interfaces'' zu finden. Diese Datei beinhaltet alle Netzwerkschnittstellen und ihre entsprechende Konfiguration (vgl. \cite{.p}). Diese Datei muss ebenfalls verändert werden, damit die wlan Schnittstelle des Raspberry Pi's als Wlan Accesspoint genutzt werden kann. Eine der wichtigsten Einstellungen ist die Unterbindung der Weiterleitung aller Daten. Ohne diese Einstellung könnte ein Amazon Dash Button nämlich weiterhin entsprechende Produkte bestellen. 
+
+Diese Möglichkeit soll im Rahmen dieses Projektes unterbunden werden, daher wird die Weiterleitung in der Konfigurationsdatei unterbunden. Die genaue Konfiguration ist im Anhang zu finden und beinhaltet noch weitere, kleinere Veränderungen im Vergleich zu ursprünglichen, die es ermöglichen, dass die Wlanschnittstelle nicht als Empfänger sondern als Sender arbeitet.
 
 % erklären warum beides (UDP/TCP)
 \paragraph{Einrichtung von Python:}$\;$ \\
 \label{sec:Python Skripte-1} 
-Im Rahmen der Einrichtung des Raspberry Pi's ist auch die Einrichtung von Python durchzuführen. Für eine erfolgreiche Einrichtung müssen die entsprechenden Softwarepakete installiert werden.  Neben der grundlegenden Instalaltion von Python galt es auch die entsprechenden Skripte zu entwickeln. Dies wird allerdings genauer im Kapitel \ref{sec:Aufbau und Entwicklung der Python Skripte-1} betrachtet. 
+Im Rahmen der Einrichtung des Raspberry Pi's ist auch die Einrichtung von Python durchzuführen. Für eine erfolgreiche Einrichtung müssen die entsprechenden Softwarepakete installiert werden.  Neben der grundlegenden Instalaltion von Python galt es auch die entsprechenden Skripte zu entwickeln. Dies wird allerdings genauer im Kapitel \ref{sec:Aufbau und Entwicklung der Python Skripte-1} betrachtet. Allerdings kann bereits an dieser Stelle erwähnt werden, dass sowohl ein Skript für einen UDP und TCP Empfänger entwickelt werden soll. 
+
+Diese beiden Skripte sollen für die selbstentwickelten Buttons genutzt werden. Diese sollen entweder per UDP oder TCP ihre Signale an den Empfänger schicken. Durch diese Variation der Protokolle sollen die Unterschiede und die sinnvolle Nutzung der Protokolle betrachtet werden. 
+
+Neben diesen Skripten muss allerdings auch noch ein Skript geschrieben werden, welches auf ARP Pakete achtet. Diese werden benötigt, um den Amazon Dash Button zu kontrollieren. Auch dessen Entwicklung ist im Kapitel \ref{sec:Aufbau und Entwicklung der Python Skripte-1} genauer beschrieben. 
 %was ist mit PIP?

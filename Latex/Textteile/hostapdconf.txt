@@ -1,0 +1,16 @@
+
+interface=wlan0
+#driver=rtl8192cu
+
+ssid=wlantest
+hw_mode=g
+channel=1
+wmm_enabled=1
+country_code=DE
+ieee80211d=1
+auth_algs=1
+
+wpa=2
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+wpa_passphrase=testwlan

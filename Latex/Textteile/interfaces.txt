@@ -1,0 +1,19 @@
+# Localhost
+auto lo
+iface lo inet loopback
+
+# Ethernet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet manual
+
+# WLAN-Interface
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet static
+address 192.168.1.1
+netmask 255.255.255.0
+
+# hostapd und dnsmasq neu starten
+up service hostapd restart
+up service dnsmasq restart
