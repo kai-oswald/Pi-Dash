@@ -5,9 +5,43 @@
 <div class="container" id="main">
     <h1 class="text-center">Verwaltung der Buttons</h1>
     <senders></senders>
+    <sender></sender>
 </div>
 
+<template id="sender">
+    <div class="modal fade" id="modal-sender" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add new Button</h4>
+      </div>
+      <div class="modal-body">
+          <div class="input-group">
+              <label>Comment</label>
+  <textarea rows="4" cols="50" placeholder="Add your comment here.."></textarea>
+</div>
+
+<div class="input-group">
+    <label>Product</label>
+  <productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</template>
+
 <template id="senders">
+    <div class="row">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" v-on:click="newSender" data-toggle="modal" data-target="#modal-sender">
+  new
+</button>
     <table class="table">
         <tr>
         <th>ID</th>
@@ -20,6 +54,8 @@
             <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
         </tr>
     </table>
+    
+</div>
 </template>
 
 <template id="productDrop">
