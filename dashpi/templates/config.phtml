@@ -19,16 +19,16 @@
       <div class="modal-body">
           <div class="input-group col-xs-12">
               <label for="comment">Comment</label>
-              <textarea class="form-control" id="comment" rows="3" placeholder="Add your comment here.."></textarea>
+              <textarea v-model="sender.comment" class="form-control" id="comment" rows="3" placeholder="Add your comment here.."></textarea>
           </div>
           <div class="input-group col-xs-12">
               <label for="product">Product</label>
-              <productdrop id="product" v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop>
+              <productdrop id="product" v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id" :auto="false"></productdrop>
           </div>
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button v-on:click="saveSender(sender)" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -50,7 +50,7 @@
         <tr v-for="sender in config">
             <td>{{ sender.id }}</td>
             <td><input type="text" v-on:blur="update(sender)" v-model="sender.comment"/></td>
-            <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
+            <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id" :auto="true"></productdrop></td>
         </tr>
     </table>
     

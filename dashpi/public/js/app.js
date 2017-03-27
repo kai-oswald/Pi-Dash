@@ -76,7 +76,7 @@ var status = Vue.component("status", {
 // ---------------------------
 var productDrop = Vue.component("productdrop", {
   template: "#productDrop",
-  props: ["senderid", "productname"],
+  props: ["senderid", "productname", "auto"],
   data: function () {
     return {
       products: [],
@@ -135,7 +135,24 @@ var sender = Vue.component("sender", {
     }
   },
   methods: {
-   saveSender: function() {
+   saveSender: function(sender) {
+     var url = api.sender;
+     var data = sender;
+     this.$http.post(url, data).then(response => {
+        notie.alert({
+          type: "success",
+          text: "succesfully added a new sender.",
+          time: 1.5
+        });
+        this.$emit("update-sender", response.body);
+      }, response => {
+        notie.alert({
+          type: "error",
+          text: response.statusText,
+          time: 1.5
+        });
+      });
+     
      
    },
    updateSenders: function() {
@@ -417,5 +434,5 @@ function Product() {
 function Sender() {
   this.comment = "";
   this.productid = -1;
-  this.productname = "";
+  this.name = "";
 }
