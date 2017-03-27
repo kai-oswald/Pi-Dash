@@ -100,6 +100,7 @@ var productDrop = Vue.component("productdrop", {
   methods: {
     updateSender: function (product) {
       this.currentDescription = product.name;
+      if(this.auto) {
       var url = api.productbuttons;
       var data = {
         productid: product.id,
@@ -120,6 +121,9 @@ var productDrop = Vue.component("productdrop", {
           time: 1.5
         });
       });
+      } else {
+        this.$emit("update-product", product);
+      }
     }
   }
 });
@@ -136,7 +140,7 @@ var sender = Vue.component("sender", {
   },
   methods: {
    saveSender: function(sender) {
-     var url = api.sender;
+     var url = api.config;
      var data = sender;
      this.$http.post(url, data).then(response => {
         notie.alert({
@@ -144,7 +148,8 @@ var sender = Vue.component("sender", {
           text: "succesfully added a new sender.",
           time: 1.5
         });
-        this.$emit("update-sender", response.body);
+        this.$emit("update-senders", response.body);
+        window.location.reload(); // TODO: ugly workaround
       }, response => {
         notie.alert({
           type: "error",
@@ -152,11 +157,14 @@ var sender = Vue.component("sender", {
           time: 1.5
         });
       });
-     
-     
    },
    updateSenders: function() {
      
+   },
+   
+   updateProduct: function(product) {
+     this.sender.productid = product.id;
+     this.sender.name = product.name;
    }
   }
 });
@@ -214,9 +222,6 @@ var senders = Vue.component("senders", {
           time: 1.5
         })
       });
-    },
-    newSender: function () {
-      // $('#modal-sender').modal();
     }
   }
 });
