@@ -63,11 +63,6 @@ var status = Vue.component("status", {
         time: 1.5
       });
     });
-    // TEST
-    /*this.status = {
-      "udp": true,
-      "tcp": false
-    }*/
   }
 });
 

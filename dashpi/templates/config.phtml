@@ -3,7 +3,6 @@
 ?>
 
 <div class="container" id="main">
-    <h1 class="text-center">Verwaltung der Buttons</h1>
     <senders></senders>
     <sender></sender>
 </div>
@@ -36,11 +35,14 @@
 </template>
 
 <template id="senders">
-    <div class="row">
+    <div>
+    <div class="row" style="margin-bottom: 20px;">
             <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-sender">
-  new
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sender">
+  New
 </button>
+</div>
+<div class="row">
     <table class="table">
         <tr>
         <th>ID</th>
@@ -67,6 +69,7 @@
                 <a v-on:click="updateSender(product)">{{ product.name }}</a>
             </li>
         </ul>
+    </div>
     </div>
 </template>
 <?php
