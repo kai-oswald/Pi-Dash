@@ -293,15 +293,11 @@ $app->group("/api", function() use ($app) {
         
      $app->get("/server/status", function($req, $res, $args) {
         $url = "/server/status";
-        $ctx = stream_context_create(array('http'=>
-            array(
-                'timeout' => 3, 
-            )
-        ));
+        $ctx = setTimeoutCtx(3);
         $status = file_get_contents("http://127.0.0.1:8080/api" . $url, null, $ctx);
          if(!$status) {
             $message = new stdClass();
-            $message->message = "Timout while getting the server status.";
+            $message->message = "Timeout while getting the server status.";
             return $res->withJson($message, 500);
         }
         return $res->withJson($status);
@@ -309,32 +305,31 @@ $app->group("/api", function() use ($app) {
     
      $app->get("/server/tcp/start", function($req, $res, $args) {
         $url = "/server/tcp/start";
-        $ctx = stream_context_create(array('http'=>
-            array(
-                'timeout' => 3, 
-            )
-        ));
+        $ctx = setTimeoutCtx(3);
         $status = file_get_contents("http://127.0.0.1:8080/api"  . $url, null, $ctx);
          if(!$status) {
             $message = new stdClass();
-            $message->message = "Timout while starting the TCP-Server.";
+            $message->message = "Timeout while starting the TCP-Server.";
             return $res->withJson($message, 500);
         }
         return $res->withJson($status);
     });
      $app->get("/server/udp/start", function($req, $res, $args) {
         $url = "/server/udp/start";
-        $ctx = stream_context_create(array('http'=>
-            array(
-                'timeout' => 3, 
-            )
-        ));
+        $ctx = setTimeoutCtx(3);
         $status = file_get_contents("http://127.0.0.1:8080/api"  . $url, null, $ctx);
         if(!$status) {
             $message = new stdClass();
-            $message->message = "Timout while starting the UDP-Server.";
+            $message->message = "Timeout while starting the UDP-Server.";
             return $res->withJson($message, 500);
         }
         return $res->withJson($status);
     });
+    function setTimeoutCtx($seconds) {
+        return stream_context_create(array('http'=>
+            array(
+                'timeout' => $seconds, 
+            )
+        ));
+    }
 });
