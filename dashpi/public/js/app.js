@@ -37,7 +37,7 @@ var statusBtn = Vue.component("statusBtn", {
     }, response => {
       notie.alert({
         type: "error",
-        text: response.statusText,
+        text: response.body.message,
         time: 1.5
       });
     });
@@ -59,7 +59,7 @@ var status = Vue.component("status", {
     }, response => {
       notie.alert({
         type: "error",
-        text: response.statusText,
+        text: response.body.message,
         time: 1.5
       });
     });
