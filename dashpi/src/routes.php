@@ -241,12 +241,18 @@ $app->group("/api", function() use ($app) {
         $productid = $request["productid"];
         $productname = $request["name"];
         try {
-            $sender = Sender::find($senderid);
-            if(sizeof($sender) == 0) {
+            if(is_null($senderid)) {
                 $sender = new Sender;
+            }
+            else {
+                $sender = Sender::find($senderid);
+                if(sizeof($sender) == 0) {
+                    $sender = new Sender;
+                }
             }
             $sender->comment = $comment;
             $sender->save();
+            $senderid = $sender->id;
             
             $productbutton = Productbutton::where("senderid", "=", $senderid)->first();
             if(sizeof($productbutton) == 0) {

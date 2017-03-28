@@ -3,11 +3,46 @@
 ?>
 
 <div class="container" id="main">
-    <h1 class="text-center">Verwaltung der Buttons</h1>
     <senders></senders>
+    <sender></sender>
 </div>
 
+<template id="sender">
+    <div class="modal fade" id="modal-sender" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add new Button</h4>
+      </div>
+      <div class="modal-body">
+          <div class="input-group col-xs-12">
+              <label for="comment">Comment</label>
+              <textarea v-model="sender.comment" class="form-control" id="comment" rows="3" placeholder="Add your comment here.."></textarea>
+          </div>
+          <div class="input-group col-xs-12">
+              <label for="product">Product</label>
+              <productdrop id="product" v-on:update-sender="updateSenders" v-on:update-product="updateProduct" :productname="sender.name" :senderid="sender.id" :auto="false"></productdrop>
+          </div>
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button v-on:click="saveSender(sender)" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</template>
+
 <template id="senders">
+    <div>
+    <div class="row" style="margin-bottom: 20px;">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sender">
+  New
+</button>
+</div>
+<div class="row">
     <table class="table">
         <tr>
         <th>ID</th>
@@ -17,9 +52,10 @@
         <tr v-for="sender in config">
             <td>{{ sender.id }}</td>
             <td><input type="text" v-on:blur="update(sender)" v-model="sender.comment"/></td>
-            <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id"></productdrop></td>
+            <td><productdrop v-on:update-sender="updateSenders" :productname="sender.productname" :senderid="sender.id" :auto="true"></productdrop></td>
         </tr>
     </table>
+</div>
 </template>
 
 <template id="productDrop">
@@ -29,8 +65,11 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li v-for="product in products"><a v-on:click="updateSender(product)">{{ product.name }}</a></li>
+            <li v-for="product in products">
+                <a v-on:click="updateSender(product)">{{ product.name }}</a>
+            </li>
         </ul>
+    </div>
     </div>
 </template>
 <?php
