@@ -28,15 +28,15 @@ def startServer():
             c = c + 1        
             if c % 2 == 0 and c != 0:
                 print "Enter to DB"
-                url = "http://localhost/api/cart/5" #5 is example senderid
+                url = "http://localhost/api/cart/1" #1 is demo  senderid
                 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
                 try:    
                     r = requests.post(url, data={}, headers=headers, timeout=10)
                     if r.status_code == 200:
-                        conn.send("200")
+                        #conn.send("200")
                         print("Enter data via REST: Success %i" %r.status_code)
                     else:
-                        conn.send(str(r.status_code))
+                        #conn.send(str(r.status_code))
                         print("Enter data via REST: Error: %i" %r.status_code)
                 except requests.exceptions.RequestException as e:
                     print("Error %s" %e)

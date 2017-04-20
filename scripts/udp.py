@@ -22,7 +22,7 @@ def startServer(udp_ip, udp_port, buffer_size):
         recvdata, addr = sock.recvfrom(buffer_size)
         print("Received data via UDP: %s" %recvdata)
   
-        url = "http://localhost/api/cart"
+        url = "http://localhost/api/cart/%s" %recvdata
         #data = {'senderid': recvdata[:1]}  
         recvdata = recvdata[:1]
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}

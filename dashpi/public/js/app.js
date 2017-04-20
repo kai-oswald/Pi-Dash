@@ -390,7 +390,7 @@ var cart = Vue.component("cart", {
   },
   computed: {
     total: function () {
-      var total = 0;
+     var total = 0;
       if (this.cart !== undefined) {
         for (var i = 0; i < this.cart.length; i++) {
           total += this.cart[i].quantity * this.cart[i].price;
@@ -406,7 +406,8 @@ var cart = Vue.component("cart", {
 // ---------------------------
 Vue.filter("currency", function (value) {
   if (value !== null) {
-    return "€ " + value.toFixed(2);
+    console.log(value); 
+    return "€ " + (Math.round(value*100)/100);
   }
   return 0;
 });
