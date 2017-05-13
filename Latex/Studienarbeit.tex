@@ -1,15 +1,15 @@
- \documentclass[ngerman]{scrartcl} %lädt die Dokumentklasse
+\documentclass[ngerman]{scrartcl} %lädt die Dokumentklasse
                                 %Artikel von Koma-Skript, als Option
                                 %übergebe ich, dass ich die Trennung
                                 %nach neuer deutscher Rechtschreibung
                                 %wünsche
-\usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage[T1]{fontenc}
 \usepackage[pdfborder={0 0 0}]{hyperref}
-\usepackage[a4paper,lmargin={4cm},rmargin={2cm},
-tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
+\usepackage[a4paper,lmargin={2,5cm},rmargin={2,5cm},tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
+\usepackage[onehalfspacing]{setspace}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsthm}
@@ -20,79 +20,68 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage{tabularx}
 \usepackage{float}
 
+% Macht für jede Section eine neue Seite
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
 \begin{document}
-\tableofcontents
+
+\thispagestyle{empty}
+\input{Textteile/Titelblatt}   
+
+\pagenumbering{roman}
+\input{Textteile/Erklaerung.tex}
 \newpage
+
+\addcontentsline{toc}{section}{Inhaltsverzeichnis}
+\tableofcontents
+
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables 
  
+\section*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+\label{sec:Abkürzungsverzeichnis}
+\input{Textteile/abkuerzungsverzeichnis}
+
 \section{Einleitung}        
 \label{sec:Einleitung-1}   
-
+\pagenumbering{arabic}
 \input{Textteile/einleitung.tex}    
-
-\newpage
 
 \section{Aufgabenstellung}
 \label{sec:Aufgabenstellung-1}
-
 \input{Textteile/aufgabenstellung.tex}
-
-\newpage
 
 \section{Theorie}        
 \label{sec:Theorie-1}  
-
 \input{Textteile/Theorie.tex}
  
 \section{Beschreibung der Hardware}        
 \label{sec:Beschreibung der Hardware-1}  
-
 \input{Textteile/Hardware.tex}
 
 \section{Umsetzung des Projektes}        
 \label{sec:Umsetzung des Projektes-1}  
-
 \input{Textteile/Umsetzung.tex}
 
 \section{Ergebnis des Projektes}        
 \label{sec:Ergebnis des Projektes-1}  
 
-\newpage
-
 \section{Fazit und Ausblick}        
 \label{sec:Fazit und Ausblick-1}  
 
 \newpage
-
-\section{Anhang}        
-\label{sec:Anhang-1}  
-
-\input{Textteile/anhang.tex}
-
-\newpage
-
-\section{Abkürzungsverzeichnis}
-\label{sec:Abkürzungsverzeichnis}
-
-\input{Textteile/abkuerzungsverzeichnis}
-
-\newpage
-
-
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 \bibliographystyle{unsrt}  
 \bibliography{Literatur}
 
-\newpage
-
-\addcontentsline{toc}{section}{Abbildungsverzeichnis}
-
-\listoffigures
-
-\newpage
-
-\addcontentsline{toc}{section}{Tabellenverzeichnis}
-
-\listoftables 
-
+\section*{Anhang}   
+\addcontentsline{toc}{section}{Anhang}     
+\label{sec:Anhang-1}  
+\input{Textteile/anhang.tex}
 
 \end{document}
