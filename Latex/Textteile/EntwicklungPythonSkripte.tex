@@ -2,7 +2,7 @@ Mithilfe der Skriptsprache Python werden die verschiedenen Kommunikationsendpunk
 
 \paragraph{Entwicklung des Verwaltungsskripts}$\;$ \\  
 \label{sec:Entwicklung des Verwaltungsskripts-1} 
-Das Verwaltungsskript dienst, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird. Neben dieser Funktionalität enthält das Verwaltungsskript auch die Teile der \ac{REST} \ac{API}, die über Python realisiert wird. Dies sind einige Methoden, die bestimmte Adressen dafinieren. Mithilfe dieser Adressen kann abgefragt werden, ob die entsprechenden Kommunikationsskripte noch laufen. Die Antwort wird als \ac{JSON} String zurückgeliefert und kann dann entsprechend weiterverarbeitet werden. 
+Das Verwaltungsskript dienst, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird. Neben dieser Funktionalität enthält das Verwaltungsskript auch die Teile der \ac{REST} \ac{API}, die über Python realisiert wird. Dies sind einige Methoden, die bestimmte Adressen definieren. Mithilfe dieser Adressen kann abgefragt werden, ob die entsprechenden Kommunikationsskripte noch laufen. Die Antwort wird als \ac{JSON} String zurückgeliefert und kann dann entsprechend weiterverarbeitet werden. 
 
 \paragraph{Entwicklung des UDP Skripts}$\;$ \\  
 \label{sec:Entwicklung des UDP Skripts-1} 
@@ -10,7 +10,7 @@ Da die Übertragung der Datenpakete über das \ac{UDP} Protokoll ermöglicht wer
 
 Dieses Skript nutzt die Library ``Socket'' (vgl. \cite{.20.02.2017}), welches es ermöglicht ein Socket zu erstellen. Dieses Socket wird an eine \ac{IP} Adresse und einen Port gebunden und wird anschließend für alle eingehenden \ac{UDP} Pakete genutzt. In einer Endlosschleife, welche manuell unterbrochen werden kann, wird auf eingehende Pakete gewartet. Die Endlosschleife wird benötigt, da ein Button zu jedem Zeitpunkt betätigt werden kann und somit dauerhaft auf ankommende Pakete geachtet werden muss. 
 
-Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protrokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
+Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
 
 Nach dem erfolgreichen Absenden der Anfrage an die \ac{REST} \ac{API} befindet sich das Skript für den \ac{UDP} Empfänger weiterhin in der Endlosschleife und wartet auf das nächste Datenpaket. 
 
