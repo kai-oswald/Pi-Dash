@@ -1,0 +1,18 @@
+Bei der Einbindung des Amazon Dash Buttons galt es auf verschiedene Punkte zu achten. 
+Da die Empfangsadresse der Pakete des Amazon Dash Buttons nicht verändert werden kann, galt es eine Möglichkeit zu finden, um den Druck auf den Button zu registrieren.
+Eine Lösungsmöglichkeit wurde im mitlesen und scannen der Datenpakete gesehen, die der Amazon Dash Button an einen Server schicken muss, um die Bestellung aufzugeben.
+
+Mithilfe des Tools tcpdump (vgl. \cite{.tcpdump}) wurde daher der Netzwerkverkehr mitgelesen, um die Verbindungen des Amazon Dash Buttons zu untersuchen. 
+Bei dieser Untersuchung ist aufgefallen, dass die Kommunikation des Amazon Dash Buttons mit den Servern von Amazon zu großen Teilen verschlüsselt ist und daher nur wenige Informationen aus dem Mitlesen des Netzwerkverkehrs gewonnen werden konnten. 
+Darunter fällt auch, dass keine eindeutige \ac{IP} Adresse erkannt werden konnte, an die die Nachrichten geschickt wurden, da die \ac{IP} Adressen, die ausgelesen wurden, in unregelmäßigen Abständen unterschiedlich waren.
+Aufgrund dieser Ergebnisse konnte das Fazit gezogen werden, dass das Abfangen von \ac{TCP} bzw. \ac{HTTP} Daten keinen Erfolg versprach.
+Daher wurde beschlossen eine andere Methode in Betracht zu ziehen.
+
+Aufgrund der Tatsache, dass jedes Gerät im Netzwerk eine \ac{IP} Adresse im Netzwerk besitzt und diese benötigt, wurde das Mitlesen von \ac{ARP} Paketen in Betracht gezogen.
+Mithilfe des Tools tcpdump konnte erneut der Netzwerkverkehr mitgeschnitten werden, allerdings wurde diesmal die Auswahl auf das Protokoll \ac{ARP} begrenzt. 
+Bei dieser Untersuchung konnte erfolgreich der Amazon Dash Button identifiziert werden, da bei jedem Druck auf den Button zwei \ac{ARP} Pakete mitgelesen wurden.
+Eines dieser Pakete ging vom Amazon Dash Button zum Raspberry PI und eines zurück. 
+Dieser Test wurde mehrmals wiederholt, unter anderem auch das Szenario, wenn der Button unmittelbar hintereinander gedrückt wird. 
+Auch dieser Test war erfolgreich und die Pakete konnten erkannt werden.
+Aufgrund dieser Ergebnisse wurde beschlossen, ein entsprechendes Python Skript zu entwickeln, welches diese Ergebnisse nutzt.
+Die Entwicklung dieses Skript ist in Kapitel \ref{sec:Entwicklung des ARP Skripts-1} beschrieben. 
