@@ -1,49 +1,69 @@
-
-\subsection*{Skripte}  
+\section{Anhang}
+\subsection{Skripte}
 \label{sec:Skripte-1} 
 
-\subsubsection*{Python Skripte}
-\label{sec:Pythonskripte}
-
-Alle Python Skripte, die verwendet wurden: 
-
-\paragraph{UDP Skript für den Raspberry PI:}$\;$ \\  
+\subsubsection{UDP Skript für den Raspberry PI:}$\;$ \\  
+\label{sec:UDPAnhang}
+Das Skript, welches alle UDP Pakete der Buttons entgegennimmt, geschrieben in der Sprache Python:
 \lstinputlisting[language=Python]{textteile/udp.py}
 \newpage
 
-\paragraph{TCP Skript für den Raspberry PI:}$\;$ \\  
+\subsubsection{TCP Skript für den Raspberry PI:}$\;$ \\  
+\label{sec:TCPAnhang}
+Das Skript, welches alle TCP Pakete der Buttons entgegennimmt, geschrieben in der Sprache Python:
 \lstinputlisting[language=Python]{textteile/tcp.py}
 \newpage
 
-\paragraph{ARP Skript für den Raspberry PI:}$\;$ \\  
+\subsubsection{ARP Skript für den Raspberry PI:}$\;$ \\  
+\label{sec:ARPAnhang}
+Das Skript, welches alle ARP Pakete der Buttons entgegennimmt, geschrieben in der Sprache Python:
 \lstinputlisting[language=Python]{textteile/amazon.py}
 \newpage
 
-\paragraph{Service Skript für den Raspberry PI:}$\;$ \\  
+\subsubsection{Service Skript für den Raspberry PI:}$\;$ \\
+\label{sec:ServiceAnhang}
+Das Skript, welches die unterschiedlichen Netzwerkskripte (vgl. \ref{sec:UDPAnhang}, \ref{sec:TCPAnhang} und \ref{sec:ARPAnhang}):
 \lstinputlisting[language=Python]{textteile/service.py}
 \newpage
 
-\subsubsection*{MySQL Skript}
+\subsubsection{MySQL Skript}
 \label{sec:MySQLSkript}
-Das Skript zur Einrichtung der Datenbank
+Die Befehle um die MySQL Datenbank für das Projekt einzurichten: 
 \lstinputlisting[language=Python]{textteile/mysqlscript.txt}
+\newpage 
 
-\subsection*{Konfigurationsdateien}  
+\subsection{Konfigurationsdateien}  
 \label{sec:Konfigurationsdateien-1} 
 
-\subsubsection*{Nginx Konfiguration}
+\subsubsection{Nginx Konfiguration}
 \label{sec:NginxKonfiguration}
-Die Konfigurationsdatei des Nginx Webservers. 
+Die Konfigurationsdatei des Nginx Webservers: 
 \lstinputlisting[language=Python]{textteile/nginxconfig.txt}
+\newpage 
 
-
-\subsubsection*{Hostapd Konfiguration}
+\subsubsection{Hostapd Konfiguration}
 \label{sec:HostapdSkript}
-Die Konfigurationsdatei von hostapd
+Die Konfigurationsdatei des Diensts hostapd:
 \lstinputlisting[language=Python]{textteile/hostapdconf.txt}
+\newpage 
 
-\subsubsection*{Interfaces Konfiguration}
+\subsubsection{Interfaces Konfiguration}
 \label{sec:NginxSkript}
-Die Konfigurationsdatei ``interfaces''
+Die Konfigurationsdatei ``interfaces'':
 \lstinputlisting[language=Python]{textteile/interfaces.txt}
+\newpage 
 
+\subsection{Programmcode}  
+\label{sec:Programmcode-1} 
+
+\subsubsection{Code vom Pretzelboard}
+\label{sec:CodePretzelboard}
+Der Code, der auf das Pretzelboard gespielt wurde:
+\lstinputlisting[language=Python]{textteile/Pretzel.ino}
+\newpage 
+
+\subsubsection{Code vom ESP8266}
+\label{sec:NginxSkript}
+Der Code, der auf den ESP8266 gespielt wurde:
+\lstinputlisting[language=Python]{textteile/NodeMCU.ino}
+\newpage 
