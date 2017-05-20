@@ -300,7 +300,7 @@ $app->group("/api", function() use ($app) {
             $message->message = "Timeout while getting the server status.";
             return $res->withJson($message, 500);
         }
-        return $res->withJson($status);
+        return $res->withJson(json_decode($status,true));
     });
     
      $app->get("/server/tcp/start", function($req, $res, $args) {
