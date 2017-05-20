@@ -7,7 +7,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage[T1]{fontenc}
-\usepackage[pdfborder={0 0 0}]{hyperref}
 \usepackage[a4paper,lmargin={2,5cm},rmargin={2,5cm},tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{amssymb}
@@ -22,8 +21,8 @@
 \usepackage{eurosym}
 % Macht für jede Section eine neue Seite
 \usepackage{titlesec}
-
 \newcommand{\sectionbreak}{\clearpage}
+\usepackage[pdfborder={0 0 0}]{hyperref}
 
 \begin{document}
 
@@ -34,15 +33,22 @@
 \input{Textteile/Erklaerung.tex}
 \newpage
 
+\phantomsection
 \addcontentsline{toc}{section}{Inhaltsverzeichnis}
 \tableofcontents
+\newpage
 
+\phantomsection
 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
 \listoffigures
+\newpage
 
+\phantomsection
 \addcontentsline{toc}{section}{Tabellenverzeichnis}
 \listoftables 
- 
+\newpage
+
+\phantomsection
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 \label{sec:Abkürzungsverzeichnis}
@@ -78,15 +84,12 @@
 \input{Textteile/Fazit.tex}
 
 \newpage
+\phantomsection
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 \bibliographystyle{unsrt}  
 \bibliography{Literatur}
 
-\appendix
-
-
-\section*{Anhang}   
-\addcontentsline{toc}{section}{Anhang}     
+\appendix    
 \label{sec:Anhang-1}  
 \input{Textteile/anhang.tex}
 
