@@ -11,7 +11,7 @@ Da für das Frontend der Webseite das Slim Framework in der Version 3 genutzt wi
 
 \paragraph{Einrichtung des SQL Datenbankservers}$\;$ \\
 \label{sec:Einrichtung des SQL Datenbankservers-1} 
-Für die Datenbank des Projektes wird MySQL genutzt. Dieses muss zuerst über den Befehl ``sudo apt-get install mysql'' installiert werden. Nach dem Herunterladen wird ein entsprechender Setup gestartet, der den Datenbankserver erfolgreich auf dem Raspberry Pi installiert. Nach der Einrichtung eines Adminstrators (root User) muss ein weiterer Nutzer mit Password angelegt werden, der für dieses Projekt genutzt wird. Außerdem muss mit diesem Nutzer eine Datenbank für dieses Projekt angelegt werden.
+Für die Datenbank des Projektes wird MySQL genutzt. Dieses muss zuerst über den Befehl ``sudo apt-get install mysql'' installiert werden. Nach dem Herunterladen wird ein entsprechender Setup gestartet, der den Datenbankserver erfolgreich auf dem Raspberry Pi installiert. Nach der Einrichtung eines Administrators (root User) muss ein weiterer Nutzer mit Password angelegt werden, der für dieses Projekt genutzt wird. Außerdem muss mit diesem Nutzer eine Datenbank für dieses Projekt angelegt werden.
 
 Danach muss in der Datenbank ein Skript ausgeführt werden, welches die benötigten Tabellen anlegt (vgl. Anhang \ref{sec:MySQLSkript}). Abschließend müssen die Nutzerdaten und der Datenbankname noch in die entsprechende Konfigurationsdatei des Backends eingetragen werden, welche unter ``src/settings.php'' zu finden ist. 
 
