@@ -2,7 +2,7 @@ Mithilfe der Skriptsprache Python werden die verschiedenen Kommunikationsendpunk
 
 \paragraph{Entwicklung des Verwaltungsskripts}$\;$ \\  
 \label{sec:Entwicklung des Verwaltungsskripts-1} 
-Das Verwaltungsskript dient, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird. 
+Das Verwaltungsskript dienst, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird.
 Neben dieser Funktionalität wird durch das Verwaltungsskript auch eine \ac{REST} \ac{API} realisiert. Diese wird mithilfe des Frameworks Flask (vgl. \cite{.s}) umgesetzt. Diese \ac{API} wird dazu genutzt, um einige Funktionalitäten bereitzustellen, die im Frontend benötigt werden. Als Beispiel wäre der aktuelle Status der Empfängerskripte (vgl. Kapitel \ref{sec:Entwicklung des UDP Skripts-1} und Kapitel \ref{sec:Entwicklung des TCP Skripts-1}) zu nennen. 
 
 Die genannte \ac{REST} \ac{API} kann dann im Verwaltungsskript auf andere Methoden zugegriffen werden, die dann weitere Funktionen umfassen. Die Rückgabewerte dieser Funktionen werden dann im \ac{JSON} Format an das Frontend der Anwendung weitergegeben und können dann dort weiter verarbeitet werden. 
@@ -13,7 +13,7 @@ Da die Übertragung der Datenpakete über das \ac{UDP} Protokoll ermöglicht wer
 
 Dieses Skript nutzt die Library ``Socket'' (vgl. \cite{.20.02.2017}), welches es ermöglicht ein Socket zu erstellen. Dieses Socket wird an eine \ac{IP} Adresse und einen Port gebunden und wird anschließend für alle eingehenden \ac{UDP} Pakete genutzt. In einer Endlosschleife, welche manuell unterbrochen werden kann, wird auf eingehende Pakete gewartet. Die Endlosschleife wird benötigt, da ein Button zu jedem Zeitpunkt betätigt werden kann und somit dauerhaft auf ankommende Pakete geachtet werden muss. 
 
-Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protrokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
+Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
 
 Nach dem erfolgreichen Absenden der Anfrage an die \ac{REST} \ac{API} befindet sich das Skript für den \ac{UDP} Empfänger weiterhin in der Endlosschleife und wartet auf das nächste Datenpaket. 
 Das Skript ist auch im Anhang unter \ref{sec:UDPAnhang} zu finden. 
