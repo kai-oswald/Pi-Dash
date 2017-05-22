@@ -4,7 +4,7 @@
 Durch eine zusätzliche Javascript-Bibliothek „Vue-resource“ werden asynchrone Anfragen an die Backend-API geschickt, die die passenden Daten liefert. Um dem Nutzer ein wenig Arbeit abzunehmen werden sobald ein editierbares Feld verlassen wird die Daten auch in der Datenbank direkt aktualisiert. Vorausgesetzt es handelt sich um valide Daten.
 Für jede Komponente wird das entsprechende Template anhand der ID definiert.
 Die Daten werden anhand des data-Attributs festgelegt und können dann mithilfe von „this“ aufgerufen werden. 
-Des Weiteren können auch Methoden definiert werden, welche aufgerufen werden können. Um eine Komponente mit Daten zu initialisieren wird die „created“-Eigenschaft verwendet. Diese wird sobald die Komponente erstellt wurde aufgerufen. Folgendes Codebeispiel zeigt die Komponente des Produkts. Wie man hier sieht wird quasi ständig mit der REST-API kommuniziert.
+Des Weiteren können auch Methoden definiert werden, welche dann aufgerufen werden können. Um eine Komponente mit Daten zu initialisieren wird die „created“-Eigenschaft verwendet. Diese wird sobald die Komponente erstellt wurde aufgerufen. Folgendes Codebeispiel zeigt die Komponente des Produkts. Wie man hier sieht wird sehr oft mit der REST-API kommuniziert.
 
 \begin{lstlisting}[frame=single]
 var product = Vue.component("product", {
@@ -43,17 +43,21 @@ var product = Vue.component("product", {
 \subsubsection{Oberfläche}  
 \label{sec:Oberfläche-1}
 
+Folgend wird die Benutzeroberfläche anhand von Screenshots gezeigt. Es wurde großer Wert auf eine intuitive Bedienung gesetzt, deshalb sind die Komponenten auch so schlicht gestaltet worden.
 \begin{figure}[!htb]
+	Der Warenkorb wird in Tabellenform dargestellt und aktualisiert sich bei jeder Änderung, die der Benutzer durchführt. Die Änderungen werden erst gespeichert, wenn der Benutzer auf den Save-Button drückt.	
   \begin{subfigure}{\linewidth}
 	\centering
 	\includegraphics[scale=0.4]{Bilder/ui_cart.png}
 	\caption[UI des Warenkorbs]{UI des Warenkorbs}
   \end{subfigure}\par\medskip
+Die Produkte aktualisieren sich, im Gegensatz zum Warenkorb, nach jeder Änderung, die der Benutzer gemacht hat. So muss der Benutzer nicht nach jeder Änderung extra auf einen Button drücken.
   \begin{subfigure}{\linewidth}	
 	\centering
 	\includegraphics[scale=0.4]{Bilder/ui_products.png}
 	\caption[UI der Produktübersicht]{UI der Produktübersicht}
   \end{subfigure}\par\medskip
+Die Statusübersicht der TCP- und UDP-Server besteht lediglich aus zwei Buttons, die je nach Status des Servers aktiv oder blockiert sind. Über diese können die Server, falls sie nicht aktiv sind gestartet werden.
   \begin{subfigure}{\linewidth}
 	\centering
 	\includegraphics[scale=0.8]{Bilder/ui_status.png}
