@@ -1,41 +1,26 @@
-Nginx bestitzt einen Marktanteil von ca. 20 Prozent aller Webserver und ist somit auf Rang 2 der Webserver für aktive Webseiten hinter Apache und vor Microsoft und Google\cite{.k}. In dieser Studienarbeit haben wir uns für nginx entschieden, da ein hoher Wert auf eine flexible Konfiguration und schnelle Serverantworten gelegt wird.
+Nginx bestitzt einen Marktanteil von ca. 20 Prozent aller Webserver und ist somit auf Rang 2 der Webserver für aktive Webseiten hinter Apache und vor Microsoft und Google\cite{.k}. In dieser Studienarbeit haben wir uns für nginx entschieden, da ein hoher Wert auf eine flexible Konfiguration und schnelle Serverantworten gelegt wird. Folgend werden die Hauptfeatures von Nginx genauer beschrieben.
 
 \subsubsection{Allgemein}
 \label{sec:NginxAllgemein}
-
-nginx ist ein HTTP und Reverse-Proxy Server, ein Mail-Proxy Server und ein allgemeiner TCP/UDP Proxy-Server.
-
+Nginx ist ein HTTP und Reverse-Proxy Server, ein Mail-Proxy Server und ein allgemeiner TCP/UDP Proxy-Server. Somit hat Nginx eine hohe Nutzungsbreite.
 
 \subsubsection{Features}
 \label{sec:NginxFeatures}
-Die von nginx unterstützten Features werden im Folgenden gegliedert nach den jeweiligen Einsatzgebeiten vorgestellt.\cite{.14.03.2017}
+Die von Nginx unterstützten Features werden im Folgenden gegliedert nach den jeweiligen Einsatzgebeiten vorgestellt.\cite{.14.03.2017}
 
 \subsubsection{Basic HTTP}
 \label{sec:NginxBasicHTTP}
-–	Bereitstellung von statischen Dateien
-–	Modulare Architektur
-–	SSL und TLS SNI support
-–	HTTP/2 Unterstützung
-–	Rewrite Modul: Änderung von URIs anhand von regulären Ausdrücken
-–	Zugriffskontrolle anhand von IP-Adressen oder Passwörtern
-–	IP-basierte Geolocation
+Nginx unterstützt die Bereitstellung von statischen Dateien. Durch die modulare Architektur ist Nginx für viele Zwecke einsetzbar und bleibt dabei übersichtlich. HTTP/2 wird unterstützt, was die Übertragung beschleunigt und optimiert. Das Rewrite Modul ermöglicht die Änderungen von URIs anhand von regulären Ausdrücken. Dies trägt auch zur Suchmaschinenoptimierung bei und ermöglicht das Erstellen von lesbaren URIs. Die Zugriffskontrolle kann anhand von IP-Adressen oder Passwörtern erfolgen. Anhand der IP-Adresse können zudem Informationen zu Geolocation gewonnen werden. SSL und TLS SNI wird natürlich auch unterstützt.
 
 \subsubsection{Mail Proxy-Server}
 \label{sec:NginxMail Proxy-Server}
-–	Weiterleitung zu IMAP oder POP3 anhand eines externen HTTP Authentifizierungsserver
-–	Authentifizierung durch externen HTTP Authentifzierungsserver und Weiterleitung zu einem internen SMTP-Server
-–	SSL Unterstützung
-–	STARTTLS und STLS Unterstützung
+Die Authentifizierung kann über einen externen HTTP Server durchgeführt werden, welcher dann nach erfolgreicher Authentifizierung zu einem internen SMTP-Server weiterleitet. Somit muss man sich nicht direkt am Mail-Server authentifizieren. Zudem wird SSL, STARTTLS und STLS unterstützt.
 
 \subsubsection{TCP/UDP Proxy-Server}
 \label{sec:NginxTCP/UDP Proxy-Server}
-–	Allgemeines Proxying von TCP und UDP
-–	SSL und TLS SNI Unterstützung für TCP
-–	Begrenzung von simultanen Verbindungen, die von derselben Adresse kommen
-–	Zugriffkontrolle anhand der Benutzeradresse
-–	Lastausgleich und Fehlertoleranz
+Allgemeine Proxy-Features von TCP und UDP sind vorhanden. Des Weiteren wird SSL und TLS SNI auch für TCP unterstützt.
+Um vor Überlastungen zu schützen können Verbindungen, die von derselben Adresse kommen begrenzt werden. Zugriffskontrolle geschieht anhand der Benutzeradresse. Es werden zudem auch Features unterstützt, die den Lastausgleich und die Fehlertoleranz verbessern.
 
 \subsubsection{Architektur und Skalierbarkeit}
 \label{sec:NginxArchitektur und Skalierbarkeit}
-–	Ein Master und mehrere Worker-Prozesse; Worker brauchen keine Berechtigungen
-–	Flexible Konfiguration
+Nginx ist so aufgebaut, dass es einen Master und mehrere Worker-Prozesse gibt. Die Worker brauchen dabei keinerlei spezielle Berechtigungen, so muss nur dem Master entsprechende Berechtigungen gewährt werden. Des Weiteren ist eine flexible Konfiguration möglich. Die Nginx Konfiguration für diese Studienarbeit befindet sich im Anhang unter Abschnitt \ref {sec:NginxKonfiguration}.
