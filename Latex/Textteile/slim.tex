@@ -1,7 +1,7 @@
 \subsubsection{Slim-Framework}  
 \label{sec:Slim-Framework-1}
 
-Um nicht das komplette Backend selbst schreiben zu müssen, wurde ein geeignetes PHP-Framework verwendet. Da nur einfache Funktionalitäten wie Routing, Object-Relation Mapping (ORM) und Rendern von Views benötigt werden lag der Fokus auf einem Framework, welches gerade diesen Anforderungen genügt. Die Recherche ergab die Nutzung von entweder Laravel oder Slim. Da Laravel für dieses Projekt zu umfangreich ist, wurde das Slim-Framework ausgewählt. Slim erfüllt alle Anforderungen ohne zu großen Overhead zu besitzen. 
+Um nicht das komplette Backend selbst schreiben zu müssen, wurde ein geeignetes PHP-Framework verwendet. Da nur einfache Funktionalitäten wie Routing, \ac{ORM} und Rendern von Views benötigt werden lag der Fokus auf einem Framework, welches gerade diesen Anforderungen genügt. Die Recherche ergab die Nutzung von entweder Laravel oder Slim. Da Laravel für dieses Projekt zu umfangreich ist, wurde das Slim-Framework ausgewählt. Slim erfüllt alle Anforderungen ohne zu großen Overhead zu besitzen. 
 
 Für die Installation von Slim wurde der PHP Dependeny-Manager „Composer“ verwendet. Dadurch wird durch einen Kommandozeilenbefehl das komplette Framework installiert.
 Folgendes Beispiel zeigt, wie einfach es ist ein neues Projekt mit Composer zu erstellen.
@@ -22,7 +22,7 @@ Vor allem durch die Verwendung eines Frontend-Frameworks wie Vue ist die API sch
 Die Repräsentation als JSON wurde natürlich priorisiert und auf andere Repräsentationen verzichtet, da sie momentan nicht benötigt werden. Jedoch wurde die API so konstruiert, dass sie jederzeit problemlos erweitert und angepasst werden kann. JSON wurde deshalb verwendet, da die Daten ausschließlich im Javascript verwendet werden. Die API kann so gestaltet werden, dass keinerlei zusätzliche Konvertiertungen der Objekte vorgenommen werden müssen, indem gleich alle relevanten Daten geliefert werden.
 Einen genaueren Einblick gibt dabei Abschnitt "\nameref{sec:Aufbau und Entwicklung der REST API-1}" .
 
-Der ORM des Slim-Frameworks wird „Eloquent“ genannt. Dabei werden automatisch die SQL-Tabellen auf PHP-Klassen projiziert. Am Besten lässt sich dies aber anhand von Codebeispielen zeigen.
+Der \ac{ORM} des Slim-Frameworks wird „Eloquent“ genannt. Dabei werden automatisch die SQL-Tabellen auf PHP-Klassen projiziert. Am Besten lässt sich dies aber anhand von Codebeispielen zeigen.
 Zunächst muss Eloquent mit den notwendigen Datenbankdaten initialisiert werden.
 \lstset{language=PHP}  
 \begin{lstlisting}[frame=single, breaklines=true] 
