@@ -1,0 +1,56 @@
+Das Slim-Framework bietet eine Option Gruppen für Routen anzulegen. Dies ist perfekt, um APIs zu definieren. Dadurch kann die API anhand der Route /api aufgerufen werden. Folgend ist der Quellcode für die API der Produkte. Um den Quellcode etwas zu erklären, soll die zweite Zeile betrachtet werden. Diese beschreibt die Route /api/products/ bei einer GET-Anforderung. Hier wird auch deutlich, wie mächtig ein \ac{ORM} sein kann. Es werden alle Produkte im JSON-Format als Antwort zurückgegeben.
+\lstset{language=PHP} 
+\begin{lstlisting}[frame=single]
+$app->group("/api", function() use ($app) {  
+
+$app->get("/products/", function($req, $res, $args) {
+return $res->withJson(Product::all());
+});
+
+$app->get("/products/{id}", function($req, $res, $args){
+$product = \Product::find($args["id"]);
+if(sizeof($product) == 0) {
+return $res->withJson(CreateErrorMessage($args["id"]), 404);
+}
+return $res->withJson($product);
+});
+
+$app->post("/products/", function($req, $res, $args) {
+$request = $req->getParsedBody();
+try {
+$product = new Product;
+$product->name = $request["name"];
+$product->price = $request["price"];
+$product->save();
+return $res->withJson($product);
+}
+catch(Exception $e) {
+return $res->withJson($e, 400);
+}
+});
+
+$app->put("/products/{id}", function($req, $res, $args) {
+$request = $req->getParsedBody();
+try {
+$product = \Product::find($args["id"]);
+$product->name = $request["name"];
+$product->price = $request["price"];
+$product->save();
+return $res->withJson($product);
+}
+catch(Exception $e) {
+return $res->withJson($e, 400);
+}
+});
+
+$app->delete("/products/{id}", function($req, $res, $args) {
+try {
+$product = \Product::find($args["id"]);
+$product->delete();
+return $res->withJson($args[id]);
+}
+catch(Exception $e) {
+return $res->withJson($e, 400);
+}
+});
+\end{lstlisting}
