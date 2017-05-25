@@ -2,7 +2,10 @@ Mithilfe der Skriptsprache Python werden die verschiedenen Kommunikationsendpunk
 
 \paragraph{Entwicklung des Verwaltungsskripts}$\;$ \\  
 \label{sec:Entwicklung des Verwaltungsskripts-1} 
-Das Verwaltungsskript dienst, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird. Neben dieser Funktionalität enthält das Verwaltungsskript auch die Teile der \ac{REST} \ac{API}, die über Python realisiert wird. Dies sind einige Methoden, die bestimmte Adressen dafinieren. Mithilfe dieser Adressen kann abgefragt werden, ob die entsprechenden Kommunikationsskripte noch laufen. Die Antwort wird als \ac{JSON} String zurückgeliefert und kann dann entsprechend weiterverarbeitet werden. 
+Das Verwaltungsskript dient, wie bereits erwähnt, als zentrales Skript, welches als einziges Skript auch gestartet werden muss. Über dieses Skript werden dann alle anderen notwendigen Skripte gestartet, die dann dafür sorgen, dass die Kommunikation ermöglicht wird. 
+Neben dieser Funktionalität wird durch das Verwaltungsskript auch eine \ac{REST} \ac{API} realisiert. Diese wird mithilfe des Frameworks Flask (vgl. \cite{.s}) umgesetzt. Diese \ac{API} wird dazu genutzt, um einige Funktionalitäten bereitzustellen, die im Frontend benötigt werden. Als Beispiel wäre der aktuelle Status der Empfängerskripte (vgl. Kapitel \ref{sec:Entwicklung des UDP Skripts-1}) zu nennen. 
+
+Die genannte \ac{REST} \ac{API} kann dann im Verwaltungsskript auf andere Methoden zugegriffen werden, die dann weitere Funktionen umfassen. Die Rückgabewerte dieser Funktionen werden dann im \ac{JSON} Format an das Frontend der Anwendung weitergegeben und können dann dort weiter verarbeitet werden. So kann beispielsweise im Frontend angezeigt werden, dass alle Kommunikationsmöglichkeiten zur Verfügung stehen. 
 
 \paragraph{Entwicklung des UDP Skripts}$\;$ \\  
 \label{sec:Entwicklung des UDP Skripts-1} 
@@ -10,13 +13,25 @@ Da die Übertragung der Datenpakete über das \ac{UDP} Protokoll ermöglicht wer
 
 Dieses Skript nutzt die Library ``Socket'' (vgl. \cite{.20.02.2017}), welches es ermöglicht ein Socket zu erstellen. Dieses Socket wird an eine \ac{IP} Adresse und einen Port gebunden und wird anschließend für alle eingehenden \ac{UDP} Pakete genutzt. In einer Endlosschleife, welche manuell unterbrochen werden kann, wird auf eingehende Pakete gewartet. Die Endlosschleife wird benötigt, da ein Button zu jedem Zeitpunkt betätigt werden kann und somit dauerhaft auf ankommende Pakete geachtet werden muss. 
 
-Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protrokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
+Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \ac{REST} \ac{API} geschickt. Da als Übertragungsart allerdings das UDP Protokoll genutzt wird, kann dem Button keine Rückmeldung gegeben werden, ob der Eintrag in die Datenbank über die \ac{REST} \ac{API} erfolgreich war. Zudem kann auch kein allgemeines Feedback zurückgegeben werden. Auch bei anderen Fehlern kann dem Button keine Rückmeldung gegeben werden. 
 
 Nach dem erfolgreichen Absenden der Anfrage an die \ac{REST} \ac{API} befindet sich das Skript für den \ac{UDP} Empfänger weiterhin in der Endlosschleife und wartet auf das nächste Datenpaket. 
+Das Skript ist im Anhang unter \ref{sec:UDPAnhang} zu finden. 
 
 \paragraph{Entwicklung des TCP Skripts}$\;$ \\  
 \label{sec:Entwicklung des TCP Skripts-1} 
-Für alle Datenpakete, die über das Protokoll \ac{TCP} empfangen werden, muss ebenfalls ein Skript geschrieben werden, welches diese Datenpakete verarbeitet. Dabei wird genauso vorgegangen, wie beim Skript für UDP. Der einzige Unterschied ist nach dem Absenden der Anfrage an die \ac{REST} \ac{API}. Das Skript für \ac{TCP} Datenpakete wartet nach dem Absenden der Anfrage auf die Bestätigung und schickt eine entsprechende Antwort zurück an den Button. Dieser verarbeitet ebenfalls die Antwort und kann mithilfe einer Lampe dem Nutzer ein visuelles Feedback geben. 
+Für alle Datenpakete, die über das Protokoll \ac{TCP} empfangen werden, muss ebenfalls ein Skript geschrieben werden, welches diese Datenpakete verarbeitet. Dabei wird genauso vorgegangen, wie beim Skript für \ac{UDP}. Der einzige Unterschied ist nach dem Absenden der Anfrage an die \ac{REST} \ac{API}. Das Skript für \ac{TCP} Datenpakete wartet nach dem Absenden der Anfrage auf die Bestätigung und schickt eine entsprechende Antwort zurück an den Button. Dieser verarbeitet ebenfalls die Antwort und kann mithilfe einer Lampe auf dem Steckbrett dem Nutzer ein visuelles Feedback geben. 
+Das entsprechende Skript ist im Anhang unter \ref{sec:TCPAnhang} zu finden.
 
 \paragraph{Entwicklung des ARP Skripts}$\;$ \\  
 \label{sec:Entwicklung des ARP Skripts-1} 
+Da das Mitlesen der \ac{IP} Datenpakete des Amazon Dash Buttons nicht möglich war, wurde das mitschneiden der \ac{ARP} Datenpakete notwendig, wie bereits in Kapitel \ref{sec:Einbindung des Amazon Dash Buttons-1} beschrieben. 
+Im Vergleich zu den Skripten, die in den Kapiteln \nameref{sec:Entwicklung des UDP Skripts-1} und \nameref{sec:Entwicklung des TCP Skripts-1} beschrieben sind, ist dieses Skript etwas anders aufgebaut. Es wird zwar ebenfalls die Library ``Socket'' genutzt, allerdings ist die Konfiguration des Sockets anders, damit \ac{ARP} Datenpakete gelesen werden können. 
+
+
+Das Lesen dieser Datenpakete beschränkt sich allerdings auf das Erkennen der \ac{IP} Adresse, die das Paket abschickt bzw. empfängt. Nur diese Informationen werden benötigt, da die Funktionalität des Skript darauf beruht, dass jeder zweite \ac{ARP} Request eine entsprechende Anfrage an die \ac{REST} \ac{API} abschickt. Das nur jeder zweite Request eine entsprechende Anfrage abschickt, ist damit begründet, dass bei einem einzelnen Druck auf den Amazon Dash Button ein \ac{ARP} Paket von Button zum Router geschickt wird und ein Paket vom Router zum Button. Das bedeutet, dass für jeden Druck zwei Requests abgeschickt werden. Daher löst nur jedes zweite Paket eine Anfrage aus, die dann die Anzahl eines Produktes in der Datenbank erhöht. 
+
+Dies wird durch einen entsprechenden Zähler im Skript umgesetzt, welcher bei eins startet und bei dem Wert zwei eine entsprechende Anfrage an die \ac{REST} \ac{API} abschickt. Nach dem Abschicken der Anfrage wird der Zähler wieder auf eins gesetzt. 
+Durch eine Unterscheidung von MAC Adressen, welche ebenfalls im \ac{ARP} Header mitgeschickt werden, ist es auch möglich, dass verschiedene Amazon Dash Buttons eingebunden werden. 
+Allerdings benötigt diese Konfiguration einige manuelle Arbeit, da das Skript nur manuell zu bearbeiten ist. 
+Das entsprechende Skript ist im Anhang unter \ref{sec:ARPAnhang} zu finden.

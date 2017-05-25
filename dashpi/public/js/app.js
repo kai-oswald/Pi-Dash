@@ -29,6 +29,11 @@ var statusBtn = Vue.component("statusBtn", {
       currentStatus: this.status
     }
   },
+  computed: {
+	currentStatus: function() {
+		return this.status;
+		}
+  },
   methods: {
     startServer: function() {
       var url = api.status + this.type + "/start";
