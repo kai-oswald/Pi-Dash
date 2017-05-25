@@ -2,24 +2,23 @@ Nginx bestitzt einen Marktanteil von ca. 20 Prozent aller Webserver und ist somi
 
 \subsubsection{Allgemein}
 \label{sec:NginxAllgemein}
-Nginx ist ein HTTP und Reverse-Proxy Server, ein Mail-Proxy Server und ein allgemeiner TCP/UDP Proxy-Server. Somit hat Nginx eine hohe Nutzungsbreite.
+Nginx ist ein \ac{HTTP} und Reverse-Proxy Server, ein Mail-Proxy Server und ein allgemeiner \ac{TCP}/\ac{UDP} Proxy-Server. Somit hat Nginx eine hohe Nutzungsbreite.
 
 \subsubsection{Features}
 \label{sec:NginxFeatures}
 Die von Nginx unterstützten Features werden im Folgenden gegliedert nach den jeweiligen Einsatzgebeiten vorgestellt (vgl. \cite{.14.03.2017}). 
 
-
 \subsubsection{Basic HTTP}
 \label{sec:NginxBasicHTTP}
-Nginx unterstützt die Bereitstellung von statischen Dateien. Durch die modulare Architektur ist Nginx für viele Zwecke einsetzbar und bleibt dabei übersichtlich. HTTP/2 wird unterstützt, was die Übertragung beschleunigt und optimiert. Das Rewrite Modul ermöglicht die Änderungen von URIs anhand von regulären Ausdrücken. Dies trägt auch zur Suchmaschinenoptimierung bei und ermöglicht das Erstellen von lesbaren URIs. Die Zugriffskontrolle kann anhand von IP-Adressen oder Passwörtern erfolgen. Anhand der IP-Adresse können zudem Informationen zu Geolocation gewonnen werden. SSL und TLS SNI wird natürlich auch unterstützt.
+Nginx unterstützt die Bereitstellung von statischen Dateien. Durch die modulare Architektur ist Nginx für viele Zwecke einsetzbar und bleibt dabei übersichtlich. \ac{HTTP}/2 wird unterstützt, was die Übertragung beschleunigt und optimiert. Das Rewrite Modul ermöglicht die Änderungen von URIs anhand von regulären Ausdrücken. Dies trägt auch zur Suchmaschinenoptimierung bei und ermöglicht das Erstellen von lesbaren \ac{URI}s. Die Zugriffskontrolle kann anhand von \ac{IP}-Adressen oder Passwörtern erfolgen. Anhand der \ac{IP}-Adresse können zudem Informationen zu Geolocation gewonnen werden. \ac{SSL} und \ac{TLS} \ac{SNI} wird natürlich auch unterstützt.
 
 \subsubsection{Mail Proxy-Server}
 \label{sec:NginxMail Proxy-Server}
-Die Authentifizierung kann über einen externen HTTP Server durchgeführt werden, welcher dann nach erfolgreicher Authentifizierung zu einem internen SMTP-Server weiterleitet. Somit muss man sich nicht direkt am Mail-Server authentifizieren. Zudem wird SSL, STARTTLS und STLS unterstützt.
+Die Authentifizierung kann über einen externen \ac{HTTP} Server durchgeführt werden, welcher dann nach erfolgreicher Authentifizierung zu einem internen SMTP-Server weiterleitet. Somit muss man sich nicht direkt am Mail-Server authentifizieren. Zudem wird \ac{SSL}, STARTTLS und STLS unterstützt.
 
 \subsubsection{TCP/UDP Proxy-Server}
 \label{sec:NginxTCP/UDP Proxy-Server}
-Allgemeine Proxy-Features von TCP und UDP sind vorhanden. Des Weiteren wird SSL und TLS SNI auch für TCP unterstützt.
+Allgemeine Proxy-Features von \ac{TCP} und \ac{UDP} sind vorhanden. Des Weiteren wird \ac{SSL} und \ac{TLS} \ac{SNI} auch für \ac{TCP} unterstützt.
 Um vor Überlastungen zu schützen, können Verbindungen, die von derselben Adresse kommen, begrenzt werden. Die Zugriffskontrolle geschieht anhand der Benutzeradresse. Es werden zudem auch Features unterstützt, die den Lastausgleich und die Fehlertoleranz verbessern.
 
 

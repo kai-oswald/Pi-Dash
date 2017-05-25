@@ -53,13 +53,13 @@ Die Kommunikation erfolgt auf Abruf. Der Client ist aktiv und fordert vom passiv
 
 Repräsentationen:
 
-Um die Ressourcen darzustellen, werden in REST mehrere Repräsentationen der Ressourcen genutzt. Dies entsteht aus der Intention heraus, dass aufgrund der unterschiedlichen Repräsentationen unterschiedliche Anforderungen der Clients bedient werden können. So kann zum Beispiel die \ac{HTML} Repräsentation für einen Webbrowser genutzt werden, während eine \ac{JSON} Repräsentation für eine Clientapplikation genutzt wird.
+Um die Ressourcen darzustellen, werden in \ac{REST} mehrere Repräsentationen der Ressourcen genutzt. Dies entsteht aus der Intention heraus, dass aufgrund der unterschiedlichen Repräsentationen unterschiedliche Anforderungen der Clients bedient werden können. So kann zum Beispiel die \ac{HTML} Repräsentation für einen Webbrowser genutzt werden, während eine \ac{JSON} Repräsentation für eine Clientapplikation genutzt wird.
 
 \subsubsection{HTTP}
 \label{sec:RESTHTTP}
 
 
-Um auf eine Ressource zuzugreifen wird das \ac{HTTP}-Protokoll verwendet. Je nachdem, welche Verwendung die Ressourcen finden, werden geeignete \ac{HTTP}-Methoden verwendet. Die häufigsten Verwendeten Methoden sind dabei GET, POST, PUT und DELETE. Per GET werden Daten geladen; POST hat mehrere Einsatzgebiete. Häufig wird dadurch eine neuer Datensatz angelegt, oder mehrere Datensätzen aktualisiert. PUT aktualisiert einen bestimmten Datensatz und DELETE löscht einen Datensatz. Dabei müssen sinnvolle Statuscodes zurückgegeben werden. Zusätzlich gibt es noch die Methoden PATCH, HEAD und OPTIONS. Auf diese wird jedoch nicht weiter eingegangen, da diese eine vergleichsweise geringe Bedeutung bei einer REST-Schnittstelle haben. Bei der Implementierung ist unbedingt zu beachten die Methoden idempotent zu gestalten, d.h. Ein mehrmaliges Aufrufen derselben Methode wirkt sich nicht anders aus, als ein einmaliger Aufruf. Einzige Ausnahme dabei ist die POST-Methode. Das Prinzip von \ac{REST} ist, Ressourcen von einem Zustand in den nächsten Zustand zu überführen.
+Um auf eine Ressource zuzugreifen wird das \ac{HTTP}-Protokoll verwendet. Je nachdem, welche Verwendung die Ressourcen finden, werden geeignete \ac{HTTP}-Methoden verwendet. Die häufigsten Verwendeten Methoden sind dabei GET, POST, PUT und DELETE. Per GET werden Daten geladen; POST hat mehrere Einsatzgebiete. Häufig wird dadurch eine neuer Datensatz angelegt, oder mehrere Datensätzen aktualisiert. PUT aktualisiert einen bestimmten Datensatz und DELETE löscht einen Datensatz. Dabei müssen sinnvolle Statuscodes zurückgegeben werden. Zusätzlich gibt es noch die Methoden PATCH, HEAD und OPTIONS. Auf diese wird jedoch nicht weiter eingegangen, da diese eine vergleichsweise geringe Bedeutung bei einer \ac{REST}-Schnittstelle haben. Bei der Implementierung ist unbedingt zu beachten die Methoden idempotent zu gestalten, d.h. Ein mehrmaliges Aufrufen derselben Methode wirkt sich nicht anders aus, als ein einmaliger Aufruf. Einzige Ausnahme dabei ist die POST-Methode. Das Prinzip von \ac{REST} ist, Ressourcen von einem Zustand in den nächsten Zustand zu überführen.
 
 \subsubsection{Statuscodes}
 \label{sec:RESTStatuscodes}
@@ -109,19 +109,19 @@ Die verschiedenen Ressourcenarten können auf folgende \ac{URI}-Strukturen abgeb
 HATEOAS ist ein wichtiges Prinzip, welches von vielen selbsternannten \ac{REST}-Schnittstellen
 nicht implementiert wird. Dieses Akronym beschreibt, dass die Schnittstelle über Hypertext
 beziehungsweise Hypermedia angetrieben wird. Genauer gesagt, sollen durch den Aufruf
-der Haupt-URI alle Funktionalitäten als Hyperlinks unter Angabe der jeweiligen Beziehung
+der Haupt-\ac{URI} alle Funktionalitäten als Hyperlinks unter Angabe der jeweiligen Beziehung
 zugreifbar sein. Die Schnittstelle dokumentiert sich sozusagen selbst.
 In seiner im Jahre 2000 verfassten Dissertation “Architectural Styles and the Design of
 Network-based Software Architectures”, definiert Roy Fielding die \ac{REST}-Architektur. Dabei
 geht er unter anderem auf Ressourcen und \ac{HTTP} ein. Als wichtigen Punkt sieht Fielding
 jedoch auch die Verwendung von Hypermedia und die Verlinkung zwischen verwandten Ressourcen.
-In 2008 verdeutlicht Fielding anhand eines Blogeintrags seinen Standpunkt zu RESTful API’s...
+In 2008 verdeutlicht Fielding anhand eines Blogeintrags seinen Standpunkt zu \ac{REST}ful API’s...
 “If the engine of application state (and hence the API) is not being driven by hypertext, then
 it cannot be RESTful and cannot be a REST API. Period. Is there some broken manual
 somewhere that needs to be fixed?” – \cite{.19.03.2017}
 
 Damit will er sagen, dass Schnittstellen, welche nicht über Hypertext gesteuert werden, auch
-keine \ac{REST}-Schnittstellen sind, sondern ganz normale RPC-Schnittstellen.
+keine \ac{REST}-Schnittstellen sind, sondern ganz normale \ac{RPC}-Schnittstellen.
 Um dieses Prinzip zu verdeutlichen wird anhand Abbildung 3 das Richardson Maturity Model
 veranschaulicht.
  

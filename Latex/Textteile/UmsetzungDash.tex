@@ -11,7 +11,7 @@ Daher wurde beschlossen eine andere Methode in Betracht zu ziehen.
 Aufgrund der Tatsache, dass jedes Gerät im Netzwerk eine \ac{IP} Adresse im Netzwerk besitzt und diese benötigt, wurde das Mitlesen von \ac{ARP} Paketen in Betracht gezogen.
 Mithilfe des Tools tcpdump konnte erneut der Netzwerkverkehr mitgeschnitten werden, allerdings wurde diesmal die Auswahl auf das Protokoll \ac{ARP} begrenzt. 
 Bei dieser Untersuchung konnte erfolgreich der Amazon Dash Button identifiziert werden, da bei jedem Druck auf den Button zwei \ac{ARP} Pakete mitgelesen wurden.
-Eines dieser Pakete ging vom Amazon Dash Button zum Raspberry PI und eines zurück. 
+Eines dieser Pakete ging vom Amazon Dash Button zum Raspberry Pi und eines zurück. 
 Dieser Test wurde mehrmals wiederholt, unter anderem auch das Szenario, wenn der Button unmittelbar hintereinander gedrückt wird. 
 Auch dieser Test war erfolgreich und die Pakete konnten erkannt werden.
 Aufgrund dieser Ergebnisse wurde beschlossen, ein entsprechendes Python Skript zu entwickeln, welches diese Ergebnisse nutzt.
