@@ -11,7 +11,7 @@ Da für das Frontend der Webseite das Slim Framework in der Version 3 genutzt wi
 
 \paragraph{Einrichtung des SQL Datenbankservers}$\;$ \\
 \label{sec:Einrichtung des SQL Datenbankservers-1} 
-Für die Datenbank des Projektes wird MySQL genutzt. Dieses muss zuerst über den Befehl ``sudo apt-get install mysql'' installiert werden. Nach dem Herunterladen wird ein entsprechender Setup gestartet, der den Datenbankserver erfolgreich auf dem Raspberry Pi installiert. Nach der Einrichtung eines Administrators (root User) muss ein weiterer Nutzer mit Password angelegt werden, der für dieses Projekt genutzt wird. Außerdem muss mit diesem Nutzer eine Datenbank für dieses Projekt angelegt werden.
+Für die Datenbank des Projektes wird MySQL genutzt. Das Datenbankverwaltungssystem muss zuerst über den Befehl ``sudo apt-get install mysql'' installiert werden. Nach dem Herunterladen wird ein entsprechender Setup gestartet, der den Datenbankserver erfolgreich auf dem Raspberry Pi installiert. Nach der Einrichtung eines Administrators (root User) muss ein weiterer Nutzer mit Password angelegt werden, der für dieses Projekt genutzt wird. Außerdem muss mit diesem Nutzer eine Datenbank für dieses Projekt angelegt werden.
 
 Danach muss in der Datenbank ein Skript ausgeführt werden, welches die benötigten Tabellen anlegt (vgl. Anhang \ref{sec:MySQLSkript}). Abschließend müssen die Nutzerdaten und der Datenbankname noch in die entsprechende Konfigurationsdatei des Backends eingetragen werden, welche unter ``src/settings.php'' zu finden ist. 
 
@@ -23,7 +23,7 @@ Nach der erfolgreichen Installation müssen zwei Konfigurationsdateien veränder
 
 Die zweite Konfigurationsdatei ist unter ``/etc/network/interfaces'' zu finden. Diese Datei beinhaltet alle Netzwerkschnittstellen und ihre entsprechende Konfiguration (vgl. \cite{.p}). Diese Datei muss ebenfalls verändert werden, damit die \ac{WLAN} Schnittstelle des Raspberry Pi's als \ac{WLAN} Accesspoint genutzt werden kann. Eine der wichtigsten Einstellungen ist die Unterbindung der Weiterleitung aller Daten ins Internet, sofern der Raspberry Pi Zugriff auf das Internet hat und nicht nur auf ein internes Netzwerk. Ohne diese Einstellung könnte ein Amazon Dash Button nämlich weiterhin entsprechende Produkte bestellen. 
 
-Diese Möglichkeit soll im Rahmen dieses Projektes unterbunden werden, daher wird die Weiterleitung in der Konfigurationsdatei unterbunden. Die genaue Konfiguration ist im Anhang zu finden und beinhaltet noch weitere, kleinere Veränderungen im Vergleich zu ursprünglichen, die es ermöglichen, dass die Wlanschnittstelle nicht als Empfänger sondern als Sender arbeitet (vgl. Anhang \ref{sec:InterfacesConfig}) .
+Diese Möglichkeit soll im Rahmen dieses Projektes unterbunden werden, daher wird die Weiterleitung in der Konfigurationsdatei unterbunden. Die genaue Konfiguration ist im Anhang zu finden und beinhaltet noch weitere, geringfügigere Veränderungen im Vergleich zu ursprünglichen, die es ermöglichen, dass die Wlanschnittstelle nicht als Empfänger sondern als Sender arbeitet (vgl. Anhang \ref{sec:InterfacesConfig}) .
 
 % erklären warum beides (UDP/TCP)
 \paragraph{Einrichtung von Python:}$\;$ \\

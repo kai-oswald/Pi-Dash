@@ -55,7 +55,7 @@ Repräsentationen:
 
 Um die Ressourcen darzustellen, werden in \ac{REST} mehrere Repräsentationen der Ressourcen genutzt. Dies entsteht aus der Intention heraus, dass aufgrund der unterschiedlichen Repräsentationen unterschiedliche Anforderungen der Clients bedient werden können. So kann zum Beispiel die \ac{HTML} Repräsentation für einen Webbrowser genutzt werden, während eine \ac{JSON} Repräsentation für eine Clientapplikation genutzt wird.
 
-\subsubsection{HTTP}
+\subsubsection{Nutzung von \ac{HTTP}}
 \label{sec:RESTHTTP}
 
 
@@ -115,7 +115,7 @@ In seiner im Jahre 2000 verfassten Dissertation “Architectural Styles and the 
 Network-based Software Architectures”, definiert Roy Fielding die \ac{REST}-Architektur. Dabei
 geht er unter anderem auf Ressourcen und \ac{HTTP} ein. Als wichtigen Punkt sieht Fielding
 jedoch auch die Verwendung von Hypermedia und die Verlinkung zwischen verwandten Ressourcen.
-In 2008 verdeutlicht Fielding anhand eines Blogeintrags seinen Standpunkt zu \ac{REST}ful API’s...
+In 2008 verdeutlicht Fielding anhand eines Blogeintrags seinen Standpunkt zu \ac{REST}ful API's...
 “If the engine of application state (and hence the API) is not being driven by hypertext, then
 it cannot be RESTful and cannot be a REST API. Period. Is there some broken manual
 somewhere that needs to be fixed?” – \cite{.19.03.2017}
@@ -137,12 +137,12 @@ Das Richardson Maturity Model unterteilt die \ac{REST}-Architektur in vier Stufe
 \ac{REST}-Schnittstelle implementiert dabei alle vier Stufen. Doch gerade die letzte Stufe wird oft
 nicht implementiert, da sie eine gewisse Komplexität birgt.
 
-LEVEL 0 sagt lediglich aus, dass \ac{HTTP} als Transportprotokoll für RPC-Aufrufe genutzt wird.
+LEVEL 0 sagt lediglich aus, dass \ac{HTTP} als Transportprotokoll für \ac{RPC}-Aufrufe genutzt wird.
 Die Kommunikation findet über eine einzige \ac{URI} statt.
 
 LEVEL 1 sagt aus, dass jede Ressource eine eigene \ac{URI} hat.
 
-In LEVEL 2 werden die bereits Vorgestellten \ac{HTTP}-Methoden verwendet.
+In LEVEL 2 werden die bereits vorgestellten \ac{HTTP}-Methoden verwendet.
 
 In der letzten Stufe, LEVEL 3, kristallisieren sich die Unterschiede zwischen richtigen \ac{REST}-
 Services und solchen, die es gerne sein wollen, heraus. Durch den Einsatz von Hypermedia sollen alle

@@ -7,7 +7,7 @@ Neben dieser Funktionalität wird durch das Verwaltungsskript auch eine \ac{REST
 
 Die genannte \ac{REST} \ac{API} kann dann im Verwaltungsskript auf andere Methoden zugegriffen werden, die dann weitere Funktionen umfassen. Die Rückgabewerte dieser Funktionen werden dann im \ac{JSON} Format an das Frontend der Anwendung weitergegeben und können dann dort weiter verarbeitet werden. So kann beispielsweise im Frontend angezeigt werden, dass alle Kommunikationsmöglichkeiten zur Verfügung stehen. 
 
-\paragraph{Entwicklung des UDP Skripts}$\;$ \\  
+\paragraph{Entwicklung des \ac{UDP} Skripts}$\;$ \\  
 \label{sec:Entwicklung des UDP Skripts-1} 
 Da die Übertragung der Datenpakete über das \ac{UDP} Protokoll ermöglicht werden soll, muss ein entsprechender Empfänger auf dem Raspberry PI vorhanden sein. Dieser Empfänger wird mithilfe eines Skriptes in Python realisiert.
 
@@ -18,12 +18,12 @@ Bei Eingang eines entsprechenden Pakets wird ein entsprechendes Request an die \
 Nach dem erfolgreichen Absenden der Anfrage an die \ac{REST} \ac{API} befindet sich das Skript für den \ac{UDP} Empfänger weiterhin in der Endlosschleife und wartet auf das nächste Datenpaket. 
 Das Skript ist im Anhang unter \ref{sec:UDPAnhang} zu finden. 
 
-\paragraph{Entwicklung des TCP Skripts}$\;$ \\  
+\paragraph{Entwicklung des \ac{TCP} Skripts}$\;$ \\  
 \label{sec:Entwicklung des TCP Skripts-1} 
 Für alle Datenpakete, die über das Protokoll \ac{TCP} empfangen werden, muss ebenfalls ein Skript geschrieben werden, welches diese Datenpakete verarbeitet. Dabei wird genauso vorgegangen, wie beim Skript für \ac{UDP}. Der einzige Unterschied ist nach dem Absenden der Anfrage an die \ac{REST} \ac{API}. Das Skript für \ac{TCP} Datenpakete wartet nach dem Absenden der Anfrage auf die Bestätigung und schickt eine entsprechende Antwort zurück an den Button. Dieser verarbeitet ebenfalls die Antwort und kann mithilfe einer Lampe auf dem Steckbrett dem Nutzer ein visuelles Feedback geben. 
 Das entsprechende Skript ist im Anhang unter \ref{sec:TCPAnhang} zu finden.
 
-\paragraph{Entwicklung des ARP Skripts}$\;$ \\  
+\paragraph{Entwicklung des \ac{ARP} Skripts}$\;$ \\  
 \label{sec:Entwicklung des ARP Skripts-1} 
 Da das Mitlesen der \ac{IP} Datenpakete des Amazon Dash Buttons nicht möglich war, wurde das mitschneiden der \ac{ARP} Datenpakete notwendig, wie bereits in Kapitel \ref{sec:Einbindung des Amazon Dash Buttons-1} beschrieben. 
 Im Vergleich zu den Skripten, die in den Kapiteln \nameref{sec:Entwicklung des UDP Skripts-1} und \nameref{sec:Entwicklung des TCP Skripts-1} beschrieben sind, ist dieses Skript etwas anders aufgebaut. Es wird zwar ebenfalls die Library ``Socket'' genutzt, allerdings ist die Konfiguration des Sockets anders, damit \ac{ARP} Datenpakete gelesen werden können. 

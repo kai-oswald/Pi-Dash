@@ -6,15 +6,15 @@ Nginx ist ein \ac{HTTP} und Reverse-Proxy Server, ein Mail-Proxy Server und ein 
 
 \subsubsection{Features}
 \label{sec:NginxFeatures}
-Die von Nginx unterstützten Features werden im Folgenden gegliedert nach den jeweiligen Einsatzgebeiten vorgestellt (vgl. \cite{.14.03.2017}). 
+Die von Nginx unterstützten Features werden im Folgenden gegliedert nach den jeweiligen Einsatzgebieten vorgestellt (vgl. \cite{.14.03.2017}). 
 
 \subsubsection{Basic HTTP}
 \label{sec:NginxBasicHTTP}
-Nginx unterstützt die Bereitstellung von statischen Dateien. Durch die modulare Architektur ist Nginx für viele Zwecke einsetzbar und bleibt dabei übersichtlich. \ac{HTTP}/2 wird unterstützt, was die Übertragung beschleunigt und optimiert. Das Rewrite Modul ermöglicht die Änderungen von URIs anhand von regulären Ausdrücken. Dies trägt auch zur Suchmaschinenoptimierung bei und ermöglicht das Erstellen von lesbaren \ac{URI}s. Die Zugriffskontrolle kann anhand von \ac{IP}-Adressen oder Passwörtern erfolgen. Anhand der \ac{IP}-Adresse können zudem Informationen zu Geolocation gewonnen werden. \ac{SSL} und \ac{TLS} \ac{SNI} wird natürlich auch unterstützt.
+Nginx unterstützt die Bereitstellung von statischen Dateien. Durch die modulare Architektur ist Nginx für viele Zwecke einsetzbar und bleibt dabei übersichtlich. \ac{HTTP}/2 wird unterstützt, was die Übertragung beschleunigt und optimiert. Das Rewrite Modul ermöglicht die Änderungen von \ac{URI}s anhand von regulären Ausdrücken. Dies trägt auch zur Suchmaschinenoptimierung bei und ermöglicht das Erstellen von lesbaren \ac{URI}s. Die Zugriffskontrolle kann anhand von \ac{IP}-Adressen oder Passwörtern erfolgen. Anhand der \ac{IP}-Adresse können zudem Informationen zu Geolocation gewonnen werden. Sowohl \ac{SSL} als auch \ac{TLS} \ac{SNI} werden unterstützt.
 
 \subsubsection{Mail Proxy-Server}
 \label{sec:NginxMail Proxy-Server}
-Die Authentifizierung kann über einen externen \ac{HTTP} Server durchgeführt werden, welcher dann nach erfolgreicher Authentifizierung zu einem internen SMTP-Server weiterleitet. Somit muss man sich nicht direkt am Mail-Server authentifizieren. Zudem wird \ac{SSL}, STARTTLS und STLS unterstützt.
+Die Authentifizierung kann über einen externen \ac{HTTP} Server durchgeführt werden, welcher dann nach erfolgreicher Authentifizierung zu einem internen \ac{SMTP}-Server weiterleitet. Somit muss man sich nicht direkt am Mail-Server authentifizieren. Zudem wird \ac{SSL}, STARTTLS und STLS unterstützt.
 
 \subsubsection{TCP/UDP Proxy-Server}
 \label{sec:NginxTCP/UDP Proxy-Server}

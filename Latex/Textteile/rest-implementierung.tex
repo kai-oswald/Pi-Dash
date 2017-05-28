@@ -1,4 +1,4 @@
-Das Slim-Framework bietet eine Option Gruppen für Routen anzulegen. Dies ist perfekt, um APIs zu definieren. Dadurch kann die \ac{API} anhand der Route /api aufgerufen werden. Folgend ist als Beispiel der Quellcode für die \ac{API} der Produkte. Um den Quellcode etwas zu erklären, soll die zweite Zeile betrachtet werden. Diese beschreibt die Route /api/products/ bei einer GET-Anforderung. Hier wird auch deutlich, wie mächtig ein \ac{ORM} sein kann. Es werden alle Produkte im \ac{JSON}-Format als Antwort zurückgegeben.
+Das Slim-Framework bietet eine Option Gruppen für Routen anzulegen. Dies ist perfekt, um \ac{API}s zu definieren. Dadurch kann die \ac{API} anhand der Route /api aufgerufen werden. Folgend ist als Beispiel der Quellcode für die \ac{API} der Produkte. Um den Quellcode etwas zu erklären, soll die zweite Zeile betrachtet werden. Diese beschreibt die Route /api/products/ bei einer GET-Anforderung. Hier wird auch deutlich, wie mächtig ein \ac{ORM} sein kann. Es werden alle Produkte im \ac{JSON}-Format als Antwort zurückgegeben.
 \lstset{language=PHP} 
 \begin{lstlisting}[frame=single]
 $app->group("/api", function() use ($app) {  
