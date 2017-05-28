@@ -1,9 +1,9 @@
 \subsubsection{Slim-Framework}  
 \label{sec:Slim-Framework-1}
 
-Um nicht das komplette Backend selbst schreiben zu müssen, wurde ein geeignetes PHP-Framework verwendet. Da nur einfache Funktionalitäten wie Routing, \ac{ORM} und Rendern von Views benötigt werden lag der Fokus auf einem Framework, welches gerade diesen Anforderungen genügt. Die Recherche ergab die Nutzung von entweder Laravel oder Slim. Da Laravel für dieses Projekt zu umfangreich ist, wurde das Slim-Framework ausgewählt. Slim erfüllt alle Anforderungen ohne zu großen Overhead zu besitzen. 
+Um nicht das komplette Backend selbst schreiben zu müssen, wurde ein geeignetes \ac{PHP}-Framework verwendet. Da nur einfache Funktionalitäten wie Routing, \ac{ORM} und Rendern von Views benötigt werden lag der Fokus auf einem Framework, welches gerade diesen Anforderungen genügt. Die Recherche ergab die Nutzung von entweder Laravel oder Slim. Da Laravel für dieses Projekt zu umfangreich ist, wurde das Slim-Framework ausgewählt. Slim erfüllt alle Anforderungen ohne einen zu großen Overhead zu besitzen. 
 
-Für die Installation von Slim wurde der PHP Dependeny-Manager „Composer“ verwendet. Dadurch wird durch einen Kommandozeilenbefehl das komplette Framework installiert.
+Für die Installation von Slim wurde der \ac{PHP} Dependeny-Manager „Composer“ verwendet. Dadurch wird durch einen Kommandozeilenbefehl das komplette Framework installiert.
 Folgendes Beispiel zeigt, wie einfach es ist ein neues Projekt mit Composer zu erstellen.
  
 \begin{lstlisting}[frame=single] 
@@ -12,18 +12,18 @@ $ php composer.phar create-project slim/slim-skeleton [my-app]
 
 Composer verwaltet die verwendeten Pakete eines Projekts, sodass nicht jede Bibliothek bzw. jedes Framework manuell verwaltet werden muss.	
 
-Beim Routing unterscheidet man zwischen View-Routing, also Routen, die eine HTML-Ansicht bereitstellen und API-Routing, die lediglich für die Datenbeschaffung dient. 
+Beim Routing unterscheidet man zwischen View-Routing, also Routen, die eine \ac{HTML}-Ansicht bereitstellen und \ac{API}-Routing, das lediglich für die Datenbeschaffung dient. 
 
-Beim View-Routing wird Wert darauf gelegt die URIs möglichst lesbar zu gestalten, d.h. der Benutzer kann anhand der URI auf den Inhalt zurückgreifen. 
-Beim Standard-Routing werden nur die entsprechenden Templates geladen. Die Logik und Datenbeschaffung geschieht in der API bzw. im Frontend.
+Beim View-Routing wird Wert darauf gelegt die \ac{URI}s möglichst lesbar zu gestalten, d.h. der Benutzer kann anhand der \ac{URI} auf den Inhalt zurückgreifen. 
+Beim Standard-Routing werden nur die entsprechenden Templates geladen. Die Logik und Datenbeschaffung geschieht in der \ac{API} bzw. im Frontend.
 
-Die Erstellung einer eigenen API hat den Vorteil, dass man sehr flexibel ist und Daten in unterschiedlichen Repräsentationen anfordern kann. Bei der Implementierung der API soll großen Wert auf die REST-Prinzipien gelegt werden. 
-Vor allem durch die Verwendung eines Frontend-Frameworks wie Vue ist die API schon fast Pflicht, da die Daten asynchron geladen werden.
-Die Repräsentation als JSON wurde natürlich priorisiert und auf andere Repräsentationen verzichtet, da sie momentan nicht benötigt werden. Jedoch wurde die API so konstruiert, dass sie jederzeit problemlos erweitert und angepasst werden kann. JSON wurde deshalb verwendet, da die Daten ausschließlich im Javascript verwendet werden. Die API kann so gestaltet werden, dass keinerlei zusätzliche Konvertiertungen der Objekte vorgenommen werden müssen, indem gleich alle relevanten Daten geliefert werden.
+Die Erstellung einer eigenen \ac{API} hat den Vorteil, dass man sehr flexibel ist und Daten in unterschiedlichen Repräsentationen anfordern kann. Bei der Implementierung der \ac{API} soll großen Wert auf die \ac{REST}-Prinzipien gelegt werden. 
+Vor allem durch die Verwendung eines Frontend-Frameworks wie Vue ist die \ac{API} schon fast Pflicht, da die Daten asynchron geladen werden.
+Die Repräsentation als \ac{JSON} wurde natürlich priorisiert und auf andere Repräsentationen verzichtet, da sie momentan nicht benötigt werden. Jedoch wurde die \ac{API} so konstruiert, dass sie jederzeit problemlos erweitert und angepasst werden kann. \ac{JSON} wurde deshalb verwendet, da die Daten ausschließlich im Javascript verwendet werden. Die \ac{API} kann so gestaltet werden, dass keinerlei zusätzliche Konvertiertungen der Objekte vorgenommen werden müssen, indem gleich alle relevanten Daten geliefert werden.
 Einen genaueren Einblick gibt dabei Abschnitt "\nameref{sec:Aufbau und Entwicklung der REST API-1}" .
 
-Der \ac{ORM} des Slim-Frameworks wird „Eloquent“ genannt. Dabei werden automatisch die SQL-Tabellen auf PHP-Klassen projiziert. Am Besten lässt sich dies aber anhand von Codebeispielen zeigen.
-Zunächst muss Eloquent mit den notwendigen Datenbankdaten initialisiert werden.
+Der \ac{ORM} des Slim-Frameworks wird „Eloquent“ genannt. Dabei werden automatisch die \ac{SQL}-Tabellen auf \ac{PHP}-Klassen projiziert. Am Besten lässt sich dies aber anhand von Codebeispielen zeigen.
+Zunächst muss Eloquent mit den notwendigen Datenbankdaten initialisiert werden:
 \lstset{language=PHP}  
 \begin{lstlisting}[frame=single, breaklines=true] 
 // set up ORM
@@ -42,7 +42,7 @@ Zunächst muss Eloquent mit den notwendigen Datenbankdaten initialisiert werden.
  require __DIR__ . '/../models/product.php';
 \end{lstlisting}
 
-Um das Model mit der entsprechenden Tabelle zu mappen, muss lediglich eine Klasse definiert werden, die das Eloquent Model Interface implementiert. Anschließend können darüber Datenbankabfragen gemacht werden.
+Um das Model mit der entsprechenden Tabelle zu mappen, muss lediglich eine Klasse definiert werden, die das Eloquent Model Interface implementiert. Anschließend können darüber Datenbankabfragen gemacht werden:
 \begin{lstlisting}[frame=single] 
 class Product extends \Illuminate\Database\Eloquent\Model
 {
